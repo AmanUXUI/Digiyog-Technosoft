@@ -1,0 +1,8 @@
+{
+  "name": "Digiyog Technosoft",
+  "description": "High-fidelity brand manual portfolio application for Digiyog Technosoft, featuring interactive expertise sliders, premium services bento layout, featured case study overlays, interactive process steps, verified client testimonials, and a custom consultation booking engine.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
