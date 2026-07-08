@@ -1120,6 +1120,187 @@ export default function App() {
         </div>
       </section>
 
+      {/* ==================== CLIENT SHOWCASE / TRUSTED BY SECTION ==================== */}
+      <section id="contributions" className="relative z-20 w-full bg-zinc-50 text-zinc-900 py-16 md:py-20 px-6 md:px-12 border-t border-zinc-200/60 overflow-hidden">
+        {/* Ambient glow backgrounds */}
+        <div className="absolute top-1/2 left-10 w-[300px] h-[300px] bg-[#0c3773]/3 rounded-full blur-[100px] pointer-events-none" />
+        <div className="absolute bottom-5 right-1/4 w-[250px] h-[250px] bg-[#fcbf4a]/4 rounded-full blur-[80px] pointer-events-none" />
+
+        <div className="max-w-7xl mx-auto relative z-10 w-full">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+            
+            {/* Left Column: Crisp, left-aligned explanation and branding details */}
+            <div className="lg:col-span-6 space-y-5">
+              <div className="space-y-2">
+                <span className="text-xs font-mono font-black tracking-widest text-[#0c3773] uppercase block">
+                  CLIENT SHOWCASE & PARTNERS
+                </span>
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-sans font-black tracking-tight text-zinc-950 leading-tight">
+                  Trusted by Leading Institutions & Brands
+                </h2>
+              </div>
+
+              <p className="text-zinc-600 text-[18px] leading-[29px] font-normal">
+                Over the past decade, we have partnered with world-renowned universities and enterprises to design high-performance media buying, conversion funnels, and marketing analytics that scale brand influence.
+              </p>
+
+              {/* Service Areas & Impact Bullet Points */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
+                <div className="flex gap-2.5">
+                  <div className="w-5 h-5 rounded-full bg-[#0c3773]/10 flex items-center justify-center shrink-0 mt-0.5">
+                    <Check className="w-3 h-3 text-[#0c3773]" />
+                  </div>
+                  <div>
+                    <h4 className="text-[16px] font-bold text-zinc-950">Institutional Outreach</h4>
+                    <p className="text-zinc-500 text-[14px] mt-0.5 leading-relaxed">Scaling recruitment with audience intelligence models.</p>
+                  </div>
+                </div>
+                <div className="flex gap-2.5">
+                  <div className="w-5 h-5 rounded-full bg-[#0c3773]/10 flex items-center justify-center shrink-0 mt-0.5">
+                    <Check className="w-3 h-3 text-[#0c3773]" />
+                  </div>
+                  <div>
+                    <h4 className="text-[16px] font-bold text-zinc-950">Precision Tracking</h4>
+                    <p className="text-zinc-500 text-[14px] mt-0.5 leading-relaxed">Deploying robust, GDPR-compliant attribution tracking.</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* High-Impact Metrics Grid (from Reference) */}
+              <div className="grid grid-cols-3 gap-4 pt-6 pb-2 border-t border-zinc-200/80">
+                <div className="space-y-1">
+                  <div className="text-2xl md:text-3xl font-sans font-black text-zinc-950 tracking-tight leading-none">1,500+</div>
+                  <div className="text-xs text-zinc-500 font-medium leading-tight">Projects Delivered</div>
+                </div>
+                <div className="space-y-1">
+                  <div className="text-2xl md:text-3xl font-sans font-black text-zinc-950 tracking-tight leading-none">500+</div>
+                  <div className="text-xs text-zinc-500 font-medium leading-tight">Active Clients</div>
+                </div>
+                <div className="space-y-1">
+                  <div className="text-2xl md:text-3xl font-sans font-black text-zinc-950 tracking-tight leading-none">7+ Years</div>
+                  <div className="text-xs text-zinc-500 font-medium leading-tight">Industry Experience</div>
+                </div>
+              </div>
+
+              <div className="pt-2">
+                <a 
+                  href="#contact" 
+                  className="inline-flex items-center gap-2 text-[#0c3773] font-sans font-black text-xs uppercase tracking-widest hover:text-[#fcbf4a] transition-colors duration-300 group"
+                >
+                  <span>Explore Collaboration</span>
+                  <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" />
+                </a>
+              </div>
+            </div>
+
+            {/* Right Column: 3 Horizontal Moving Logo Sliders with Continuous Autoplay wrapped in a premium white container */}
+            <div className="lg:col-span-6 relative w-full">
+              <div className="relative w-full bg-white border border-zinc-200/80 rounded-[2.5rem] p-6 md:p-8 shadow-sm overflow-hidden flex flex-col gap-7 z-10">
+                
+                {/* Fade out masks for left/right premium blur effect over the white container */}
+                <div className="absolute top-0 bottom-0 left-0 w-16 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
+                <div className="absolute top-0 bottom-0 right-0 w-16 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
+
+                {/* Row 1: Left -> Right */}
+                <div className="w-full overflow-hidden py-1">
+                  <div className="animate-marquee-ltr flex gap-6 items-center">
+                    {[
+                      { url: "https://i.postimg.cc/tgpXh2hf/Frame-1707479991.png", alt: "Logo 1" },
+                      { url: "https://i.postimg.cc/PqTtm2Wh/Frame-1707479992.png", alt: "Logo 2" },
+                      { url: "https://i.postimg.cc/jjcRvPXF/Frame-1707479993.png", alt: "Logo 3" },
+                      { url: "https://i.postimg.cc/TP0TQg9S/Frame-1707479996.png", alt: "Logo 4" },
+                      { url: "https://i.postimg.cc/ZqHJjpc2/Frame-1707479997.png", alt: "Logo 5" },
+                      { url: "https://i.postimg.cc/tgpXh2hf/Frame-1707479991.png", alt: "Logo 1" },
+                      { url: "https://i.postimg.cc/PqTtm2Wh/Frame-1707479992.png", alt: "Logo 2" },
+                      { url: "https://i.postimg.cc/jjcRvPXF/Frame-1707479993.png", alt: "Logo 3" },
+                      { url: "https://i.postimg.cc/TP0TQg9S/Frame-1707479996.png", alt: "Logo 4" },
+                      { url: "https://i.postimg.cc/ZqHJjpc2/Frame-1707479997.png", alt: "Logo 5" },
+                      { url: "https://i.postimg.cc/tgpXh2hf/Frame-1707479991.png", alt: "Logo 1" },
+                      { url: "https://i.postimg.cc/PqTtm2Wh/Frame-1707479992.png", alt: "Logo 2" },
+                      { url: "https://i.postimg.cc/jjcRvPXF/Frame-1707479993.png", alt: "Logo 3" },
+                      { url: "https://i.postimg.cc/TP0TQg9S/Frame-1707479996.png", alt: "Logo 4" },
+                      { url: "https://i.postimg.cc/ZqHJjpc2/Frame-1707479997.png", alt: "Logo 5" }
+                    ].map((logo, idx) => (
+                      <img 
+                        key={`r1-${idx}`}
+                        src={logo.url} 
+                        alt={logo.alt} 
+                        className="h-12 md:h-[60px] w-auto object-contain shrink-0 select-none opacity-85 hover:opacity-100 transition-opacity duration-300"
+                        referrerPolicy="no-referrer"
+                      />
+                    ))}
+                  </div>
+                </div>
+
+                {/* Row 2: Right -> Left */}
+                <div className="w-full overflow-hidden py-1">
+                  <div className="animate-marquee-rtl flex gap-6 items-center">
+                    {[
+                      { url: "https://i.postimg.cc/rpjqgxj6/Frame-1707479998.png", alt: "Logo 6" },
+                      { url: "https://i.postimg.cc/mrjTVCjf/Frame-1707479999.png", alt: "Logo 7" },
+                      { url: "https://i.postimg.cc/jjcRvPcr/Frame-1707480000.png", alt: "Logo 8" },
+                      { url: "https://i.postimg.cc/43PXwVPg/Frame-1707480001.png", alt: "Logo 9" },
+                      { url: "https://i.postimg.cc/xd59gM5f/Frame-1707480002.png", alt: "Logo 10" },
+                      { url: "https://i.postimg.cc/rpjqgxj6/Frame-1707479998.png", alt: "Logo 6" },
+                      { url: "https://i.postimg.cc/mrjTVCjf/Frame-1707479999.png", alt: "Logo 7" },
+                      { url: "https://i.postimg.cc/jjcRvPcr/Frame-1707480000.png", alt: "Logo 8" },
+                      { url: "https://i.postimg.cc/43PXwVPg/Frame-1707480001.png", alt: "Logo 9" },
+                      { url: "https://i.postimg.cc/xd59gM5f/Frame-1707480002.png", alt: "Logo 10" },
+                      { url: "https://i.postimg.cc/rpjqgxj6/Frame-1707479998.png", alt: "Logo 6" },
+                      { url: "https://i.postimg.cc/mrjTVCjf/Frame-1707479999.png", alt: "Logo 7" },
+                      { url: "https://i.postimg.cc/jjcRvPcr/Frame-1707480000.png", alt: "Logo 8" },
+                      { url: "https://i.postimg.cc/43PXwVPg/Frame-1707480001.png", alt: "Logo 9" },
+                      { url: "https://i.postimg.cc/xd59gM5f/Frame-1707480002.png", alt: "Logo 10" }
+                    ].map((logo, idx) => (
+                      <img 
+                        key={`r2-${idx}`}
+                        src={logo.url} 
+                        alt={logo.alt} 
+                        className="h-12 md:h-[60px] w-auto object-contain shrink-0 select-none opacity-85 hover:opacity-100 transition-opacity duration-300"
+                        referrerPolicy="no-referrer"
+                      />
+                    ))}
+                  </div>
+                </div>
+
+                {/* Row 3: Left -> Right */}
+                <div className="w-full overflow-hidden py-1">
+                  <div className="animate-marquee-ltr flex gap-6 items-center">
+                    {[
+                      { url: "https://i.postimg.cc/VNgz4ngY/Frame-1707480003.png", alt: "Logo 11" },
+                      { url: "https://i.postimg.cc/yNj7ncjs/Frame-1707480004.png", alt: "Logo 12" },
+                      { url: "https://i.postimg.cc/tgk9DWkC/Frame-1707480006.png", alt: "Logo 13" },
+                      { url: "https://i.postimg.cc/zf7qpK7g/Frame-1707480007.png", alt: "Logo 14" },
+                      { url: "https://i.postimg.cc/5tgfpLgQ/Frame-1707480008.png", alt: "Logo 15" },
+                      { url: "https://i.postimg.cc/VNgz4ngY/Frame-1707480003.png", alt: "Logo 11" },
+                      { url: "https://i.postimg.cc/yNj7ncjs/Frame-1707480004.png", alt: "Logo 12" },
+                      { url: "https://i.postimg.cc/tgk9DWkC/Frame-1707480006.png", alt: "Logo 13" },
+                      { url: "https://i.postimg.cc/zf7qpK7g/Frame-1707480007.png", alt: "Logo 14" },
+                      { url: "https://i.postimg.cc/5tgfpLgQ/Frame-1707480008.png", alt: "Logo 15" },
+                      { url: "https://i.postimg.cc/VNgz4ngY/Frame-1707480003.png", alt: "Logo 11" },
+                      { url: "https://i.postimg.cc/yNj7ncjs/Frame-1707480004.png", alt: "Logo 12" },
+                      { url: "https://i.postimg.cc/tgk9DWkC/Frame-1707480006.png", alt: "Logo 13" },
+                      { url: "https://i.postimg.cc/zf7qpK7g/Frame-1707480007.png", alt: "Logo 14" },
+                      { url: "https://i.postimg.cc/5tgfpLgQ/Frame-1707480008.png", alt: "Logo 15" }
+                    ].map((logo, idx) => (
+                      <img 
+                        key={`r3-${idx}`}
+                        src={logo.url} 
+                        alt={logo.alt} 
+                        className="h-12 md:h-[60px] w-auto object-contain shrink-0 select-none opacity-85 hover:opacity-100 transition-opacity duration-300"
+                        referrerPolicy="no-referrer"
+                      />
+                    ))}
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
       {/* ==================== SERVICES SECTION ==================== */}
       <section id="services" className="relative z-20 w-full bg-zinc-50 text-zinc-900 border-t border-zinc-200/60 overflow-hidden p-0 m-0">
         <div className="absolute top-1/3 right-1/4 -translate-y-1/2 w-[500px] h-[500px] bg-[#0c3773]/5 rounded-full blur-[150px] pointer-events-none" />
@@ -1573,186 +1754,6 @@ export default function App() {
         </div>
       </section>
 
-      {/* ==================== CLIENT SHOWCASE / TRUSTED BY SECTION ==================== */}
-      <section id="contributions" className="relative z-20 w-full bg-zinc-50 text-zinc-900 py-16 md:py-20 px-6 md:px-12 border-t border-zinc-200/60 overflow-hidden">
-        {/* Ambient glow backgrounds */}
-        <div className="absolute top-1/2 left-10 w-[300px] h-[300px] bg-[#0c3773]/3 rounded-full blur-[100px] pointer-events-none" />
-        <div className="absolute bottom-5 right-1/4 w-[250px] h-[250px] bg-[#fcbf4a]/4 rounded-full blur-[80px] pointer-events-none" />
-
-        <div className="max-w-7xl mx-auto relative z-10 w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-            
-            {/* Left Column: Crisp, left-aligned explanation and branding details */}
-            <div className="lg:col-span-6 space-y-5">
-              <div className="space-y-2">
-                <span className="text-xs font-mono font-black tracking-widest text-[#0c3773] uppercase block">
-                  CLIENT SHOWCASE & PARTNERS
-                </span>
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-sans font-black tracking-tight text-zinc-950 leading-tight">
-                  Trusted by Leading Institutions & Brands
-                </h2>
-              </div>
-
-              <p className="text-zinc-600 text-[18px] leading-[29px] font-normal">
-                Over the past decade, we have partnered with world-renowned universities and enterprises to design high-performance media buying, conversion funnels, and marketing analytics that scale brand influence.
-              </p>
-
-              {/* Service Areas & Impact Bullet Points */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
-                <div className="flex gap-2.5">
-                  <div className="w-5 h-5 rounded-full bg-[#0c3773]/10 flex items-center justify-center shrink-0 mt-0.5">
-                    <Check className="w-3 h-3 text-[#0c3773]" />
-                  </div>
-                  <div>
-                    <h4 className="text-[16px] font-bold text-zinc-950">Institutional Outreach</h4>
-                    <p className="text-zinc-500 text-[14px] mt-0.5 leading-relaxed">Scaling recruitment with audience intelligence models.</p>
-                  </div>
-                </div>
-                <div className="flex gap-2.5">
-                  <div className="w-5 h-5 rounded-full bg-[#0c3773]/10 flex items-center justify-center shrink-0 mt-0.5">
-                    <Check className="w-3 h-3 text-[#0c3773]" />
-                  </div>
-                  <div>
-                    <h4 className="text-[16px] font-bold text-zinc-950">Precision Tracking</h4>
-                    <p className="text-zinc-500 text-[14px] mt-0.5 leading-relaxed">Deploying robust, GDPR-compliant attribution tracking.</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* High-Impact Metrics Grid (from Reference) */}
-              <div className="grid grid-cols-3 gap-4 pt-6 pb-2 border-t border-zinc-200/80">
-                <div className="space-y-1">
-                  <div className="text-2xl md:text-3xl font-sans font-black text-zinc-950 tracking-tight leading-none">1,500+</div>
-                  <div className="text-xs text-zinc-500 font-medium leading-tight">Projects Delivered</div>
-                </div>
-                <div className="space-y-1">
-                  <div className="text-2xl md:text-3xl font-sans font-black text-zinc-950 tracking-tight leading-none">500+</div>
-                  <div className="text-xs text-zinc-500 font-medium leading-tight">Active Clients</div>
-                </div>
-                <div className="space-y-1">
-                  <div className="text-2xl md:text-3xl font-sans font-black text-zinc-950 tracking-tight leading-none">7+ Years</div>
-                  <div className="text-xs text-zinc-500 font-medium leading-tight">Industry Experience</div>
-                </div>
-              </div>
-
-              <div className="pt-2">
-                <a 
-                  href="#contact" 
-                  className="inline-flex items-center gap-2 text-[#0c3773] font-sans font-black text-xs uppercase tracking-widest hover:text-[#fcbf4a] transition-colors duration-300 group"
-                >
-                  <span>Explore Collaboration</span>
-                  <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" />
-                </a>
-              </div>
-            </div>
-
-            {/* Right Column: 3 Horizontal Moving Logo Sliders with Continuous Autoplay wrapped in a premium white container */}
-            <div className="lg:col-span-6 relative w-full">
-              <div className="relative w-full bg-white border border-zinc-200/80 rounded-[2.5rem] p-6 md:p-8 shadow-sm overflow-hidden flex flex-col gap-7 z-10">
-                
-                {/* Fade out masks for left/right premium blur effect over the white container */}
-                <div className="absolute top-0 bottom-0 left-0 w-16 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
-                <div className="absolute top-0 bottom-0 right-0 w-16 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
-
-                {/* Row 1: Left -> Right */}
-                <div className="w-full overflow-hidden py-1">
-                  <div className="animate-marquee-ltr flex gap-6 items-center">
-                    {[
-                      { url: "https://i.postimg.cc/tgpXh2hf/Frame-1707479991.png", alt: "Logo 1" },
-                      { url: "https://i.postimg.cc/PqTtm2Wh/Frame-1707479992.png", alt: "Logo 2" },
-                      { url: "https://i.postimg.cc/jjcRvPXF/Frame-1707479993.png", alt: "Logo 3" },
-                      { url: "https://i.postimg.cc/TP0TQg9S/Frame-1707479996.png", alt: "Logo 4" },
-                      { url: "https://i.postimg.cc/ZqHJjpc2/Frame-1707479997.png", alt: "Logo 5" },
-                      { url: "https://i.postimg.cc/tgpXh2hf/Frame-1707479991.png", alt: "Logo 1" },
-                      { url: "https://i.postimg.cc/PqTtm2Wh/Frame-1707479992.png", alt: "Logo 2" },
-                      { url: "https://i.postimg.cc/jjcRvPXF/Frame-1707479993.png", alt: "Logo 3" },
-                      { url: "https://i.postimg.cc/TP0TQg9S/Frame-1707479996.png", alt: "Logo 4" },
-                      { url: "https://i.postimg.cc/ZqHJjpc2/Frame-1707479997.png", alt: "Logo 5" },
-                      { url: "https://i.postimg.cc/tgpXh2hf/Frame-1707479991.png", alt: "Logo 1" },
-                      { url: "https://i.postimg.cc/PqTtm2Wh/Frame-1707479992.png", alt: "Logo 2" },
-                      { url: "https://i.postimg.cc/jjcRvPXF/Frame-1707479993.png", alt: "Logo 3" },
-                      { url: "https://i.postimg.cc/TP0TQg9S/Frame-1707479996.png", alt: "Logo 4" },
-                      { url: "https://i.postimg.cc/ZqHJjpc2/Frame-1707479997.png", alt: "Logo 5" }
-                    ].map((logo, idx) => (
-                      <img 
-                        key={`r1-${idx}`}
-                        src={logo.url} 
-                        alt={logo.alt} 
-                        className="h-12 md:h-[60px] w-auto object-contain shrink-0 select-none opacity-85 hover:opacity-100 transition-opacity duration-300"
-                        referrerPolicy="no-referrer"
-                      />
-                    ))}
-                  </div>
-                </div>
-
-                {/* Row 2: Right -> Left */}
-                <div className="w-full overflow-hidden py-1">
-                  <div className="animate-marquee-rtl flex gap-6 items-center">
-                    {[
-                      { url: "https://i.postimg.cc/rpjqgxj6/Frame-1707479998.png", alt: "Logo 6" },
-                      { url: "https://i.postimg.cc/mrjTVCjf/Frame-1707479999.png", alt: "Logo 7" },
-                      { url: "https://i.postimg.cc/jjcRvPcr/Frame-1707480000.png", alt: "Logo 8" },
-                      { url: "https://i.postimg.cc/43PXwVPg/Frame-1707480001.png", alt: "Logo 9" },
-                      { url: "https://i.postimg.cc/xd59gM5f/Frame-1707480002.png", alt: "Logo 10" },
-                      { url: "https://i.postimg.cc/rpjqgxj6/Frame-1707479998.png", alt: "Logo 6" },
-                      { url: "https://i.postimg.cc/mrjTVCjf/Frame-1707479999.png", alt: "Logo 7" },
-                      { url: "https://i.postimg.cc/jjcRvPcr/Frame-1707480000.png", alt: "Logo 8" },
-                      { url: "https://i.postimg.cc/43PXwVPg/Frame-1707480001.png", alt: "Logo 9" },
-                      { url: "https://i.postimg.cc/xd59gM5f/Frame-1707480002.png", alt: "Logo 10" },
-                      { url: "https://i.postimg.cc/rpjqgxj6/Frame-1707479998.png", alt: "Logo 6" },
-                      { url: "https://i.postimg.cc/mrjTVCjf/Frame-1707479999.png", alt: "Logo 7" },
-                      { url: "https://i.postimg.cc/jjcRvPcr/Frame-1707480000.png", alt: "Logo 8" },
-                      { url: "https://i.postimg.cc/43PXwVPg/Frame-1707480001.png", alt: "Logo 9" },
-                      { url: "https://i.postimg.cc/xd59gM5f/Frame-1707480002.png", alt: "Logo 10" }
-                    ].map((logo, idx) => (
-                      <img 
-                        key={`r2-${idx}`}
-                        src={logo.url} 
-                        alt={logo.alt} 
-                        className="h-12 md:h-[60px] w-auto object-contain shrink-0 select-none opacity-85 hover:opacity-100 transition-opacity duration-300"
-                        referrerPolicy="no-referrer"
-                      />
-                    ))}
-                  </div>
-                </div>
-
-                {/* Row 3: Left -> Right */}
-                <div className="w-full overflow-hidden py-1">
-                  <div className="animate-marquee-ltr flex gap-6 items-center">
-                    {[
-                      { url: "https://i.postimg.cc/VNgz4ngY/Frame-1707480003.png", alt: "Logo 11" },
-                      { url: "https://i.postimg.cc/yNj7ncjs/Frame-1707480004.png", alt: "Logo 12" },
-                      { url: "https://i.postimg.cc/tgk9DWkC/Frame-1707480006.png", alt: "Logo 13" },
-                      { url: "https://i.postimg.cc/zf7qpK7g/Frame-1707480007.png", alt: "Logo 14" },
-                      { url: "https://i.postimg.cc/5tgfpLgQ/Frame-1707480008.png", alt: "Logo 15" },
-                      { url: "https://i.postimg.cc/VNgz4ngY/Frame-1707480003.png", alt: "Logo 11" },
-                      { url: "https://i.postimg.cc/yNj7ncjs/Frame-1707480004.png", alt: "Logo 12" },
-                      { url: "https://i.postimg.cc/tgk9DWkC/Frame-1707480006.png", alt: "Logo 13" },
-                      { url: "https://i.postimg.cc/zf7qpK7g/Frame-1707480007.png", alt: "Logo 14" },
-                      { url: "https://i.postimg.cc/5tgfpLgQ/Frame-1707480008.png", alt: "Logo 15" },
-                      { url: "https://i.postimg.cc/VNgz4ngY/Frame-1707480003.png", alt: "Logo 11" },
-                      { url: "https://i.postimg.cc/yNj7ncjs/Frame-1707480004.png", alt: "Logo 12" },
-                      { url: "https://i.postimg.cc/tgk9DWkC/Frame-1707480006.png", alt: "Logo 13" },
-                      { url: "https://i.postimg.cc/zf7qpK7g/Frame-1707480007.png", alt: "Logo 14" },
-                      { url: "https://i.postimg.cc/5tgfpLgQ/Frame-1707480008.png", alt: "Logo 15" }
-                    ].map((logo, idx) => (
-                      <img 
-                        key={`r3-${idx}`}
-                        src={logo.url} 
-                        alt={logo.alt} 
-                        className="h-12 md:h-[60px] w-auto object-contain shrink-0 select-none opacity-85 hover:opacity-100 transition-opacity duration-300"
-                        referrerPolicy="no-referrer"
-                      />
-                    ))}
-                  </div>
-                </div>
-
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </section>
 
       {/* ==================== TESTIMONIALS SECTION ==================== */}
       <section id="testimonials" className="relative z-20 w-full bg-white text-zinc-900 py-16 md:py-20 border-t border-zinc-200/60 overflow-hidden">
