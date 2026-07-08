@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Search, X, ArrowRight, Send, Check, Menu, ChevronRight, Globe, Users, Award, Sparkles, TrendingUp, Code, Video, Share2, Palette, ChevronUp, ChevronDown, Lightbulb, Target, Settings, Rocket, Star, Quote, Calendar, Clock, MessageCircle } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
-import { LiquidMetal } from '@paper-design/shaders-react';
+import { LiquidMetal, MeshGradient } from '@paper-design/shaders-react';
 
 const getCategoryIcon = (category: string) => {
   switch (category) {
@@ -555,14 +555,14 @@ export default function App() {
 
 
   return (
-    <div className="relative min-h-screen bg-[#000000] font-sans text-white overflow-x-hidden selection:bg-[#fcbf4a] selection:text-black flex flex-col justify-between">
+    <div className="relative min-h-screen bg-zinc-50 font-sans text-zinc-900 overflow-x-hidden selection:bg-[#fcbf4a] selection:text-black flex flex-col justify-between">
       
       {/* 1. FLUID BACKGROUND ANIMATED COMPLEX MESH GRADIENT */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
         
-        {/* Soft interactive golden glow following the cursor - extremely subtle */}
+        {/* Soft interactive blue glow following the cursor - extremely subtle */}
         <div 
-          className="absolute -translate-x-1/2 -translate-y-1/2 w-[30vw] h-[30vw] rounded-full bg-[#fcbf4a] opacity-[0.05] blur-[100px] mix-blend-screen transition-opacity duration-1000 hidden md:block"
+          className="absolute -translate-x-1/2 -translate-y-1/2 w-[30vw] h-[30vw] rounded-full bg-[#0c3773] opacity-[0.03] blur-[100px] transition-opacity duration-1000 hidden md:block"
           style={{
             left: `${mousePos.x}px`,
             top: `${mousePos.y}px`
@@ -574,14 +574,14 @@ export default function App() {
       </div>
 
       {/* 2. DYNAMIC NAVIGATION HEADER - FLOATING GLASS BRIDGE */}
-      <header className="relative z-40 mx-4 md:mx-12 mt-6 md:mt-8 px-6 md:px-8 py-3.5 md:py-4 bg-[#0a0a0a]/70 backdrop-blur-xl border border-white/10 rounded-2xl md:rounded-full flex items-center justify-between transition-all duration-500 hover:border-white/20 hover:shadow-[0_0_30px_rgba(252,191,74,0.03)] shadow-[0_12px_40px_rgba(0,0,0,0.8)]">
+      <header className="relative z-40 w-full px-6 md:px-12 py-4 bg-white/85 backdrop-blur-md border-b border-zinc-200/60 flex items-center justify-between transition-all duration-500 shadow-[0_1px_3px_rgba(0,0,0,0.02)]">
         
         {/* Left Side: Logo Container (exact 25% width) */}
         <div className="w-1/4 sm:w-[25%] flex items-center justify-start">
           <div className="cursor-pointer relative group flex items-center h-12 sm:h-14 md:h-16 lg:h-18">
             <img 
               referrerPolicy="no-referrer"
-              src="https://imgh.in/host/1mxmz7" 
+              src="https://imgh.in/host/36nsc8" 
               alt="Digiyog Logo" 
               className="h-full w-auto object-contain transition-transform duration-300 group-hover:scale-105"
             />
@@ -589,7 +589,7 @@ export default function App() {
         </div>
  
         {/* Center: Main Navigation (Desktop) */}
-        <nav className="hidden lg:flex flex-1 items-center justify-center space-x-6 text-xs font-semibold tracking-[0.2em] text-white/70 font-satoshi">
+        <nav className="hidden lg:flex flex-1 items-center justify-center space-x-6 text-xs font-semibold tracking-[0.2em] text-zinc-600 font-satoshi">
           {[
             { 
               name: "WORK", 
@@ -614,11 +614,11 @@ export default function App() {
           ].map((menu) => (
             <div 
               key={menu.id} 
-              className="relative cursor-pointer py-1.5 px-3 rounded-full hover:bg-white/5 transition-colors duration-300"
+              className="relative cursor-pointer py-1.5 px-3 rounded-full hover:bg-zinc-100/60 transition-colors duration-300"
               onMouseEnter={() => setActiveMenu(menu.id)}
               onMouseLeave={() => setActiveMenu(null)}
             >
-              <span className="hover:text-[#fcbf4a] transition-colors duration-300">
+              <span className="hover:text-[#0c3773] transition-colors duration-300">
                 {menu.name}
               </span>
               
@@ -626,7 +626,7 @@ export default function App() {
               {activeMenu === menu.id && (
                 <motion.div 
                   layoutId="header-active-line" 
-                  className="absolute bottom-[-2px] left-4 right-4 h-[2px] bg-[#fcbf4a]"
+                  className="absolute bottom-[-2px] left-4 right-4 h-[2px] bg-[#0c3773]"
                   transition={{ type: "spring", stiffness: 380, damping: 30 }}
                 />
               )}
@@ -646,7 +646,7 @@ export default function App() {
                 el.scrollIntoView({ behavior: "smooth", block: "center" });
               }
             }}
-            className="inline-flex items-center text-[10px] md:text-xs font-bold tracking-[0.2em] text-white border border-white/20 bg-white/[0.03] hover:bg-[#fcbf4a] hover:text-black hover:border-transparent px-6 py-2.5 rounded-full transition-all duration-350 active:scale-95 cursor-pointer font-satoshi animate-pulse"
+            className="inline-flex items-center text-[10px] md:text-xs font-bold tracking-[0.2em] text-[#0c3773] border border-[#0c3773]/20 bg-[#0c3773]/5 hover:bg-[#0c3773] hover:text-white hover:border-transparent px-6 py-2.5 rounded-full transition-all duration-350 active:scale-95 cursor-pointer font-satoshi animate-pulse"
           >
             CONTACT US
           </button>
@@ -654,8 +654,21 @@ export default function App() {
       </header>
 
       {/* 3. HERO INSANELY BEAUTIFUL TYPOGRAPHY BLOCK */}
-      <main className="relative z-10 w-full px-6 py-12 md:px-12 flex-grow flex items-center min-h-[70vh] md:min-h-[80vh]">
-        <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+      <main className="relative z-10 w-full px-6 py-12 md:px-12 flex-grow flex items-center min-h-[70vh] md:min-h-[80vh] overflow-hidden bg-white text-zinc-950">
+        
+        {/* Background MeshGradient from Paper Design */}
+        <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden flex justify-center items-center">
+          <MeshGradient 
+            speed={1} 
+            scale={1} 
+            distortion={0.8} 
+            swirl={0.1} 
+            colors={['#7BA3FF', '#FFFFFF', '#FFFFFF']} 
+            style={{ height: '1080px', width: '1920px' }} 
+          />
+        </div>
+
+        <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center relative z-10">
           
           {/* Left Column: Brand details, headers, buttons and marquee */}
           <div className="relative w-full lg:col-span-7 flex flex-col justify-center">
@@ -665,18 +678,18 @@ export default function App() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.1 }}
-              className="text-white/50 text-xs sm:text-sm font-sans font-bold tracking-[0.16em] uppercase mb-4"
+              className="text-[#0c3773] text-xs sm:text-sm font-sans font-bold tracking-[0.16em] uppercase mb-4"
             >
               TOP RATED AND AWARD WINNING
             </motion.div>
 
             {/* Giant Connected Experience Heading */}
-            <h1 className="leading-[1.15] font-sans font-black text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-white tracking-[-0.03em] select-none text-left mb-6">
+            <h1 className="leading-[1.15] font-sans font-black text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-zinc-950 tracking-[-0.03em] select-none text-left mb-6">
               <motion.span 
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.9, cubicBezier: [0.16, 1, 0.3, 1] }}
-                className="block text-white"
+                className="block text-zinc-950"
               >
                 Stop Looking Like Every
               </motion.span>
@@ -685,7 +698,7 @@ export default function App() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.9, delay: 0.15, cubicBezier: [0.16, 1, 0.3, 1] }}
-                className="relative inline-block text-white"
+                className="relative inline-block text-zinc-950"
               >
                 Other Brand.
                 {/* Curved hand-drawn custom SVG gold underline matching the screenshot */}
@@ -713,9 +726,9 @@ export default function App() {
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.45, duration: 0.7 }}
-                className="text-sm sm:text-base text-white/70 font-normal leading-relaxed tracking-wide"
+                className="text-sm sm:text-base text-zinc-700 font-normal leading-relaxed tracking-wide"
               >
-                In a world where attention lasts seconds, average marketing gets ignored. <strong className="text-white font-semibold">Digiyog Technosoft</strong> helps brands stand out, get discovered, and grow through creative storytelling, smart technology, and performance-driven marketing.
+                In a world where attention lasts seconds, average marketing gets ignored. <strong className="text-zinc-950 font-semibold">Digiyog Technosoft</strong> helps brands stand out, get discovered, and grow through creative storytelling, smart technology, and performance-driven marketing.
               </motion.p>
             </div>
 
@@ -731,11 +744,11 @@ export default function App() {
                 <motion.div 
                   initial={{ opacity: 0, scale: 0.98 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  className="w-full max-w-[550px] bg-emerald-500/10 border border-emerald-500/20 rounded-lg p-4 flex items-center space-x-3 text-emerald-400 font-satoshi text-xs"
+                  className="w-full max-w-[550px] bg-emerald-50 border border-emerald-200 rounded-lg p-4 flex items-center space-x-3 text-emerald-800 font-satoshi text-xs"
                 >
-                  <div className="w-6 h-6 bg-emerald-500 rounded-full flex items-center justify-center text-black font-extrabold shrink-0">✓</div>
+                  <div className="w-6 h-6 bg-emerald-600 rounded-full flex items-center justify-center text-white font-extrabold shrink-0">✓</div>
                   <div>
-                    <span className="font-bold block text-white uppercase tracking-wider text-[10px]">Proposal Requested Successfully!</span>
+                    <span className="font-bold block text-emerald-950 uppercase tracking-wider text-[10px]">Proposal Requested Successfully!</span>
                     <span>An Experience Architect is analyzing your website and will contact you shortly.</span>
                   </div>
                 </motion.div>
@@ -751,7 +764,7 @@ export default function App() {
                       value={proposalWebsite}
                       onChange={(e) => setProposalWebsite(e.target.value)} 
                       placeholder="Enter Website Address" 
-                      className="w-full h-14 px-5 bg-zinc-900/80 border border-white/20 rounded-lg text-white placeholder-white/30 text-sm font-sans focus:outline-none focus:border-[#fcbf4a] focus:ring-1 focus:ring-[#fcbf4a] transition-all"
+                      className="w-full h-14 px-5 bg-white border border-zinc-200 rounded-lg text-zinc-900 placeholder-zinc-400 text-sm font-sans focus:outline-none focus:border-[#0c3773] focus:ring-1 focus:ring-[#0c3773] transition-all shadow-sm"
                     />
                   </div>
                   <button 
@@ -769,11 +782,11 @@ export default function App() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.85, duration: 0.9 }}
-              className="mt-12 px-6 py-4 bg-gradient-to-b from-zinc-900/60 to-zinc-950/80 border border-white/5 backdrop-blur-md rounded-2xl relative overflow-hidden flex items-center w-full max-w-2xl shadow-[inset_0_1px_1px_rgba(255,255,255,0.05),0_12px_24px_-10px_rgba(0,0,0,0.9)]"
+              className="mt-12 px-6 py-4 bg-white/40 border border-zinc-200/50 backdrop-blur-md rounded-2xl relative overflow-hidden flex items-center w-full max-w-2xl shadow-[0_12px_24px_-10px_rgba(0,0,0,0.05)]"
             >
               {/* Left and right smooth shader overlapping the logos */}
-              <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-zinc-950 via-zinc-950/40 to-transparent z-10 pointer-events-none" />
-              <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-zinc-950 via-zinc-950/40 to-transparent z-10 pointer-events-none" />
+              <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-white via-white/20 to-transparent z-10 pointer-events-none" />
+              <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-white via-white/20 to-transparent z-10 pointer-events-none" />
 
               <div className="relative w-full flex items-center overflow-hidden h-8">
                 <div className="animate-marquee hover:[animation-play-state:paused] flex whitespace-nowrap scroll-smooth items-center">
@@ -782,15 +795,15 @@ export default function App() {
                   {LOGO_ITEMS.map((logo, idx) => (
                     <div 
                       key={`logo-l1-${logo.name}-${idx}`}
-                      className="inline-flex items-center justify-center space-x-2 text-white/40 hover:text-white transition-all duration-300 select-none cursor-pointer group mx-6 md:mx-8 h-10"
+                      className="inline-flex items-center justify-center space-x-2 text-zinc-500 hover:text-zinc-950 transition-all duration-300 select-none cursor-pointer group mx-6 md:mx-8 h-10 [&_svg]:text-[#0c3773] [&_svg]:fill-current"
                     >
                       {logo.icon && (
-                        <div className="transition-transform duration-300 group-hover:scale-110 opacity-50 group-hover:opacity-100 flex items-center justify-center h-full">
+                        <div className="transition-transform duration-300 group-hover:scale-110 opacity-70 group-hover:opacity-100 flex items-center justify-center h-full">
                           {logo.icon}
                         </div>
                       )}
                       {logo.name && (
-                        <span className={`${logo.textClass} text-white opacity-50 group-hover:opacity-100 transition-opacity duration-300 uppercase flex items-center justify-center leading-none h-full`}>
+                        <span className={`${logo.textClass} text-zinc-700 opacity-80 group-hover:opacity-100 transition-opacity duration-300 uppercase flex items-center justify-center leading-none h-full`}>
                           {logo.name}
                         </span>
                       )}
@@ -801,15 +814,15 @@ export default function App() {
                   {LOGO_ITEMS.map((logo, idx) => (
                     <div 
                       key={`logo-l2-${logo.name}-${idx}`}
-                      className="inline-flex items-center justify-center space-x-2 text-white/40 hover:text-white transition-all duration-300 select-none cursor-pointer group mx-6 md:mx-8 h-10"
+                      className="inline-flex items-center justify-center space-x-2 text-zinc-500 hover:text-zinc-950 transition-all duration-300 select-none cursor-pointer group mx-6 md:mx-8 h-10 [&_svg]:text-[#0c3773] [&_svg]:fill-current"
                     >
                       {logo.icon && (
-                        <div className="transition-transform duration-300 group-hover:scale-110 opacity-50 group-hover:opacity-100 flex items-center justify-center h-full">
+                        <div className="transition-transform duration-300 group-hover:scale-110 opacity-70 group-hover:opacity-100 flex items-center justify-center h-full">
                           {logo.icon}
                         </div>
                       )}
                       {logo.name && (
-                        <span className={`${logo.textClass} text-white opacity-50 group-hover:opacity-100 transition-opacity duration-300 uppercase flex items-center justify-center leading-none h-full`}>
+                        <span className={`${logo.textClass} text-zinc-700 opacity-80 group-hover:opacity-100 transition-opacity duration-300 uppercase flex items-center justify-center leading-none h-full`}>
                           {logo.name}
                         </span>
                       )}
@@ -820,15 +833,15 @@ export default function App() {
                   {LOGO_ITEMS.map((logo, idx) => (
                     <div 
                       key={`logo-l3-${logo.name}-${idx}`}
-                      className="inline-flex items-center justify-center space-x-2 text-white/40 hover:text-white transition-all duration-300 select-none cursor-pointer group mx-6 md:mx-8 h-10"
+                      className="inline-flex items-center justify-center space-x-2 text-zinc-500 hover:text-zinc-950 transition-all duration-300 select-none cursor-pointer group mx-6 md:mx-8 h-10 [&_svg]:text-[#0c3773] [&_svg]:fill-current"
                     >
                       {logo.icon && (
-                        <div className="transition-transform duration-300 group-hover:scale-110 opacity-50 group-hover:opacity-100 flex items-center justify-center h-full">
+                        <div className="transition-transform duration-300 group-hover:scale-110 opacity-70 group-hover:opacity-100 flex items-center justify-center h-full">
                           {logo.icon}
                         </div>
                       )}
                       {logo.name && (
-                        <span className={`${logo.textClass} text-white opacity-50 group-hover:opacity-100 transition-opacity duration-300 uppercase flex items-center justify-center leading-none h-full`}>
+                        <span className={`${logo.textClass} text-zinc-700 opacity-80 group-hover:opacity-100 transition-opacity duration-300 uppercase flex items-center justify-center leading-none h-full`}>
                           {logo.name}
                         </span>
                       )}
@@ -894,6 +907,114 @@ export default function App() {
             ))}
 
           </div>
+        </div>
+      </section>
+
+      {/* ==================== DIGITAL GROWTH ENGINE (STRATEGIC PARTNER) SECTION ==================== */}
+      <section className="relative z-20 w-full bg-white text-zinc-900 py-20 px-6 md:px-12 border-t border-zinc-100 overflow-hidden">
+        {/* Decorative ambient background elements matching brand palette */}
+        <div className="absolute top-1/4 right-0 w-[450px] h-[450px] bg-[#0c3773]/5 rounded-full blur-[130px] pointer-events-none z-0" />
+        <div className="absolute bottom-1/4 left-10 w-[300px] h-[300px] bg-[#fcbf4a]/5 rounded-full blur-[100px] pointer-events-none z-0" />
+
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center relative z-10">
+          
+          {/* Left Column: Powerful Copy & Description */}
+          <div className="lg:col-span-6 space-y-6 text-left">
+            <div className="space-y-4">
+              <div className="space-y-2">
+                <h3 className="text-[#0c3773] text-[14px] leading-[20px] font-semibold tracking-tight font-sans">
+                  Turn Your Website into a High-Converting
+                </h3>
+                <h2 className="text-4xl sm:text-5xl md:text-6xl font-black text-zinc-950 tracking-tight font-sans leading-[1.1] md:leading-[75px]">
+                  Digital Growth Engine
+                </h2>
+              </div>
+            </div>
+
+            <h4 className="text-zinc-800 text-lg sm:text-xl md:text-2xl font-bold tracking-tight leading-snug font-sans">
+              Your Strategic Partner for Web Design, Digital Marketing, SEO & AI Search Visibility
+            </h4>
+
+            {/* Paragraphs block with left vertical border in brand blue */}
+            <div className="border-l-2 border-[#0c3773]/30 pl-6 space-y-6 text-zinc-600 text-sm sm:text-base leading-relaxed font-sans">
+              <p>
+                Is it frustrating dealing with the costs of a beautiful site but getting no one who will add anything valuable to your organization? Do you feel like your digital strategy is merely some unconnected pieces of the puzzle and not a smartly-designed and profitable one? Welcome to <strong className="text-zinc-950 font-bold">Digiyog Technosoft</strong>, an established provider of digital marketing services businesses depend on to boost visibility, generate qualified leads, and create steady growth.
+              </p>
+              <p>
+                With over 10 years of experience in the industry, we have helped over 2,550+ companies across 25+ countries with our strategically planned SEO as well as content creation, performance marketing, branding, and efficient web-based solutions for conversion. Just having a website is not enough anymore. Our services include professional web designing, digital marketing, SEO, Answer Engine Optimization (AEO), and Generative Engine Optimization (GEO). We ensure that our clients gain visibility through various search engine platforms.
+              </p>
+            </div>
+          </div>
+
+          {/* Right Column: High Fidelity Overlapping Image Composition */}
+          <div className="lg:col-span-6 relative w-full flex flex-col sm:flex-row gap-6 items-stretch justify-center min-h-[480px]">
+            
+            {/* Left tall image card */}
+            <div className="relative w-full sm:w-1/2 flex items-center justify-center">
+              
+              {/* Floating circular arch outline shape behind the tall image */}
+              <div className="absolute -top-12 -left-8 w-32 h-32 pointer-events-none select-none z-0">
+                <svg width="128" height="128" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-[#0c3773]/20">
+                  <path d="M12 116 C12 44, 116 44, 116 116" stroke="currentColor" strokeWidth="3" strokeLinecap="round" className="opacity-40" />
+                  <path d="M32 116 C32 64, 96 64, 96 116" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeDasharray="4 4" className="opacity-50" />
+                  <circle cx="12" cy="116" r="4" fill="currentColor" />
+                  <circle cx="116" cy="116" r="4" fill="currentColor" />
+                </svg>
+              </div>
+
+              <div className="relative z-10 w-full h-[450px] rounded-3xl overflow-hidden border border-zinc-200/80 shadow-[0_15px_30px_-5px_rgba(0,0,0,0.05)] hover:shadow-xl transition-all duration-500">
+                <img 
+                  src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=600&h=900&q=80" 
+                  alt="Creative design team collaborating over notebook and laptop" 
+                  className="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-700"
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+            </div>
+
+            {/* Right stacked landscape images */}
+            <div className="relative w-full sm:w-1/2 flex flex-col justify-between gap-6">
+              
+              {/* Right top image */}
+              <div className="relative w-full h-[212px] rounded-3xl overflow-hidden border border-zinc-200/80 shadow-[0_15px_30px_-5px_rgba(0,0,0,0.05)] hover:shadow-xl transition-all duration-500">
+                <img 
+                  src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=600&h=400&q=80" 
+                  alt="Digiyog teammates analyzing charts and performance data" 
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+
+              {/* Right bottom image */}
+              <div className="relative w-full h-[212px] rounded-3xl overflow-hidden border border-zinc-200/80 shadow-[0_15px_30px_-5px_rgba(0,0,0,0.05)] hover:shadow-xl transition-all duration-500">
+                <img 
+                  src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&h=400&q=80" 
+                  alt="The professional Digiyog team members gathered in office" 
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+            </div>
+
+            {/* Center overlapping floating badge/card */}
+            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white/95 backdrop-blur-md rounded-2xl border border-zinc-200/80 p-5 shadow-[0_20px_40px_-10px_rgba(12,55,115,0.08)] max-w-[280px] z-20 hover:scale-[1.03] transition-transform duration-300">
+              <p className="text-zinc-800 text-xs sm:text-sm font-semibold leading-relaxed">
+                Leveraging <span className="text-[#0c3773] font-bold">10+ years</span> of IT expertise to help businesses operate more efficiently.
+              </p>
+            </div>
+
+            {/* Decorative organic node background graphic on the right */}
+            <div className="absolute -right-12 -bottom-12 w-48 h-48 pointer-events-none select-none z-0 opacity-25">
+              <svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-[#0c3773]/30">
+                <circle cx="100" cy="100" r="80" stroke="currentColor" strokeWidth="1.5" strokeDasharray="4 4" />
+                <circle cx="60" cy="60" r="10" fill="currentColor" fillOpacity="0.1" stroke="currentColor" strokeWidth="1.5" />
+                <circle cx="140" cy="140" r="10" fill="currentColor" fillOpacity="0.1" stroke="currentColor" strokeWidth="1.5" />
+                <line x1="70" y1="70" x2="130" y2="130" stroke="currentColor" strokeWidth="1.5" strokeDasharray="3 3" />
+              </svg>
+            </div>
+
+          </div>
+
         </div>
       </section>
 
