@@ -524,6 +524,7 @@ export default function App() {
     date: ""
   });
   const [bookingSubmitted, setBookingSubmitted] = useState(false);
+  const [hoveredService, setHoveredService] = useState<number | null>(null);
 
   // Smooth mouse tracking for the custom interactive glow blob
   const targetMouse = useRef({ x: 0, y: 0 });
@@ -1327,96 +1328,250 @@ export default function App() {
               <motion.path 
                 d="M 380 120 C 500 120, 480 340, 600 340" 
                 fill="none" 
-                stroke="#0c3773" 
-                strokeWidth="2" 
-                strokeDasharray="6 4" 
-                className="opacity-30"
+                stroke={hoveredService === 1 ? "#fcbf4a" : "#0c3773"} 
+                strokeWidth={hoveredService === 1 ? "4" : "2"} 
+                strokeDasharray={hoveredService === 1 ? "8 4" : "6 4"} 
+                className={`${hoveredService === 1 ? "opacity-100" : "opacity-30"} transition-all duration-300`}
                 initial={{ pathLength: 0 }}
-                animate={{ pathLength: 1 }}
-                transition={{ duration: 1.5, delay: 0.2 }}
+                animate={{ 
+                  pathLength: 1,
+                  strokeDashoffset: hoveredService === 1 ? [0, -20] : 0
+                }}
+                transition={{ 
+                  strokeDashoffset: hoveredService === 1 ? { repeat: Infinity, ease: "linear", duration: 1 } : { duration: 0 },
+                  default: { duration: 1.5, delay: 0.2 }
+                }}
               />
+              {/* Left Top Hidden wider hover path */}
+              <path 
+                d="M 380 120 C 500 120, 480 340, 600 340" 
+                fill="none" 
+                stroke="transparent" 
+                strokeWidth="24" 
+                className="cursor-pointer pointer-events-auto"
+                onMouseEnter={() => setHoveredService(1)}
+                onMouseLeave={() => setHoveredService(null)}
+              />
+
               {/* Left Middle Card Path */}
               <motion.path 
                 d="M 380 340 L 600 340" 
                 fill="none" 
-                stroke="#0c3773" 
-                strokeWidth="2" 
-                strokeDasharray="6 4" 
-                className="opacity-30"
+                stroke={hoveredService === 2 ? "#fcbf4a" : "#0c3773"} 
+                strokeWidth={hoveredService === 2 ? "4" : "2"} 
+                strokeDasharray={hoveredService === 2 ? "8 4" : "6 4"} 
+                className={`${hoveredService === 2 ? "opacity-100" : "opacity-30"} transition-all duration-300`}
                 initial={{ pathLength: 0 }}
-                animate={{ pathLength: 1 }}
-                transition={{ duration: 1.5, delay: 0.4 }}
+                animate={{ 
+                  pathLength: 1,
+                  strokeDashoffset: hoveredService === 2 ? [0, -20] : 0
+                }}
+                transition={{ 
+                  strokeDashoffset: hoveredService === 2 ? { repeat: Infinity, ease: "linear", duration: 1 } : { duration: 0 },
+                  default: { duration: 1.5, delay: 0.4 }
+                }}
               />
+              {/* Left Middle Hidden wider hover path */}
+              <path 
+                d="M 380 340 L 600 340" 
+                fill="none" 
+                stroke="transparent" 
+                strokeWidth="24" 
+                className="cursor-pointer pointer-events-auto"
+                onMouseEnter={() => setHoveredService(2)}
+                onMouseLeave={() => setHoveredService(null)}
+              />
+
               {/* Left Bottom Card Path */}
               <motion.path 
                 d="M 380 560 C 500 560, 480 340, 600 340" 
                 fill="none" 
-                stroke="#0c3773" 
-                strokeWidth="2" 
-                strokeDasharray="6 4" 
-                className="opacity-30"
+                stroke={hoveredService === 3 ? "#fcbf4a" : "#0c3773"} 
+                strokeWidth={hoveredService === 3 ? "4" : "2"} 
+                strokeDasharray={hoveredService === 3 ? "8 4" : "6 4"} 
+                className={`${hoveredService === 3 ? "opacity-100" : "opacity-30"} transition-all duration-300`}
                 initial={{ pathLength: 0 }}
-                animate={{ pathLength: 1 }}
-                transition={{ duration: 1.5, delay: 0.6 }}
+                animate={{ 
+                  pathLength: 1,
+                  strokeDashoffset: hoveredService === 3 ? [0, -20] : 0
+                }}
+                transition={{ 
+                  strokeDashoffset: hoveredService === 3 ? { repeat: Infinity, ease: "linear", duration: 1 } : { duration: 0 },
+                  default: { duration: 1.5, delay: 0.6 }
+                }}
+              />
+              {/* Left Bottom Hidden wider hover path */}
+              <path 
+                d="M 380 560 C 500 560, 480 340, 600 340" 
+                fill="none" 
+                stroke="transparent" 
+                strokeWidth="24" 
+                className="cursor-pointer pointer-events-auto"
+                onMouseEnter={() => setHoveredService(3)}
+                onMouseLeave={() => setHoveredService(null)}
               />
 
               {/* Right Top Card Path */}
               <motion.path 
                 d="M 820 120 C 700 120, 720 340, 600 340" 
                 fill="none" 
-                stroke="#0c3773" 
-                strokeWidth="2" 
-                strokeDasharray="6 4" 
-                className="opacity-30"
+                stroke={hoveredService === 4 ? "#fcbf4a" : "#0c3773"} 
+                strokeWidth={hoveredService === 4 ? "4" : "2"} 
+                strokeDasharray={hoveredService === 4 ? "8 4" : "6 4"} 
+                className={`${hoveredService === 4 ? "opacity-100" : "opacity-30"} transition-all duration-300`}
                 initial={{ pathLength: 0 }}
-                animate={{ pathLength: 1 }}
-                transition={{ duration: 1.5, delay: 0.2 }}
+                animate={{ 
+                  pathLength: 1,
+                  strokeDashoffset: hoveredService === 4 ? [0, -20] : 0
+                }}
+                transition={{ 
+                  strokeDashoffset: hoveredService === 4 ? { repeat: Infinity, ease: "linear", duration: 1 } : { duration: 0 },
+                  default: { duration: 1.5, delay: 0.2 }
+                }}
               />
+              {/* Right Top Hidden wider hover path */}
+              <path 
+                d="M 820 120 C 700 120, 720 340, 600 340" 
+                fill="none" 
+                stroke="transparent" 
+                strokeWidth="24" 
+                className="cursor-pointer pointer-events-auto"
+                onMouseEnter={() => setHoveredService(4)}
+                onMouseLeave={() => setHoveredService(null)}
+              />
+
               {/* Right Middle Card Path */}
               <motion.path 
                 d="M 820 340 L 600 340" 
                 fill="none" 
-                stroke="#0c3773" 
-                strokeWidth="2" 
-                strokeDasharray="6 4" 
-                className="opacity-30"
+                stroke={hoveredService === 5 ? "#fcbf4a" : "#0c3773"} 
+                strokeWidth={hoveredService === 5 ? "4" : "2"} 
+                strokeDasharray={hoveredService === 5 ? "8 4" : "6 4"} 
+                className={`${hoveredService === 5 ? "opacity-100" : "opacity-30"} transition-all duration-300`}
                 initial={{ pathLength: 0 }}
-                animate={{ pathLength: 1 }}
-                transition={{ duration: 1.5, delay: 0.4 }}
+                animate={{ 
+                  pathLength: 1,
+                  strokeDashoffset: hoveredService === 5 ? [0, -20] : 0
+                }}
+                transition={{ 
+                  strokeDashoffset: hoveredService === 5 ? { repeat: Infinity, ease: "linear", duration: 1 } : { duration: 0 },
+                  default: { duration: 1.5, delay: 0.4 }
+                }}
               />
+              {/* Right Middle Hidden wider hover path */}
+              <path 
+                d="M 820 340 L 600 340" 
+                fill="none" 
+                stroke="transparent" 
+                strokeWidth="24" 
+                className="cursor-pointer pointer-events-auto"
+                onMouseEnter={() => setHoveredService(5)}
+                onMouseLeave={() => setHoveredService(null)}
+              />
+
               {/* Right Bottom Card Path */}
               <motion.path 
                 d="M 820 560 C 700 560, 720 340, 600 340" 
                 fill="none" 
-                stroke="#0c3773" 
-                strokeWidth="2" 
-                strokeDasharray="6 4" 
-                className="opacity-30"
+                stroke={hoveredService === 6 ? "#fcbf4a" : "#0c3773"} 
+                strokeWidth={hoveredService === 6 ? "4" : "2"} 
+                strokeDasharray={hoveredService === 6 ? "8 4" : "6 4"} 
+                className={`${hoveredService === 6 ? "opacity-100" : "opacity-30"} transition-all duration-300`}
                 initial={{ pathLength: 0 }}
-                animate={{ pathLength: 1 }}
-                transition={{ duration: 1.5, delay: 0.6 }}
+                animate={{ 
+                  pathLength: 1,
+                  strokeDashoffset: hoveredService === 6 ? [0, -20] : 0
+                }}
+                transition={{ 
+                  strokeDashoffset: hoveredService === 6 ? { repeat: Infinity, ease: "linear", duration: 1 } : { duration: 0 },
+                  default: { duration: 1.5, delay: 0.6 }
+                }}
+              />
+              {/* Right Bottom Hidden wider hover path */}
+              <path 
+                d="M 820 560 C 700 560, 720 340, 600 340" 
+                fill="none" 
+                stroke="transparent" 
+                strokeWidth="24" 
+                className="cursor-pointer pointer-events-auto"
+                onMouseEnter={() => setHoveredService(6)}
+                onMouseLeave={() => setHoveredService(null)}
               />
 
               {/* Connecting Nodes (dots) on Central Hub Circle */}
-              <circle cx="485" cy="225" r="5" fill="#0c3773" />
-              <circle cx="460" cy="340" r="5" fill="#0c3773" />
-              <circle cx="485" cy="455" r="5" fill="#0c3773" />
+              <circle 
+                cx="485" 
+                cy="225" 
+                r={hoveredService === 1 ? "8" : "5"} 
+                fill={hoveredService === 1 ? "#fcbf4a" : "#0c3773"} 
+                className="transition-all duration-350 cursor-pointer pointer-events-auto"
+                onMouseEnter={() => setHoveredService(1)}
+                onMouseLeave={() => setHoveredService(null)}
+              />
+              <circle 
+                cx="460" 
+                cy="340" 
+                r={hoveredService === 2 ? "8" : "5"} 
+                fill={hoveredService === 2 ? "#fcbf4a" : "#0c3773"} 
+                className="transition-all duration-350 cursor-pointer pointer-events-auto"
+                onMouseEnter={() => setHoveredService(2)}
+                onMouseLeave={() => setHoveredService(null)}
+              />
+              <circle 
+                cx="485" 
+                cy="455" 
+                r={hoveredService === 3 ? "8" : "5"} 
+                fill={hoveredService === 3 ? "#fcbf4a" : "#0c3773"} 
+                className="transition-all duration-350 cursor-pointer pointer-events-auto"
+                onMouseEnter={() => setHoveredService(3)}
+                onMouseLeave={() => setHoveredService(null)}
+              />
 
-              <circle cx="715" cy="225" r="5" fill="#0c3773" />
-              <circle cx="740" cy="340" r="5" fill="#0c3773" />
-              <circle cx="715" cy="455" r="5" fill="#0c3773" />
+              <circle 
+                cx="715" 
+                cy="225" 
+                r={hoveredService === 4 ? "8" : "5"} 
+                fill={hoveredService === 4 ? "#fcbf4a" : "#0c3773"} 
+                className="transition-all duration-350 cursor-pointer pointer-events-auto"
+                onMouseEnter={() => setHoveredService(4)}
+                onMouseLeave={() => setHoveredService(null)}
+              />
+              <circle 
+                cx="740" 
+                cy="340" 
+                r={hoveredService === 5 ? "8" : "5"} 
+                fill={hoveredService === 5 ? "#fcbf4a" : "#0c3773"} 
+                className="transition-all duration-350 cursor-pointer pointer-events-auto"
+                onMouseEnter={() => setHoveredService(5)}
+                onMouseLeave={() => setHoveredService(null)}
+              />
+              <circle 
+                cx="715" 
+                cy="455" 
+                r={hoveredService === 6 ? "8" : "5"} 
+                fill={hoveredService === 6 ? "#fcbf4a" : "#0c3773"} 
+                className="transition-all duration-350 cursor-pointer pointer-events-auto"
+                onMouseEnter={() => setHoveredService(6)}
+                onMouseLeave={() => setHoveredService(null)}
+              />
             </svg>
 
             {/* Desktop 3-Column Symmetrical Layout */}
             <div className="relative z-10 grid grid-cols-12 gap-6 items-center">
               
               {/* Left Column (Services 1, 2, 3) */}
-              <div className="col-span-4 flex flex-col justify-between h-[580px] pr-2">
+              <div className="col-span-4 flex flex-col gap-6 justify-center pr-2">
                 
                 {/* Card 1: Performance Marketing */}
                 <motion.div 
                   whileHover={{ y: -4, scale: 1.01 }}
-                  className="bg-white border border-zinc-200/90 rounded-2xl p-6 shadow-[0_12px_36px_-15px_rgba(0,0,0,0.06)] flex items-start gap-4 text-left relative group min-h-[160px]"
+                  onMouseEnter={() => setHoveredService(1)}
+                  onMouseLeave={() => setHoveredService(null)}
+                  className={`transition-all duration-300 flex items-start gap-4 text-left relative group min-h-[160px] p-6 rounded-2xl border ${
+                    hoveredService === 1 
+                      ? "bg-amber-50/10 border-amber-500/30 shadow-[0_20px_40px_-15px_rgba(252,191,74,0.15)] scale-[1.01]" 
+                      : "bg-white border-zinc-200/90 shadow-[0_12px_36px_-15px_rgba(0,0,0,0.06)]"
+                  }`}
                 >
                   <div className="w-12 h-12 rounded-full bg-[#0c3773] text-white flex items-center justify-center shrink-0 shadow-sm transition-transform duration-300 group-hover:scale-110">
                     <Rocket className="w-5 h-5 text-[#fcbf4a]" />
@@ -1439,7 +1594,13 @@ export default function App() {
                 {/* Card 2: SEO */}
                 <motion.div 
                   whileHover={{ y: -4, scale: 1.01 }}
-                  className="bg-white border border-zinc-200/90 rounded-2xl p-6 shadow-[0_12px_36px_-15px_rgba(0,0,0,0.06)] flex items-start gap-4 text-left relative group min-h-[160px]"
+                  onMouseEnter={() => setHoveredService(2)}
+                  onMouseLeave={() => setHoveredService(null)}
+                  className={`transition-all duration-300 flex items-start gap-4 text-left relative group min-h-[160px] p-6 rounded-2xl border ${
+                    hoveredService === 2 
+                      ? "bg-amber-50/10 border-amber-500/30 shadow-[0_20px_40px_-15px_rgba(252,191,74,0.15)] scale-[1.01]" 
+                      : "bg-white border-zinc-200/90 shadow-[0_12px_36px_-15px_rgba(0,0,0,0.06)]"
+                  }`}
                 >
                   <div className="w-12 h-12 rounded-full bg-[#0c3773] text-white flex items-center justify-center shrink-0 shadow-sm transition-transform duration-300 group-hover:scale-110">
                     <Search className="w-5 h-5 text-[#fcbf4a]" />
@@ -1462,7 +1623,13 @@ export default function App() {
                 {/* Card 3: Web App Design & Development */}
                 <motion.div 
                   whileHover={{ y: -4, scale: 1.01 }}
-                  className="bg-white border border-zinc-200/90 rounded-2xl p-6 shadow-[0_12px_36px_-15px_rgba(0,0,0,0.06)] flex items-start gap-4 text-left relative group min-h-[160px]"
+                  onMouseEnter={() => setHoveredService(3)}
+                  onMouseLeave={() => setHoveredService(null)}
+                  className={`transition-all duration-300 flex items-start gap-4 text-left relative group min-h-[160px] p-6 rounded-2xl border ${
+                    hoveredService === 3 
+                      ? "bg-amber-50/10 border-amber-500/30 shadow-[0_20px_40px_-15px_rgba(252,191,74,0.15)] scale-[1.01]" 
+                      : "bg-white border-zinc-200/90 shadow-[0_12px_36px_-15px_rgba(0,0,0,0.06)]"
+                  }`}
                 >
                   <div className="w-12 h-12 rounded-full bg-[#0c3773] text-white flex items-center justify-center shrink-0 shadow-sm transition-transform duration-300 group-hover:scale-110">
                     <Code className="w-5 h-5 text-[#fcbf4a]" />
@@ -1510,12 +1677,18 @@ export default function App() {
               </div>
 
               {/* Right Column (Services 4, 5, 6) */}
-              <div className="col-span-4 flex flex-col justify-between h-[580px] pl-2">
+              <div className="col-span-4 flex flex-col gap-6 justify-center pl-2">
                 
                 {/* Card 4: Video Production */}
                 <motion.div 
                   whileHover={{ y: -4, scale: 1.01 }}
-                  className="bg-white border border-zinc-200/90 rounded-2xl p-6 shadow-[0_12px_36px_-15px_rgba(0,0,0,0.06)] flex items-start gap-4 text-left relative group min-h-[160px]"
+                  onMouseEnter={() => setHoveredService(4)}
+                  onMouseLeave={() => setHoveredService(null)}
+                  className={`transition-all duration-300 flex items-start gap-4 text-left relative group min-h-[160px] p-6 rounded-2xl border ${
+                    hoveredService === 4 
+                      ? "bg-amber-50/10 border-amber-500/30 shadow-[0_20px_40px_-15px_rgba(252,191,74,0.15)] scale-[1.01]" 
+                      : "bg-white border-zinc-200/90 shadow-[0_12px_36px_-15px_rgba(0,0,0,0.06)]"
+                  }`}
                 >
                   <div className="w-12 h-12 rounded-full bg-[#0c3773] text-white flex items-center justify-center shrink-0 shadow-sm transition-transform duration-300 group-hover:scale-110">
                     <Video className="w-5 h-5 text-[#fcbf4a]" />
@@ -1538,7 +1711,13 @@ export default function App() {
                 {/* Card 5: Social Media Management */}
                 <motion.div 
                   whileHover={{ y: -4, scale: 1.01 }}
-                  className="bg-white border border-zinc-200/90 rounded-2xl p-6 shadow-[0_12px_36px_-15px_rgba(0,0,0,0.06)] flex items-start gap-4 text-left relative group min-h-[160px]"
+                  onMouseEnter={() => setHoveredService(5)}
+                  onMouseLeave={() => setHoveredService(null)}
+                  className={`transition-all duration-300 flex items-start gap-4 text-left relative group min-h-[160px] p-6 rounded-2xl border ${
+                    hoveredService === 5 
+                      ? "bg-amber-50/10 border-amber-500/30 shadow-[0_20px_40px_-15px_rgba(252,191,74,0.15)] scale-[1.01]" 
+                      : "bg-white border-zinc-200/90 shadow-[0_12px_36px_-15px_rgba(0,0,0,0.06)]"
+                  }`}
                 >
                   <div className="w-12 h-12 rounded-full bg-[#0c3773] text-white flex items-center justify-center shrink-0 shadow-sm transition-transform duration-300 group-hover:scale-110">
                     <Smartphone className="w-5 h-5 text-[#fcbf4a]" />
@@ -1561,7 +1740,13 @@ export default function App() {
                 {/* Card 6: Graphics & Print Media */}
                 <motion.div 
                   whileHover={{ y: -4, scale: 1.01 }}
-                  className="bg-white border border-zinc-200/90 rounded-2xl p-6 shadow-[0_12px_36px_-15px_rgba(0,0,0,0.06)] flex items-start gap-4 text-left relative group min-h-[160px]"
+                  onMouseEnter={() => setHoveredService(6)}
+                  onMouseLeave={() => setHoveredService(null)}
+                  className={`transition-all duration-300 flex items-start gap-4 text-left relative group min-h-[160px] p-6 rounded-2xl border ${
+                    hoveredService === 6 
+                      ? "bg-amber-50/10 border-amber-500/30 shadow-[0_20px_40px_-15px_rgba(252,191,74,0.15)] scale-[1.01]" 
+                      : "bg-white border-zinc-200/90 shadow-[0_12px_36px_-15px_rgba(0,0,0,0.06)]"
+                  }`}
                 >
                   <div className="w-12 h-12 rounded-full bg-[#0c3773] text-white flex items-center justify-center shrink-0 shadow-sm transition-transform duration-300 group-hover:scale-110">
                     <Palette className="w-5 h-5 text-[#fcbf4a]" />
