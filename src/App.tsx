@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Search, X, ArrowRight, Send, Check, Menu, ChevronRight, Globe, Users, Award, Sparkles, TrendingUp, Code, Video, Share2, Palette, ChevronUp, ChevronDown, Lightbulb, Target, Settings, Rocket, Star, Quote, Calendar, Clock, MessageCircle } from "lucide-react";
+import { Search, X, ArrowRight, Send, Check, Menu, ChevronRight, Globe, Users, Award, Sparkles, TrendingUp, Code, Video, Share2, Palette, ChevronUp, ChevronDown, Lightbulb, Target, Settings, Rocket, Star, Quote, Calendar, Clock, MessageCircle, Megaphone, Cpu, FileText, ShoppingCart, BarChart3 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { LiquidMetal, MeshGradient } from '@paper-design/shaders-react';
 
@@ -497,6 +497,7 @@ export default function App() {
   const [selectedBenefitProof, setSelectedBenefitProof] = useState<number | null>(null);
   const [searchArticleQuery, setSearchArticleQuery] = useState("");
   const [activeServiceIdx, setActiveServiceIdx] = useState(0);
+  const [hoveredStratCard, setHoveredStratCard] = useState<number | null>(null);
 
   // Booking consultation form fields
   const [bookingFormData, setBookingFormData] = useState({
@@ -1121,183 +1122,378 @@ export default function App() {
       </section>
 
       {/* ==================== CLIENT SHOWCASE / TRUSTED BY SECTION ==================== */}
-      <section id="contributions" className="relative z-20 w-full bg-zinc-50 text-zinc-900 py-16 md:py-20 px-6 md:px-12 border-t border-zinc-200/60 overflow-hidden">
+      <section id="contributions" className="relative z-20 w-full bg-zinc-50 text-zinc-900 py-20 md:py-24 px-6 md:px-12 border-t border-zinc-200/60 overflow-hidden">
         {/* Ambient glow backgrounds */}
-        <div className="absolute top-1/2 left-10 w-[300px] h-[300px] bg-[#0c3773]/3 rounded-full blur-[100px] pointer-events-none" />
-        <div className="absolute bottom-5 right-1/4 w-[250px] h-[250px] bg-[#fcbf4a]/4 rounded-full blur-[80px] pointer-events-none" />
+        <div className="absolute top-1/2 left-10 w-[400px] h-[400px] bg-[#0c3773]/4 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute bottom-5 right-1/4 w-[350px] h-[350px] bg-[#fcbf4a]/4 rounded-full blur-[100px] pointer-events-none" />
 
         <div className="max-w-7xl mx-auto relative z-10 w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+          
+          {/* Section Headers */}
+          <div className="text-center max-w-4xl mx-auto mb-16 space-y-4">
+            <span className="text-xs sm:text-sm font-mono font-black tracking-widest text-[#0c3773] uppercase block">
+              From Website Design To Digital Marketing
+            </span>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-sans font-black tracking-tight text-zinc-950 leading-tight">
+              Smart Strategies For Business Expansion
+            </h2>
+            <p className="text-zinc-600 text-base sm:text-lg md:text-[19px] leading-relaxed max-w-3xl mx-auto font-normal pt-2">
+              A stunning website gets attention. Our result-driven digital marketing turns that attention into traffic, leads, and loyal customers.
+            </p>
+          </div>
+
+          {/* Core Interactive Diagram */}
+          <div className="relative w-full h-auto lg:h-[620px] grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-4 items-stretch">
             
-            {/* Left Column: Crisp, left-aligned explanation and branding details */}
-            <div className="lg:col-span-6 space-y-5">
-              <div className="space-y-2">
-                <span className="text-xs font-mono font-black tracking-widest text-[#0c3773] uppercase block">
-                  CLIENT SHOWCASE & PARTNERS
-                </span>
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-sans font-black tracking-tight text-zinc-950 leading-tight">
-                  Trusted by Leading Institutions & Brands
-                </h2>
+            {/* SVG Connection Lines behind columns (Desktop only) */}
+            <svg 
+              className="absolute inset-0 w-full h-full pointer-events-none hidden lg:block" 
+              viewBox="0 0 100 100" 
+              preserveAspectRatio="none"
+            >
+              {/* Path 1: Card 1 (Top Left) to Center Circle */}
+              <motion.path 
+                d="M 33.3 16 C 40 16, 40 32.5, 44.5 32.5" 
+                fill="none" 
+                stroke={hoveredStratCard === 1 ? "#fcbf4a" : "#0c3773"} 
+                strokeWidth={hoveredStratCard === 1 ? "2.5" : "1.5"} 
+                strokeDasharray={hoveredStratCard === 1 ? "none" : "6,4"}
+                className="transition-all duration-300"
+                animate={hoveredStratCard === 1 ? { strokeDashoffset: [0, -10] } : {}}
+                transition={{ repeat: Infinity, duration: 1, ease: "linear" }}
+                opacity={hoveredStratCard === 1 ? "1" : "0.25"}
+              />
+
+              {/* Path 2: Card 2 (Mid Left) to Center Circle */}
+              <motion.path 
+                d="M 33.3 50 L 42.5 50" 
+                fill="none" 
+                stroke={hoveredStratCard === 2 ? "#fcbf4a" : "#0c3773"} 
+                strokeWidth={hoveredStratCard === 2 ? "2.5" : "1.5"} 
+                strokeDasharray={hoveredStratCard === 2 ? "none" : "6,4"}
+                className="transition-all duration-300"
+                opacity={hoveredStratCard === 2 ? "1" : "0.25"}
+              />
+
+              {/* Path 3: Card 3 (Bottom Left) to Center Circle */}
+              <motion.path 
+                d="M 33.3 84 C 40 84, 40 67.5, 44.5 67.5" 
+                fill="none" 
+                stroke={hoveredStratCard === 3 ? "#fcbf4a" : "#0c3773"} 
+                strokeWidth={hoveredStratCard === 3 ? "2.5" : "1.5"} 
+                strokeDasharray={hoveredStratCard === 3 ? "none" : "6,4"}
+                className="transition-all duration-300"
+                opacity={hoveredStratCard === 3 ? "1" : "0.25"}
+              />
+
+              {/* Path 4: Card 4 (Top Right) to Center Circle */}
+              <motion.path 
+                d="M 66.6 16 C 60 16, 60 32.5, 55.5 32.5" 
+                fill="none" 
+                stroke={hoveredStratCard === 4 ? "#fcbf4a" : "#0c3773"} 
+                strokeWidth={hoveredStratCard === 4 ? "2.5" : "1.5"} 
+                strokeDasharray={hoveredStratCard === 4 ? "none" : "6,4"}
+                className="transition-all duration-300"
+                opacity={hoveredStratCard === 4 ? "1" : "0.25"}
+              />
+
+              {/* Path 5: Card 5 (Mid Right) to Center Circle */}
+              <motion.path 
+                d="M 66.6 50 L 57.5 50" 
+                fill="none" 
+                stroke={hoveredStratCard === 5 ? "#fcbf4a" : "#0c3773"} 
+                strokeWidth={hoveredStratCard === 5 ? "2.5" : "1.5"} 
+                strokeDasharray={hoveredStratCard === 5 ? "none" : "6,4"}
+                className="transition-all duration-300"
+                opacity={hoveredStratCard === 5 ? "1" : "0.25"}
+              />
+
+              {/* Path 6: Card 6 (Bottom Right) to Center Circle */}
+              <motion.path 
+                d="M 66.6 84 C 60 84, 60 67.5, 55.5 67.5" 
+                fill="none" 
+                stroke={hoveredStratCard === 6 ? "#fcbf4a" : "#0c3773"} 
+                strokeWidth={hoveredStratCard === 6 ? "2.5" : "1.5"} 
+                strokeDasharray={hoveredStratCard === 6 ? "none" : "6,4"}
+                className="transition-all duration-300"
+                opacity={hoveredStratCard === 6 ? "1" : "0.25"}
+              />
+
+              {/* Connection Dots on Center Circle */}
+              <circle cx="44.5" cy="32.5" r={hoveredStratCard === 1 ? "2.5" : "1.5"} fill={hoveredStratCard === 1 ? "#fcbf4a" : "#0c3773"} className="transition-all duration-300" />
+              <circle cx="42.5" cy="50" r={hoveredStratCard === 2 ? "2.5" : "1.5"} fill={hoveredStratCard === 2 ? "#fcbf4a" : "#0c3773"} className="transition-all duration-300" />
+              <circle cx="44.5" cy="67.5" r={hoveredStratCard === 3 ? "2.5" : "1.5"} fill={hoveredStratCard === 3 ? "#fcbf4a" : "#0c3773"} className="transition-all duration-300" />
+              <circle cx="55.5" cy="32.5" r={hoveredStratCard === 4 ? "2.5" : "1.5"} fill={hoveredStratCard === 4 ? "#fcbf4a" : "#0c3773"} className="transition-all duration-300" />
+              <circle cx="57.5" cy="50" r={hoveredStratCard === 5 ? "2.5" : "1.5"} fill={hoveredStratCard === 5 ? "#fcbf4a" : "#0c3773"} className="transition-all duration-300" />
+              <circle cx="55.5" cy="67.5" r={hoveredStratCard === 6 ? "2.5" : "1.5"} fill={hoveredStratCard === 6 ? "#fcbf4a" : "#0c3773"} className="transition-all duration-300" />
+            </svg>
+
+            {/* Left Column: Cards 1, 2, 3 */}
+            <div className="col-span-1 lg:col-span-4 flex flex-col justify-between gap-6 lg:gap-0 py-2 z-10">
+              
+              {/* Card 1 */}
+              <div 
+                onMouseEnter={() => setHoveredStratCard(1)}
+                onMouseLeave={() => setHoveredStratCard(null)}
+                className={`flex gap-5 bg-gradient-to-br from-white to-zinc-50/50 p-6 rounded-[2rem] border transition-all duration-300 hover:-translate-y-1 select-none ${
+                  hoveredStratCard === 1 
+                    ? "border-[#fcbf4a] shadow-xl shadow-[#0c3773]/5 ring-1 ring-[#fcbf4a]/20" 
+                    : "border-zinc-200/80 shadow-md shadow-zinc-100/40"
+                }`}
+              >
+                <div className={`w-12 h-12 rounded-full shrink-0 flex items-center justify-center transition-all duration-300 ${
+                  hoveredStratCard === 1 ? "bg-[#fcbf4a] text-zinc-950 scale-110" : "bg-[#0c3773] text-white"
+                }`}>
+                  <Search className="w-5 h-5" />
+                </div>
+                <div className="space-y-1.5">
+                  <h4 className="text-lg font-sans font-black text-zinc-950 leading-tight">SEO & AI SEO</h4>
+                  <p className="text-zinc-500 text-[14px] leading-relaxed">
+                    Rank higher on search engines with smart SEO and AI-powered strategies.
+                  </p>
+                </div>
               </div>
 
-              <p className="text-zinc-600 text-[18px] leading-[29px] font-normal">
-                Over the past decade, we have partnered with world-renowned universities and enterprises to design high-performance media buying, conversion funnels, and marketing analytics that scale brand influence.
-              </p>
-
-              {/* Service Areas & Impact Bullet Points */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
-                <div className="flex gap-2.5">
-                  <div className="w-5 h-5 rounded-full bg-[#0c3773]/10 flex items-center justify-center shrink-0 mt-0.5">
-                    <Check className="w-3 h-3 text-[#0c3773]" />
-                  </div>
-                  <div>
-                    <h4 className="text-[16px] font-bold text-zinc-950">Institutional Outreach</h4>
-                    <p className="text-zinc-500 text-[14px] mt-0.5 leading-relaxed">Scaling recruitment with audience intelligence models.</p>
-                  </div>
+              {/* Card 2 */}
+              <div 
+                onMouseEnter={() => setHoveredStratCard(2)}
+                onMouseLeave={() => setHoveredStratCard(null)}
+                className={`flex gap-5 bg-gradient-to-br from-white to-zinc-50/50 p-6 rounded-[2rem] border transition-all duration-300 hover:-translate-y-1 select-none ${
+                  hoveredStratCard === 2 
+                    ? "border-[#fcbf4a] shadow-xl shadow-[#0c3773]/5 ring-1 ring-[#fcbf4a]/20" 
+                    : "border-zinc-200/80 shadow-md shadow-zinc-100/40"
+                }`}
+              >
+                <div className={`w-12 h-12 rounded-full shrink-0 flex items-center justify-center transition-all duration-300 ${
+                  hoveredStratCard === 2 ? "bg-[#fcbf4a] text-zinc-950 scale-110" : "bg-[#0c3773] text-white"
+                }`}>
+                  <Share2 className="w-5 h-5" />
                 </div>
-                <div className="flex gap-2.5">
-                  <div className="w-5 h-5 rounded-full bg-[#0c3773]/10 flex items-center justify-center shrink-0 mt-0.5">
-                    <Check className="w-3 h-3 text-[#0c3773]" />
-                  </div>
-                  <div>
-                    <h4 className="text-[16px] font-bold text-zinc-950">Precision Tracking</h4>
-                    <p className="text-zinc-500 text-[14px] mt-0.5 leading-relaxed">Deploying robust, GDPR-compliant attribution tracking.</p>
-                  </div>
+                <div className="space-y-1.5">
+                  <h4 className="text-lg font-sans font-black text-zinc-950 leading-tight">Social Media Marketing</h4>
+                  <p className="text-zinc-500 text-[14px] leading-relaxed">
+                    Build brand awareness, engage your audience, and grow your community.
+                  </p>
                 </div>
               </div>
 
-              {/* High-Impact Metrics Grid (from Reference) */}
-              <div className="grid grid-cols-3 gap-4 pt-6 pb-2 border-t border-zinc-200/80">
-                <div className="space-y-1">
-                  <div className="text-2xl md:text-3xl font-sans font-black text-zinc-950 tracking-tight leading-none">1,500+</div>
-                  <div className="text-xs text-zinc-500 font-medium leading-tight">Projects Delivered</div>
+              {/* Card 3 */}
+              <div 
+                onMouseEnter={() => setHoveredStratCard(3)}
+                onMouseLeave={() => setHoveredStratCard(null)}
+                className={`flex gap-5 bg-gradient-to-br from-white to-zinc-50/50 p-6 rounded-[2rem] border transition-all duration-300 hover:-translate-y-1 select-none ${
+                  hoveredStratCard === 3 
+                    ? "border-[#fcbf4a] shadow-xl shadow-[#0c3773]/5 ring-1 ring-[#fcbf4a]/20" 
+                    : "border-zinc-200/80 shadow-md shadow-zinc-100/40"
+                }`}
+              >
+                <div className={`w-12 h-12 rounded-full shrink-0 flex items-center justify-center transition-all duration-300 ${
+                  hoveredStratCard === 3 ? "bg-[#fcbf4a] text-zinc-950 scale-110" : "bg-[#0c3773] text-white"
+                }`}>
+                  <Target className="w-5 h-5" />
                 </div>
-                <div className="space-y-1">
-                  <div className="text-2xl md:text-3xl font-sans font-black text-zinc-950 tracking-tight leading-none">500+</div>
-                  <div className="text-xs text-zinc-500 font-medium leading-tight">Active Clients</div>
-                </div>
-                <div className="space-y-1">
-                  <div className="text-2xl md:text-3xl font-sans font-black text-zinc-950 tracking-tight leading-none">7+ Years</div>
-                  <div className="text-xs text-zinc-500 font-medium leading-tight">Industry Experience</div>
+                <div className="space-y-1.5">
+                  <h4 className="text-lg font-sans font-black text-zinc-950 leading-tight">Google Ads Management</h4>
+                  <p className="text-zinc-500 text-[14px] leading-relaxed">
+                    Target the right audience and get instant leads with high-converting ad campaigns.
+                  </p>
                 </div>
               </div>
 
-              <div className="pt-2">
-                <a 
-                  href="#contact" 
-                  className="inline-flex items-center gap-2 text-[#0c3773] font-sans font-black text-xs uppercase tracking-widest hover:text-[#fcbf4a] transition-colors duration-300 group"
-                >
-                  <span>Explore Collaboration</span>
-                  <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" />
-                </a>
+            </div>
+
+            {/* Center Column: Double-ring circular centerpiece with continuous slow rotating gradient and megaphone icon */}
+            <div className="col-span-1 lg:col-span-4 flex items-center justify-center py-8 lg:py-0 z-10">
+              <div className="relative w-72 h-72 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-full flex items-center justify-center select-none">
+                
+                {/* Pulsing gradient backdrop ring */}
+                <div className={`absolute inset-0 rounded-full bg-gradient-to-r from-[#0c3773] to-[#fcbf4a] opacity-[0.08] blur-xl transition-transform duration-500 ${
+                  hoveredStratCard !== null ? "scale-110" : "scale-100"
+                }`} />
+
+                {/* Outer Ring boundary */}
+                <div className={`absolute inset-2 rounded-full border-2 border-dashed transition-colors duration-500 ${
+                  hoveredStratCard !== null ? "border-[#fcbf4a]/80" : "border-[#0c3773]/30"
+                }`} />
+
+                {/* Main Double Circle */}
+                <div className="absolute inset-8 rounded-full bg-white border border-zinc-200/80 shadow-lg flex flex-col items-center justify-center p-6 text-center">
+                  
+                  {/* Outer circle layout ring */}
+                  <div className="absolute inset-2 rounded-full border border-zinc-100 pointer-events-none" />
+
+                  {/* Megaphone floating icon top container */}
+                  <motion.div 
+                    animate={hoveredStratCard !== null ? {
+                      y: [0, -6, 0],
+                      rotate: [0, 5, -5, 0]
+                    } : {
+                      y: [0, -3, 0]
+                    }}
+                    transition={hoveredStratCard !== null ? {
+                      duration: 0.6,
+                      repeat: Infinity,
+                      repeatType: "reverse"
+                    } : {
+                      duration: 4,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                    className={`w-14 h-14 sm:w-16 sm:h-16 rounded-full flex items-center justify-center mb-4 sm:mb-5 shadow-inner transition-colors duration-300 ${
+                      hoveredStratCard !== null ? "bg-[#fcbf4a]/15 text-zinc-950" : "bg-zinc-50 text-[#0c3773]"
+                    }`}
+                  >
+                    <Megaphone className={`w-7 sm:w-8 h-7 sm:h-8 transition-transform duration-300 ${hoveredStratCard !== null ? "scale-110" : ""}`} />
+                  </motion.div>
+
+                  {/* Main texts */}
+                  <div className="space-y-1 relative z-10">
+                    <span className="text-zinc-400 font-mono text-[10px] sm:text-xs font-bold tracking-widest uppercase block">
+                      OUR CORE CAPABILITY
+                    </span>
+                    <h3 className="text-xl sm:text-2xl font-sans font-black text-zinc-950 leading-tight">
+                      Digital Solutions
+                    </h3>
+                    <p className="text-sm sm:text-base font-serif italic text-[#0c3773] font-medium">
+                      That Deliver
+                    </p>
+                    <h3 className="text-xl sm:text-2xl font-sans font-black text-zinc-950 leading-tight">
+                      Results
+                    </h3>
+                  </div>
+
+                </div>
+
               </div>
             </div>
 
-            {/* Right Column: 3 Horizontal Moving Logo Sliders with Continuous Autoplay wrapped in a premium white container */}
-            <div className="lg:col-span-6 relative w-full">
-              <div className="relative w-full bg-white border border-zinc-200/80 rounded-[2.5rem] p-6 md:p-8 shadow-sm overflow-hidden flex flex-col gap-7 z-10">
-                
-                {/* Fade out masks for left/right premium blur effect over the white container */}
-                <div className="absolute top-0 bottom-0 left-0 w-16 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
-                <div className="absolute top-0 bottom-0 right-0 w-16 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
-
-                {/* Row 1: Left -> Right */}
-                <div className="w-full overflow-hidden py-1">
-                  <div className="animate-marquee-ltr flex gap-6 items-center">
-                    {[
-                      { url: "https://imgh.in/host/92jzoz", alt: "Logo 1" },
-                      { url: "https://imgh.in/host/g4naat", alt: "Logo 2" },
-                      { url: "https://imgh.in/host/xgvnil", alt: "Logo 3" },
-                      { url: "https://imgh.in/host/wb04rg", alt: "Logo 4" },
-                      { url: "https://imgh.in/host/tlzayz", alt: "Logo 5" },
-                      { url: "https://imgh.in/host/92jzoz", alt: "Logo 1" },
-                      { url: "https://imgh.in/host/g4naat", alt: "Logo 2" },
-                      { url: "https://imgh.in/host/xgvnil", alt: "Logo 3" },
-                      { url: "https://imgh.in/host/wb04rg", alt: "Logo 4" },
-                      { url: "https://imgh.in/host/tlzayz", alt: "Logo 5" },
-                      { url: "https://imgh.in/host/92jzoz", alt: "Logo 1" },
-                      { url: "https://imgh.in/host/g4naat", alt: "Logo 2" },
-                      { url: "https://imgh.in/host/xgvnil", alt: "Logo 3" },
-                      { url: "https://imgh.in/host/wb04rg", alt: "Logo 4" },
-                      { url: "https://imgh.in/host/tlzayz", alt: "Logo 5" }
-                    ].map((logo, idx) => (
-                      <img 
-                        key={`r1-${idx}`}
-                        src={logo.url} 
-                        alt={logo.alt} 
-                        className="h-12 md:h-[60px] w-auto object-contain shrink-0 select-none opacity-85 hover:opacity-100 transition-opacity duration-300"
-                        referrerPolicy="no-referrer"
-                      />
-                    ))}
-                  </div>
+            {/* Right Column: Cards 4, 5, 6 */}
+            <div className="col-span-1 lg:col-span-4 flex flex-col justify-between gap-6 lg:gap-0 py-2 z-10">
+              
+              {/* Card 4 */}
+              <div 
+                onMouseEnter={() => setHoveredStratCard(4)}
+                onMouseLeave={() => setHoveredStratCard(null)}
+                className={`flex gap-5 bg-gradient-to-br from-white to-zinc-50/50 p-6 rounded-[2rem] border transition-all duration-300 hover:-translate-y-1 select-none ${
+                  hoveredStratCard === 4 
+                    ? "border-[#fcbf4a] shadow-xl shadow-[#0c3773]/5 ring-1 ring-[#fcbf4a]/20" 
+                    : "border-zinc-200/80 shadow-md shadow-zinc-100/40"
+                }`}
+              >
+                <div className={`w-12 h-12 rounded-full shrink-0 flex items-center justify-center transition-all duration-300 ${
+                  hoveredStratCard === 4 ? "bg-[#fcbf4a] text-zinc-950 scale-110" : "bg-[#0c3773] text-white"
+                }`}>
+                  <FileText className="w-5 h-5" />
                 </div>
-
-                {/* Row 2: Right -> Left */}
-                <div className="w-full overflow-hidden py-1">
-                  <div className="animate-marquee-rtl flex gap-6 items-center">
-                    {[
-                      { url: "https://imgh.in/host/wksd6j", alt: "Logo 6" },
-                      { url: "https://imgh.in/host/4nobpf", alt: "Logo 7" },
-                      { url: "https://imgh.in/host/05gdaq", alt: "Logo 8" },
-                      { url: "https://imgh.in/host/2gok4d", alt: "Logo 9" },
-                      { url: "https://imgh.in/host/f4u3sh", alt: "Logo 10" },
-                      { url: "https://imgh.in/host/wksd6j", alt: "Logo 6" },
-                      { url: "https://imgh.in/host/4nobpf", alt: "Logo 7" },
-                      { url: "https://imgh.in/host/05gdaq", alt: "Logo 8" },
-                      { url: "https://imgh.in/host/2gok4d", alt: "Logo 9" },
-                      { url: "https://imgh.in/host/f4u3sh", alt: "Logo 10" },
-                      { url: "https://imgh.in/host/wksd6j", alt: "Logo 6" },
-                      { url: "https://imgh.in/host/4nobpf", alt: "Logo 7" },
-                      { url: "https://imgh.in/host/05gdaq", alt: "Logo 8" },
-                      { url: "https://imgh.in/host/2gok4d", alt: "Logo 9" },
-                      { url: "https://imgh.in/host/f4u3sh", alt: "Logo 10" }
-                    ].map((logo, idx) => (
-                      <img 
-                        key={`r2-${idx}`}
-                        src={logo.url} 
-                        alt={logo.alt} 
-                        className="h-12 md:h-[60px] w-auto object-contain shrink-0 select-none opacity-85 hover:opacity-100 transition-opacity duration-300"
-                        referrerPolicy="no-referrer"
-                      />
-                    ))}
-                  </div>
+                <div className="space-y-1.5">
+                  <h4 className="text-lg font-sans font-black text-zinc-950 leading-tight">Content Marketing</h4>
+                  <p className="text-zinc-500 text-[14px] leading-relaxed">
+                    Engage, inform, and convert your audience with valuable content that builds trust.
+                  </p>
                 </div>
-
-                {/* Row 3: Left -> Right */}
-                <div className="w-full overflow-hidden py-1">
-                  <div className="animate-marquee-ltr flex gap-6 items-center">
-                    {[
-                      { url: "https://imgh.in/host/04nixe", alt: "Logo 11" },
-                      { url: "https://imgh.in/host/4ubrv2", alt: "Logo 12" },
-                      { url: "https://imgh.in/host/o2nmme", alt: "Logo 13" },
-                      { url: "https://imgh.in/host/92jzoz", alt: "Logo 1" },
-                      { url: "https://imgh.in/host/g4naat", alt: "Logo 2" },
-                      { url: "https://imgh.in/host/04nixe", alt: "Logo 11" },
-                      { url: "https://imgh.in/host/4ubrv2", alt: "Logo 12" },
-                      { url: "https://imgh.in/host/o2nmme", alt: "Logo 13" },
-                      { url: "https://imgh.in/host/92jzoz", alt: "Logo 1" },
-                      { url: "https://imgh.in/host/g4naat", alt: "Logo 2" },
-                      { url: "https://imgh.in/host/04nixe", alt: "Logo 11" },
-                      { url: "https://imgh.in/host/4ubrv2", alt: "Logo 12" },
-                      { url: "https://imgh.in/host/o2nmme", alt: "Logo 13" },
-                      { url: "https://imgh.in/host/92jzoz", alt: "Logo 1" },
-                      { url: "https://imgh.in/host/g4naat", alt: "Logo 2" }
-                    ].map((logo, idx) => (
-                      <img 
-                        key={`r3-${idx}`}
-                        src={logo.url} 
-                        alt={logo.alt} 
-                        className="h-12 md:h-[60px] w-auto object-contain shrink-0 select-none opacity-85 hover:opacity-100 transition-opacity duration-300"
-                        referrerPolicy="no-referrer"
-                      />
-                    ))}
-                  </div>
-                </div>
-
               </div>
+
+              {/* Card 5 */}
+              <div 
+                onMouseEnter={() => setHoveredStratCard(5)}
+                onMouseLeave={() => setHoveredStratCard(null)}
+                className={`flex gap-5 bg-gradient-to-br from-white to-zinc-50/50 p-6 rounded-[2rem] border transition-all duration-300 hover:-translate-y-1 select-none ${
+                  hoveredStratCard === 5 
+                    ? "border-[#fcbf4a] shadow-xl shadow-[#0c3773]/5 ring-1 ring-[#fcbf4a]/20" 
+                    : "border-zinc-200/80 shadow-md shadow-zinc-100/40"
+                }`}
+              >
+                <div className={`w-12 h-12 rounded-full shrink-0 flex items-center justify-center transition-all duration-300 ${
+                  hoveredStratCard === 5 ? "bg-[#fcbf4a] text-zinc-950 scale-110" : "bg-[#0c3773] text-white"
+                }`}>
+                  <Cpu className="w-5 h-5" />
+                </div>
+                <div className="space-y-1.5">
+                  <h4 className="text-lg font-sans font-black text-zinc-950 leading-tight">AI Powered Marketing</h4>
+                  <p className="text-zinc-500 text-[14px] leading-relaxed">
+                    Leverage AI tools and automation to optimize campaigns and maximize ROI.
+                  </p>
+                </div>
+              </div>
+
+              {/* Card 6 */}
+              <div 
+                onMouseEnter={() => setHoveredStratCard(6)}
+                onMouseLeave={() => setHoveredStratCard(null)}
+                className={`flex gap-5 bg-gradient-to-br from-white to-zinc-50/50 p-6 rounded-[2rem] border transition-all duration-300 hover:-translate-y-1 select-none ${
+                  hoveredStratCard === 6 
+                    ? "border-[#fcbf4a] shadow-xl shadow-[#0c3773]/5 ring-1 ring-[#fcbf4a]/20" 
+                    : "border-zinc-200/80 shadow-md shadow-zinc-100/40"
+                }`}
+              >
+                <div className={`w-12 h-12 rounded-full shrink-0 flex items-center justify-center transition-all duration-300 ${
+                  hoveredStratCard === 6 ? "bg-[#fcbf4a] text-zinc-950 scale-110" : "bg-[#0c3773] text-white"
+                }`}>
+                  <BarChart3 className="w-5 h-5" />
+                </div>
+                <div className="space-y-1.5">
+                  <h4 className="text-lg font-sans font-black text-zinc-950 leading-tight">Analytics & Reporting</h4>
+                  <p className="text-zinc-500 text-[14px] leading-relaxed">
+                    Track performance, measure results, and make data-driven decisions for growth.
+                  </p>
+                </div>
+              </div>
+
             </div>
 
           </div>
+
+          {/* Bottom Pill Bar */}
+          <div className="mt-16 bg-white/70 backdrop-blur-md border border-zinc-200/80 rounded-[2rem] md:rounded-full px-8 py-5 shadow-sm max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 md:gap-0 z-10 relative">
+            
+            {/* Item 1: More Visibility */}
+            <div className="flex items-center gap-3 group px-4 py-1">
+              <div className="w-10 h-10 rounded-full bg-[#0c3773]/5 flex items-center justify-center text-[#0c3773] transition-all duration-300 group-hover:bg-[#0c3773] group-hover:text-white">
+                <Users className="w-5 h-5" />
+              </div>
+              <span className="text-[16px] font-bold text-zinc-800 group-hover:text-[#0c3773] transition-colors duration-300">
+                More Visibility
+              </span>
+            </div>
+
+            <div className="hidden md:block w-[1px] h-8 bg-zinc-200/80" />
+
+            {/* Item 2: More Leads */}
+            <div className="flex items-center gap-3 group px-4 py-1">
+              <div className="w-10 h-10 rounded-full bg-[#0c3773]/5 flex items-center justify-center text-[#0c3773] transition-all duration-300 group-hover:bg-[#0c3773] group-hover:text-white">
+                <Target className="w-5 h-5" />
+              </div>
+              <span className="text-[16px] font-bold text-zinc-800 group-hover:text-[#0c3773] transition-colors duration-300">
+                More Leads
+              </span>
+            </div>
+
+            <div className="hidden md:block w-[1px] h-8 bg-zinc-200/80" />
+
+            {/* Item 3: More Sales */}
+            <div className="flex items-center gap-3 group px-4 py-1">
+              <div className="w-10 h-10 rounded-full bg-[#0c3773]/5 flex items-center justify-center text-[#0c3773] transition-all duration-300 group-hover:bg-[#0c3773] group-hover:text-white">
+                <ShoppingCart className="w-5 h-5" />
+              </div>
+              <span className="text-[16px] font-bold text-zinc-800 group-hover:text-[#0c3773] transition-colors duration-300">
+                More Sales
+              </span>
+            </div>
+
+            <div className="hidden md:block w-[1px] h-8 bg-zinc-200/80" />
+
+            {/* Item 4: Sustainable Growth */}
+            <div className="flex items-center gap-3 group px-4 py-1">
+              <div className="w-10 h-10 rounded-full bg-[#0c3773]/5 flex items-center justify-center text-[#0c3773] transition-all duration-300 group-hover:bg-[#0c3773] group-hover:text-white">
+                <TrendingUp className="w-5 h-5" />
+              </div>
+              <span className="text-[16px] font-bold text-zinc-800 group-hover:text-[#0c3773] transition-colors duration-300">
+                Sustainable Growth
+              </span>
+            </div>
+
+          </div>
+
         </div>
       </section>
 
