@@ -1205,21 +1205,21 @@ export default function App() {
                 <div className="w-full overflow-hidden py-1">
                   <div className="animate-marquee-ltr flex gap-6 items-center">
                     {[
-                      { url: "https://i.postimg.cc/tgpXh2hf/Frame-1707479991.png", alt: "Logo 1" },
-                      { url: "https://i.postimg.cc/PqTtm2Wh/Frame-1707479992.png", alt: "Logo 2" },
-                      { url: "https://i.postimg.cc/jjcRvPXF/Frame-1707479993.png", alt: "Logo 3" },
-                      { url: "https://i.postimg.cc/TP0TQg9S/Frame-1707479996.png", alt: "Logo 4" },
-                      { url: "https://i.postimg.cc/ZqHJjpc2/Frame-1707479997.png", alt: "Logo 5" },
-                      { url: "https://i.postimg.cc/tgpXh2hf/Frame-1707479991.png", alt: "Logo 1" },
-                      { url: "https://i.postimg.cc/PqTtm2Wh/Frame-1707479992.png", alt: "Logo 2" },
-                      { url: "https://i.postimg.cc/jjcRvPXF/Frame-1707479993.png", alt: "Logo 3" },
-                      { url: "https://i.postimg.cc/TP0TQg9S/Frame-1707479996.png", alt: "Logo 4" },
-                      { url: "https://i.postimg.cc/ZqHJjpc2/Frame-1707479997.png", alt: "Logo 5" },
-                      { url: "https://i.postimg.cc/tgpXh2hf/Frame-1707479991.png", alt: "Logo 1" },
-                      { url: "https://i.postimg.cc/PqTtm2Wh/Frame-1707479992.png", alt: "Logo 2" },
-                      { url: "https://i.postimg.cc/jjcRvPXF/Frame-1707479993.png", alt: "Logo 3" },
-                      { url: "https://i.postimg.cc/TP0TQg9S/Frame-1707479996.png", alt: "Logo 4" },
-                      { url: "https://i.postimg.cc/ZqHJjpc2/Frame-1707479997.png", alt: "Logo 5" }
+                      { url: "https://imgh.in/host/92jzoz", alt: "Logo 1" },
+                      { url: "https://imgh.in/host/g4naat", alt: "Logo 2" },
+                      { url: "https://imgh.in/host/xgvnil", alt: "Logo 3" },
+                      { url: "https://imgh.in/host/wb04rg", alt: "Logo 4" },
+                      { url: "https://imgh.in/host/tlzayz", alt: "Logo 5" },
+                      { url: "https://imgh.in/host/92jzoz", alt: "Logo 1" },
+                      { url: "https://imgh.in/host/g4naat", alt: "Logo 2" },
+                      { url: "https://imgh.in/host/xgvnil", alt: "Logo 3" },
+                      { url: "https://imgh.in/host/wb04rg", alt: "Logo 4" },
+                      { url: "https://imgh.in/host/tlzayz", alt: "Logo 5" },
+                      { url: "https://imgh.in/host/92jzoz", alt: "Logo 1" },
+                      { url: "https://imgh.in/host/g4naat", alt: "Logo 2" },
+                      { url: "https://imgh.in/host/xgvnil", alt: "Logo 3" },
+                      { url: "https://imgh.in/host/wb04rg", alt: "Logo 4" },
+                      { url: "https://imgh.in/host/tlzayz", alt: "Logo 5" }
                     ].map((logo, idx) => (
                       <img 
                         key={`r1-${idx}`}
@@ -1236,21 +1236,21 @@ export default function App() {
                 <div className="w-full overflow-hidden py-1">
                   <div className="animate-marquee-rtl flex gap-6 items-center">
                     {[
-                      { url: "https://i.postimg.cc/rpjqgxj6/Frame-1707479998.png", alt: "Logo 6" },
-                      { url: "https://i.postimg.cc/mrjTVCjf/Frame-1707479999.png", alt: "Logo 7" },
-                      { url: "https://i.postimg.cc/jjcRvPcr/Frame-1707480000.png", alt: "Logo 8" },
-                      { url: "https://i.postimg.cc/43PXwVPg/Frame-1707480001.png", alt: "Logo 9" },
-                      { url: "https://i.postimg.cc/xd59gM5f/Frame-1707480002.png", alt: "Logo 10" },
-                      { url: "https://i.postimg.cc/rpjqgxj6/Frame-1707479998.png", alt: "Logo 6" },
-                      { url: "https://i.postimg.cc/mrjTVCjf/Frame-1707479999.png", alt: "Logo 7" },
-                      { url: "https://i.postimg.cc/jjcRvPcr/Frame-1707480000.png", alt: "Logo 8" },
-                      { url: "https://i.postimg.cc/43PXwVPg/Frame-1707480001.png", alt: "Logo 9" },
-                      { url: "https://i.postimg.cc/xd59gM5f/Frame-1707480002.png", alt: "Logo 10" },
-                      { url: "https://i.postimg.cc/rpjqgxj6/Frame-1707479998.png", alt: "Logo 6" },
-                      { url: "https://i.postimg.cc/mrjTVCjf/Frame-1707479999.png", alt: "Logo 7" },
-                      { url: "https://i.postimg.cc/jjcRvPcr/Frame-1707480000.png", alt: "Logo 8" },
-                      { url: "https://i.postimg.cc/43PXwVPg/Frame-1707480001.png", alt: "Logo 9" },
-                      { url: "https://i.postimg.cc/xd59gM5f/Frame-1707480002.png", alt: "Logo 10" }
+                      { url: "https://imgh.in/host/wksd6j", alt: "Logo 6" },
+                      { url: "https://imgh.in/host/4nobpf", alt: "Logo 7" },
+                      { url: "https://imgh.in/host/05gdaq", alt: "Logo 8" },
+                      { url: "https://imgh.in/host/2gok4d", alt: "Logo 9" },
+                      { url: "https://imgh.in/host/f4u3sh", alt: "Logo 10" },
+                      { url: "https://imgh.in/host/wksd6j", alt: "Logo 6" },
+                      { url: "https://imgh.in/host/4nobpf", alt: "Logo 7" },
+                      { url: "https://imgh.in/host/05gdaq", alt: "Logo 8" },
+                      { url: "https://imgh.in/host/2gok4d", alt: "Logo 9" },
+                      { url: "https://imgh.in/host/f4u3sh", alt: "Logo 10" },
+                      { url: "https://imgh.in/host/wksd6j", alt: "Logo 6" },
+                      { url: "https://imgh.in/host/4nobpf", alt: "Logo 7" },
+                      { url: "https://imgh.in/host/05gdaq", alt: "Logo 8" },
+                      { url: "https://imgh.in/host/2gok4d", alt: "Logo 9" },
+                      { url: "https://imgh.in/host/f4u3sh", alt: "Logo 10" }
                     ].map((logo, idx) => (
                       <img 
                         key={`r2-${idx}`}
@@ -1267,21 +1267,21 @@ export default function App() {
                 <div className="w-full overflow-hidden py-1">
                   <div className="animate-marquee-ltr flex gap-6 items-center">
                     {[
-                      { url: "https://i.postimg.cc/VNgz4ngY/Frame-1707480003.png", alt: "Logo 11" },
-                      { url: "https://i.postimg.cc/yNj7ncjs/Frame-1707480004.png", alt: "Logo 12" },
-                      { url: "https://i.postimg.cc/tgk9DWkC/Frame-1707480006.png", alt: "Logo 13" },
-                      { url: "https://i.postimg.cc/zf7qpK7g/Frame-1707480007.png", alt: "Logo 14" },
-                      { url: "https://i.postimg.cc/5tgfpLgQ/Frame-1707480008.png", alt: "Logo 15" },
-                      { url: "https://i.postimg.cc/VNgz4ngY/Frame-1707480003.png", alt: "Logo 11" },
-                      { url: "https://i.postimg.cc/yNj7ncjs/Frame-1707480004.png", alt: "Logo 12" },
-                      { url: "https://i.postimg.cc/tgk9DWkC/Frame-1707480006.png", alt: "Logo 13" },
-                      { url: "https://i.postimg.cc/zf7qpK7g/Frame-1707480007.png", alt: "Logo 14" },
-                      { url: "https://i.postimg.cc/5tgfpLgQ/Frame-1707480008.png", alt: "Logo 15" },
-                      { url: "https://i.postimg.cc/VNgz4ngY/Frame-1707480003.png", alt: "Logo 11" },
-                      { url: "https://i.postimg.cc/yNj7ncjs/Frame-1707480004.png", alt: "Logo 12" },
-                      { url: "https://i.postimg.cc/tgk9DWkC/Frame-1707480006.png", alt: "Logo 13" },
-                      { url: "https://i.postimg.cc/zf7qpK7g/Frame-1707480007.png", alt: "Logo 14" },
-                      { url: "https://i.postimg.cc/5tgfpLgQ/Frame-1707480008.png", alt: "Logo 15" }
+                      { url: "https://imgh.in/host/04nixe", alt: "Logo 11" },
+                      { url: "https://imgh.in/host/4ubrv2", alt: "Logo 12" },
+                      { url: "https://imgh.in/host/o2nmme", alt: "Logo 13" },
+                      { url: "https://imgh.in/host/92jzoz", alt: "Logo 1" },
+                      { url: "https://imgh.in/host/g4naat", alt: "Logo 2" },
+                      { url: "https://imgh.in/host/04nixe", alt: "Logo 11" },
+                      { url: "https://imgh.in/host/4ubrv2", alt: "Logo 12" },
+                      { url: "https://imgh.in/host/o2nmme", alt: "Logo 13" },
+                      { url: "https://imgh.in/host/92jzoz", alt: "Logo 1" },
+                      { url: "https://imgh.in/host/g4naat", alt: "Logo 2" },
+                      { url: "https://imgh.in/host/04nixe", alt: "Logo 11" },
+                      { url: "https://imgh.in/host/4ubrv2", alt: "Logo 12" },
+                      { url: "https://imgh.in/host/o2nmme", alt: "Logo 13" },
+                      { url: "https://imgh.in/host/92jzoz", alt: "Logo 1" },
+                      { url: "https://imgh.in/host/g4naat", alt: "Logo 2" }
                     ].map((logo, idx) => (
                       <img 
                         key={`r3-${idx}`}
