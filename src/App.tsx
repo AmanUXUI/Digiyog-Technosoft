@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Search, X, ArrowRight, Send, Check, Menu, ChevronRight, Globe, Users, Award, Sparkles, TrendingUp, Code, Video, Share2, Palette, ChevronUp, ChevronDown, Lightbulb, Target, Settings, Rocket, Star, Quote, Calendar, Clock, MessageCircle, Megaphone, Cpu, FileText, ShoppingCart, BarChart3 } from "lucide-react";
+import { Search, X, ArrowRight, Send, Check, Menu, ChevronRight, Globe, Users, Award, Sparkles, TrendingUp, Code, Video, Share2, Palette, ChevronUp, ChevronDown, Lightbulb, Target, Settings, Rocket, Star, Quote, Calendar, Clock, MessageCircle, Megaphone, Smartphone, Laptop, Eye, ShoppingCart } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { LiquidMetal, MeshGradient } from '@paper-design/shaders-react';
 
@@ -168,6 +168,23 @@ const LOGO_ITEMS = [
     ),
     textClass: "font-sans font-bold tracking-tighter text-[13px] ml-1.5"
   }
+];
+
+// Rich logo images specifically provided by the user for the hero marquee
+const HERO_LOGO_URLS = [
+  "https://imgh.in/host/92jzoz",
+  "https://imgh.in/host/g4naat",
+  "https://imgh.in/host/xgvnil",
+  "https://imgh.in/host/wb04rg",
+  "https://imgh.in/host/tlzayz",
+  "https://imgh.in/host/wksd6j",
+  "https://imgh.in/host/4nobpf",
+  "https://imgh.in/host/05gdaq",
+  "https://imgh.in/host/2gok4d",
+  "https://imgh.in/host/f4u3sh",
+  "https://imgh.in/host/04nixe",
+  "https://imgh.in/host/4ubrv2",
+  "https://imgh.in/host/o2nmme"
 ];
 
 // Rich, interactive data structures for the main content PDF integration
@@ -497,7 +514,6 @@ export default function App() {
   const [selectedBenefitProof, setSelectedBenefitProof] = useState<number | null>(null);
   const [searchArticleQuery, setSearchArticleQuery] = useState("");
   const [activeServiceIdx, setActiveServiceIdx] = useState(0);
-  const [hoveredStratCard, setHoveredStratCard] = useState<number | null>(null);
 
   // Booking consultation form fields
   const [bookingFormData, setBookingFormData] = useState({
@@ -783,70 +799,46 @@ export default function App() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.85, duration: 0.9 }}
-              className="mt-12 px-6 py-4 bg-white/40 border border-zinc-200/50 backdrop-blur-md rounded-2xl relative overflow-hidden flex items-center w-full max-w-2xl shadow-[0_12px_24px_-10px_rgba(0,0,0,0.05)]"
+              className="mt-12 px-8 py-6 bg-white border border-zinc-200 rounded-2xl relative overflow-hidden flex items-center w-full max-w-2xl shadow-[0_12px_24px_-10px_rgba(0,0,0,0.05)]"
             >
               {/* Left and right smooth shader overlapping the logos */}
               <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-white via-white/20 to-transparent z-10 pointer-events-none" />
               <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-white via-white/20 to-transparent z-10 pointer-events-none" />
 
-              <div className="relative w-full flex items-center overflow-hidden h-8">
+              <div className="relative w-full flex items-center overflow-hidden h-14">
                 <div className="animate-marquee hover:[animation-play-state:paused] flex whitespace-nowrap scroll-smooth items-center">
                   
                   {/* First iteration group */}
-                  {LOGO_ITEMS.map((logo, idx) => (
-                    <div 
-                      key={`logo-l1-${logo.name}-${idx}`}
-                      className="inline-flex items-center justify-center space-x-2 text-zinc-500 hover:text-zinc-950 transition-all duration-300 select-none cursor-pointer group mx-6 md:mx-8 h-10 [&_svg]:text-[#0c3773] [&_svg]:fill-current"
-                    >
-                      {logo.icon && (
-                        <div className="transition-transform duration-300 group-hover:scale-110 opacity-70 group-hover:opacity-100 flex items-center justify-center h-full">
-                          {logo.icon}
-                        </div>
-                      )}
-                      {logo.name && (
-                        <span className={`${logo.textClass} text-zinc-700 opacity-80 group-hover:opacity-100 transition-opacity duration-300 uppercase flex items-center justify-center leading-none h-full`}>
-                          {logo.name}
-                        </span>
-                      )}
-                    </div>
+                  {HERO_LOGO_URLS.map((url, idx) => (
+                    <img 
+                      key={`hero-logo-l1-${idx}`}
+                      src={url} 
+                      alt={`Partner Logo ${idx + 1}`} 
+                      className="h-10 md:h-12 w-auto object-contain shrink-0 select-none opacity-75 hover:opacity-100 transition-opacity duration-300 mx-8"
+                      referrerPolicy="no-referrer"
+                    />
                   ))}
 
                   {/* Second iteration group for seamless loop */}
-                  {LOGO_ITEMS.map((logo, idx) => (
-                    <div 
-                      key={`logo-l2-${logo.name}-${idx}`}
-                      className="inline-flex items-center justify-center space-x-2 text-zinc-500 hover:text-zinc-950 transition-all duration-300 select-none cursor-pointer group mx-6 md:mx-8 h-10 [&_svg]:text-[#0c3773] [&_svg]:fill-current"
-                    >
-                      {logo.icon && (
-                        <div className="transition-transform duration-300 group-hover:scale-110 opacity-70 group-hover:opacity-100 flex items-center justify-center h-full">
-                          {logo.icon}
-                        </div>
-                      )}
-                      {logo.name && (
-                        <span className={`${logo.textClass} text-zinc-700 opacity-80 group-hover:opacity-100 transition-opacity duration-300 uppercase flex items-center justify-center leading-none h-full`}>
-                          {logo.name}
-                        </span>
-                      )}
-                    </div>
+                  {HERO_LOGO_URLS.map((url, idx) => (
+                    <img 
+                      key={`hero-logo-l2-${idx}`}
+                      src={url} 
+                      alt={`Partner Logo ${idx + 1}`} 
+                      className="h-10 md:h-12 w-auto object-contain shrink-0 select-none opacity-75 hover:opacity-100 transition-opacity duration-300 mx-8"
+                      referrerPolicy="no-referrer"
+                    />
                   ))}
 
                   {/* Third iteration group */}
-                  {LOGO_ITEMS.map((logo, idx) => (
-                    <div 
-                      key={`logo-l3-${logo.name}-${idx}`}
-                      className="inline-flex items-center justify-center space-x-2 text-zinc-500 hover:text-zinc-950 transition-all duration-300 select-none cursor-pointer group mx-6 md:mx-8 h-10 [&_svg]:text-[#0c3773] [&_svg]:fill-current"
-                    >
-                      {logo.icon && (
-                        <div className="transition-transform duration-300 group-hover:scale-110 opacity-70 group-hover:opacity-100 flex items-center justify-center h-full">
-                          {logo.icon}
-                        </div>
-                      )}
-                      {logo.name && (
-                        <span className={`${logo.textClass} text-zinc-700 opacity-80 group-hover:opacity-100 transition-opacity duration-300 uppercase flex items-center justify-center leading-none h-full`}>
-                          {logo.name}
-                        </span>
-                      )}
-                    </div>
+                  {HERO_LOGO_URLS.map((url, idx) => (
+                    <img 
+                      key={`hero-logo-l3-${idx}`}
+                      src={url} 
+                      alt={`Partner Logo ${idx + 1}`} 
+                      className="h-10 md:h-12 w-auto object-contain shrink-0 select-none opacity-75 hover:opacity-100 transition-opacity duration-300 mx-8"
+                      referrerPolicy="no-referrer"
+                    />
                   ))}
 
                 </div>
@@ -1122,582 +1114,655 @@ export default function App() {
       </section>
 
       {/* ==================== CLIENT SHOWCASE / TRUSTED BY SECTION ==================== */}
-      <section id="contributions" className="relative z-20 w-full bg-zinc-50 text-zinc-900 py-20 md:py-24 px-6 md:px-12 border-t border-zinc-200/60 overflow-hidden">
+      <section id="contributions" className="relative z-20 w-full bg-zinc-50 text-zinc-900 py-16 md:py-20 px-6 md:px-12 border-t border-zinc-200/60 overflow-hidden">
         {/* Ambient glow backgrounds */}
-        <div className="absolute top-1/2 left-10 w-[400px] h-[400px] bg-[#0c3773]/4 rounded-full blur-[120px] pointer-events-none" />
-        <div className="absolute bottom-5 right-1/4 w-[350px] h-[350px] bg-[#fcbf4a]/4 rounded-full blur-[100px] pointer-events-none" />
+        <div className="absolute top-1/2 left-10 w-[300px] h-[300px] bg-[#0c3773]/3 rounded-full blur-[100px] pointer-events-none" />
+        <div className="absolute bottom-5 right-1/4 w-[250px] h-[250px] bg-[#fcbf4a]/4 rounded-full blur-[80px] pointer-events-none" />
 
         <div className="max-w-7xl mx-auto relative z-10 w-full">
-          
-          {/* Section Headers */}
-          <div className="text-center max-w-4xl mx-auto mb-16 space-y-4">
-            <span className="text-xs sm:text-sm font-mono font-black tracking-widest text-[#0c3773] uppercase block">
-              From Website Design To Digital Marketing
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+            
+            {/* Left Column: Crisp, left-aligned explanation and branding details */}
+            <div className="lg:col-span-6 space-y-5">
+              <div className="space-y-2">
+                <span className="text-xs font-mono font-black tracking-widest text-[#0c3773] uppercase block">
+                  CLIENT SHOWCASE & PARTNERS
+                </span>
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-sans font-black tracking-tight text-zinc-950 leading-tight">
+                  Trusted by Leading Institutions & Brands
+                </h2>
+              </div>
+
+              <p className="text-zinc-600 text-[18px] leading-[29px] font-normal">
+                Over the past decade, we have partnered with world-renowned universities and enterprises to design high-performance media buying, conversion funnels, and marketing analytics that scale brand influence.
+              </p>
+
+              {/* Service Areas & Impact Bullet Points */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
+                <div className="flex gap-2.5">
+                  <div className="w-5 h-5 rounded-full bg-[#0c3773]/10 flex items-center justify-center shrink-0 mt-0.5">
+                    <Check className="w-3 h-3 text-[#0c3773]" />
+                  </div>
+                  <div>
+                    <h4 className="text-[16px] font-bold text-zinc-950">Institutional Outreach</h4>
+                    <p className="text-zinc-500 text-[14px] mt-0.5 leading-relaxed">Scaling recruitment with audience intelligence models.</p>
+                  </div>
+                </div>
+                <div className="flex gap-2.5">
+                  <div className="w-5 h-5 rounded-full bg-[#0c3773]/10 flex items-center justify-center shrink-0 mt-0.5">
+                    <Check className="w-3 h-3 text-[#0c3773]" />
+                  </div>
+                  <div>
+                    <h4 className="text-[16px] font-bold text-zinc-950">Precision Tracking</h4>
+                    <p className="text-zinc-500 text-[14px] mt-0.5 leading-relaxed">Deploying robust, GDPR-compliant attribution tracking.</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* High-Impact Metrics Grid (from Reference) */}
+              <div className="grid grid-cols-3 gap-4 pt-6 pb-2 border-t border-zinc-200/80">
+                <div className="space-y-1">
+                  <div className="text-2xl md:text-3xl font-sans font-black text-zinc-950 tracking-tight leading-none">1,500+</div>
+                  <div className="text-xs text-zinc-500 font-medium leading-tight">Projects Delivered</div>
+                </div>
+                <div className="space-y-1">
+                  <div className="text-2xl md:text-3xl font-sans font-black text-zinc-950 tracking-tight leading-none">500+</div>
+                  <div className="text-xs text-zinc-500 font-medium leading-tight">Active Clients</div>
+                </div>
+                <div className="space-y-1">
+                  <div className="text-2xl md:text-3xl font-sans font-black text-zinc-950 tracking-tight leading-none">7+ Years</div>
+                  <div className="text-xs text-zinc-500 font-medium leading-tight">Industry Experience</div>
+                </div>
+              </div>
+
+              <div className="pt-2">
+                <a 
+                  href="#contact" 
+                  className="inline-flex items-center gap-2 text-[#0c3773] font-sans font-black text-xs uppercase tracking-widest hover:text-[#fcbf4a] transition-colors duration-300 group"
+                >
+                  <span>Explore Collaboration</span>
+                  <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" />
+                </a>
+              </div>
+            </div>
+
+            {/* Right Column: 3 Horizontal Moving Logo Sliders with Continuous Autoplay wrapped in a premium white container */}
+            <div className="lg:col-span-6 relative w-full">
+              <div className="relative w-full bg-white border border-zinc-200/80 rounded-[2.5rem] p-6 md:p-8 shadow-sm overflow-hidden flex flex-col gap-7 z-10">
+                
+                {/* Fade out masks for left/right premium blur effect over the white container */}
+                <div className="absolute top-0 bottom-0 left-0 w-16 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
+                <div className="absolute top-0 bottom-0 right-0 w-16 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
+
+                {/* Row 1: Left -> Right */}
+                <div className="w-full overflow-hidden py-1">
+                  <div className="animate-marquee-ltr flex gap-6 items-center">
+                    {[
+                      { url: "https://imgh.in/host/92jzoz", alt: "Logo 1" },
+                      { url: "https://imgh.in/host/g4naat", alt: "Logo 2" },
+                      { url: "https://imgh.in/host/xgvnil", alt: "Logo 3" },
+                      { url: "https://imgh.in/host/wb04rg", alt: "Logo 4" },
+                      { url: "https://imgh.in/host/tlzayz", alt: "Logo 5" },
+                      { url: "https://imgh.in/host/92jzoz", alt: "Logo 1" },
+                      { url: "https://imgh.in/host/g4naat", alt: "Logo 2" },
+                      { url: "https://imgh.in/host/xgvnil", alt: "Logo 3" },
+                      { url: "https://imgh.in/host/wb04rg", alt: "Logo 4" },
+                      { url: "https://imgh.in/host/tlzayz", alt: "Logo 5" },
+                      { url: "https://imgh.in/host/92jzoz", alt: "Logo 1" },
+                      { url: "https://imgh.in/host/g4naat", alt: "Logo 2" },
+                      { url: "https://imgh.in/host/xgvnil", alt: "Logo 3" },
+                      { url: "https://imgh.in/host/wb04rg", alt: "Logo 4" },
+                      { url: "https://imgh.in/host/tlzayz", alt: "Logo 5" }
+                    ].map((logo, idx) => (
+                      <img 
+                        key={`r1-${idx}`}
+                        src={logo.url} 
+                        alt={logo.alt} 
+                        className="h-12 md:h-[60px] w-auto object-contain shrink-0 select-none opacity-85 hover:opacity-100 transition-opacity duration-300"
+                        referrerPolicy="no-referrer"
+                      />
+                    ))}
+                  </div>
+                </div>
+
+                {/* Row 2: Right -> Left */}
+                <div className="w-full overflow-hidden py-1">
+                  <div className="animate-marquee-rtl flex gap-6 items-center">
+                    {[
+                      { url: "https://imgh.in/host/wksd6j", alt: "Logo 6" },
+                      { url: "https://imgh.in/host/4nobpf", alt: "Logo 7" },
+                      { url: "https://imgh.in/host/05gdaq", alt: "Logo 8" },
+                      { url: "https://imgh.in/host/2gok4d", alt: "Logo 9" },
+                      { url: "https://imgh.in/host/f4u3sh", alt: "Logo 10" },
+                      { url: "https://imgh.in/host/wksd6j", alt: "Logo 6" },
+                      { url: "https://imgh.in/host/4nobpf", alt: "Logo 7" },
+                      { url: "https://imgh.in/host/05gdaq", alt: "Logo 8" },
+                      { url: "https://imgh.in/host/2gok4d", alt: "Logo 9" },
+                      { url: "https://imgh.in/host/f4u3sh", alt: "Logo 10" },
+                      { url: "https://imgh.in/host/wksd6j", alt: "Logo 6" },
+                      { url: "https://imgh.in/host/4nobpf", alt: "Logo 7" },
+                      { url: "https://imgh.in/host/05gdaq", alt: "Logo 8" },
+                      { url: "https://imgh.in/host/2gok4d", alt: "Logo 9" },
+                      { url: "https://imgh.in/host/f4u3sh", alt: "Logo 10" }
+                    ].map((logo, idx) => (
+                      <img 
+                        key={`r2-${idx}`}
+                        src={logo.url} 
+                        alt={logo.alt} 
+                        className="h-12 md:h-[60px] w-auto object-contain shrink-0 select-none opacity-85 hover:opacity-100 transition-opacity duration-300"
+                        referrerPolicy="no-referrer"
+                      />
+                    ))}
+                  </div>
+                </div>
+
+                {/* Row 3: Left -> Right */}
+                <div className="w-full overflow-hidden py-1">
+                  <div className="animate-marquee-ltr flex gap-6 items-center">
+                    {[
+                      { url: "https://imgh.in/host/04nixe", alt: "Logo 11" },
+                      { url: "https://imgh.in/host/4ubrv2", alt: "Logo 12" },
+                      { url: "https://imgh.in/host/o2nmme", alt: "Logo 13" },
+                      { url: "https://imgh.in/host/92jzoz", alt: "Logo 1" },
+                      { url: "https://imgh.in/host/g4naat", alt: "Logo 2" },
+                      { url: "https://imgh.in/host/04nixe", alt: "Logo 11" },
+                      { url: "https://imgh.in/host/4ubrv2", alt: "Logo 12" },
+                      { url: "https://imgh.in/host/o2nmme", alt: "Logo 13" },
+                      { url: "https://imgh.in/host/92jzoz", alt: "Logo 1" },
+                      { url: "https://imgh.in/host/g4naat", alt: "Logo 2" },
+                      { url: "https://imgh.in/host/04nixe", alt: "Logo 11" },
+                      { url: "https://imgh.in/host/4ubrv2", alt: "Logo 12" },
+                      { url: "https://imgh.in/host/o2nmme", alt: "Logo 13" },
+                      { url: "https://imgh.in/host/92jzoz", alt: "Logo 1" },
+                      { url: "https://imgh.in/host/g4naat", alt: "Logo 2" }
+                    ].map((logo, idx) => (
+                      <img 
+                        key={`r3-${idx}`}
+                        src={logo.url} 
+                        alt={logo.alt} 
+                        className="h-12 md:h-[60px] w-auto object-contain shrink-0 select-none opacity-85 hover:opacity-100 transition-opacity duration-300"
+                        referrerPolicy="no-referrer"
+                      />
+                    ))}
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* ==================== SERVICES SECTION (MINDMAP LAYOUT) ==================== */}
+      <section id="services" className="relative z-20 w-full bg-zinc-50 text-zinc-900 py-20 px-6 md:px-12 border-t border-zinc-200/60 overflow-hidden">
+        {/* Ambient background glows */}
+        <div className="absolute top-1/4 left-1/4 -translate-y-1/2 w-[400px] h-[400px] bg-[#0c3773]/3 rounded-full blur-[130px] pointer-events-none" />
+        <div className="absolute bottom-1/4 right-1/4 -translate-y-1/2 w-[400px] h-[400px] bg-[#fcbf4a]/4 rounded-full blur-[130px] pointer-events-none" />
+
+        <div className="max-w-7xl mx-auto relative z-10 w-full">
+          {/* Header Block matching description */}
+          <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
+            <span className="text-xs font-mono font-black tracking-widest text-[#0c3773] uppercase block">
+              SERVICES
             </span>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-sans font-black tracking-tight text-zinc-950 leading-tight">
-              Smart Strategies For Business Expansion
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-sans font-black tracking-tight text-zinc-950 leading-tight">
+              Everything You Need To Grow In The Digital World.
             </h2>
-            <p className="text-zinc-600 text-base sm:text-lg md:text-[19px] leading-relaxed max-w-3xl mx-auto font-normal pt-2">
+            <p className="text-zinc-600 text-sm md:text-base max-w-2xl mx-auto leading-relaxed">
               A stunning website gets attention. Our result-driven digital marketing turns that attention into traffic, leads, and loyal customers.
             </p>
           </div>
 
-          {/* Core Interactive Diagram */}
-          <div className="relative w-full h-auto lg:h-[620px] grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-4 items-stretch">
+          {/* DESKTOP VIEW: MINDMAP LAYOUT (lg and up) */}
+          <div className="relative w-full hidden lg:block select-none min-h-[640px]">
             
-            {/* SVG Connection Lines behind columns (Desktop only) */}
+            {/* SVG Connection Paths Overlay for lg screens */}
             <svg 
-              className="absolute inset-0 w-full h-full pointer-events-none hidden lg:block" 
-              viewBox="0 0 100 100" 
+              className="absolute inset-0 w-full h-full pointer-events-none overflow-visible z-0"
+              viewBox="0 0 1200 680"
               preserveAspectRatio="none"
             >
-              {/* Path 1: Card 1 (Top Left) to Center Circle */}
+              {/* Left Top Card Path */}
               <motion.path 
-                d="M 33.3 16 C 40 16, 40 32.5, 44.5 32.5" 
+                d="M 380 120 C 500 120, 480 340, 600 340" 
                 fill="none" 
-                stroke={hoveredStratCard === 1 ? "#fcbf4a" : "#0c3773"} 
-                strokeWidth={hoveredStratCard === 1 ? "2.5" : "1.5"} 
-                strokeDasharray={hoveredStratCard === 1 ? "none" : "6,4"}
-                className="transition-all duration-300"
-                animate={hoveredStratCard === 1 ? { strokeDashoffset: [0, -10] } : {}}
-                transition={{ repeat: Infinity, duration: 1, ease: "linear" }}
-                opacity={hoveredStratCard === 1 ? "1" : "0.25"}
+                stroke="#0c3773" 
+                strokeWidth="2" 
+                strokeDasharray="6 4" 
+                className="opacity-30"
+                initial={{ pathLength: 0 }}
+                animate={{ pathLength: 1 }}
+                transition={{ duration: 1.5, delay: 0.2 }}
+              />
+              {/* Left Middle Card Path */}
+              <motion.path 
+                d="M 380 340 L 600 340" 
+                fill="none" 
+                stroke="#0c3773" 
+                strokeWidth="2" 
+                strokeDasharray="6 4" 
+                className="opacity-30"
+                initial={{ pathLength: 0 }}
+                animate={{ pathLength: 1 }}
+                transition={{ duration: 1.5, delay: 0.4 }}
+              />
+              {/* Left Bottom Card Path */}
+              <motion.path 
+                d="M 380 560 C 500 560, 480 340, 600 340" 
+                fill="none" 
+                stroke="#0c3773" 
+                strokeWidth="2" 
+                strokeDasharray="6 4" 
+                className="opacity-30"
+                initial={{ pathLength: 0 }}
+                animate={{ pathLength: 1 }}
+                transition={{ duration: 1.5, delay: 0.6 }}
               />
 
-              {/* Path 2: Card 2 (Mid Left) to Center Circle */}
+              {/* Right Top Card Path */}
               <motion.path 
-                d="M 33.3 50 L 42.5 50" 
+                d="M 820 120 C 700 120, 720 340, 600 340" 
                 fill="none" 
-                stroke={hoveredStratCard === 2 ? "#fcbf4a" : "#0c3773"} 
-                strokeWidth={hoveredStratCard === 2 ? "2.5" : "1.5"} 
-                strokeDasharray={hoveredStratCard === 2 ? "none" : "6,4"}
-                className="transition-all duration-300"
-                opacity={hoveredStratCard === 2 ? "1" : "0.25"}
+                stroke="#0c3773" 
+                strokeWidth="2" 
+                strokeDasharray="6 4" 
+                className="opacity-30"
+                initial={{ pathLength: 0 }}
+                animate={{ pathLength: 1 }}
+                transition={{ duration: 1.5, delay: 0.2 }}
+              />
+              {/* Right Middle Card Path */}
+              <motion.path 
+                d="M 820 340 L 600 340" 
+                fill="none" 
+                stroke="#0c3773" 
+                strokeWidth="2" 
+                strokeDasharray="6 4" 
+                className="opacity-30"
+                initial={{ pathLength: 0 }}
+                animate={{ pathLength: 1 }}
+                transition={{ duration: 1.5, delay: 0.4 }}
+              />
+              {/* Right Bottom Card Path */}
+              <motion.path 
+                d="M 820 560 C 700 560, 720 340, 600 340" 
+                fill="none" 
+                stroke="#0c3773" 
+                strokeWidth="2" 
+                strokeDasharray="6 4" 
+                className="opacity-30"
+                initial={{ pathLength: 0 }}
+                animate={{ pathLength: 1 }}
+                transition={{ duration: 1.5, delay: 0.6 }}
               />
 
-              {/* Path 3: Card 3 (Bottom Left) to Center Circle */}
-              <motion.path 
-                d="M 33.3 84 C 40 84, 40 67.5, 44.5 67.5" 
-                fill="none" 
-                stroke={hoveredStratCard === 3 ? "#fcbf4a" : "#0c3773"} 
-                strokeWidth={hoveredStratCard === 3 ? "2.5" : "1.5"} 
-                strokeDasharray={hoveredStratCard === 3 ? "none" : "6,4"}
-                className="transition-all duration-300"
-                opacity={hoveredStratCard === 3 ? "1" : "0.25"}
-              />
+              {/* Connecting Nodes (dots) on Central Hub Circle */}
+              <circle cx="485" cy="225" r="5" fill="#0c3773" />
+              <circle cx="460" cy="340" r="5" fill="#0c3773" />
+              <circle cx="485" cy="455" r="5" fill="#0c3773" />
 
-              {/* Path 4: Card 4 (Top Right) to Center Circle */}
-              <motion.path 
-                d="M 66.6 16 C 60 16, 60 32.5, 55.5 32.5" 
-                fill="none" 
-                stroke={hoveredStratCard === 4 ? "#fcbf4a" : "#0c3773"} 
-                strokeWidth={hoveredStratCard === 4 ? "2.5" : "1.5"} 
-                strokeDasharray={hoveredStratCard === 4 ? "none" : "6,4"}
-                className="transition-all duration-300"
-                opacity={hoveredStratCard === 4 ? "1" : "0.25"}
-              />
-
-              {/* Path 5: Card 5 (Mid Right) to Center Circle */}
-              <motion.path 
-                d="M 66.6 50 L 57.5 50" 
-                fill="none" 
-                stroke={hoveredStratCard === 5 ? "#fcbf4a" : "#0c3773"} 
-                strokeWidth={hoveredStratCard === 5 ? "2.5" : "1.5"} 
-                strokeDasharray={hoveredStratCard === 5 ? "none" : "6,4"}
-                className="transition-all duration-300"
-                opacity={hoveredStratCard === 5 ? "1" : "0.25"}
-              />
-
-              {/* Path 6: Card 6 (Bottom Right) to Center Circle */}
-              <motion.path 
-                d="M 66.6 84 C 60 84, 60 67.5, 55.5 67.5" 
-                fill="none" 
-                stroke={hoveredStratCard === 6 ? "#fcbf4a" : "#0c3773"} 
-                strokeWidth={hoveredStratCard === 6 ? "2.5" : "1.5"} 
-                strokeDasharray={hoveredStratCard === 6 ? "none" : "6,4"}
-                className="transition-all duration-300"
-                opacity={hoveredStratCard === 6 ? "1" : "0.25"}
-              />
-
-              {/* Connection Dots on Center Circle */}
-              <circle cx="44.5" cy="32.5" r={hoveredStratCard === 1 ? "2.5" : "1.5"} fill={hoveredStratCard === 1 ? "#fcbf4a" : "#0c3773"} className="transition-all duration-300" />
-              <circle cx="42.5" cy="50" r={hoveredStratCard === 2 ? "2.5" : "1.5"} fill={hoveredStratCard === 2 ? "#fcbf4a" : "#0c3773"} className="transition-all duration-300" />
-              <circle cx="44.5" cy="67.5" r={hoveredStratCard === 3 ? "2.5" : "1.5"} fill={hoveredStratCard === 3 ? "#fcbf4a" : "#0c3773"} className="transition-all duration-300" />
-              <circle cx="55.5" cy="32.5" r={hoveredStratCard === 4 ? "2.5" : "1.5"} fill={hoveredStratCard === 4 ? "#fcbf4a" : "#0c3773"} className="transition-all duration-300" />
-              <circle cx="57.5" cy="50" r={hoveredStratCard === 5 ? "2.5" : "1.5"} fill={hoveredStratCard === 5 ? "#fcbf4a" : "#0c3773"} className="transition-all duration-300" />
-              <circle cx="55.5" cy="67.5" r={hoveredStratCard === 6 ? "2.5" : "1.5"} fill={hoveredStratCard === 6 ? "#fcbf4a" : "#0c3773"} className="transition-all duration-300" />
+              <circle cx="715" cy="225" r="5" fill="#0c3773" />
+              <circle cx="740" cy="340" r="5" fill="#0c3773" />
+              <circle cx="715" cy="455" r="5" fill="#0c3773" />
             </svg>
 
-            {/* Left Column: Cards 1, 2, 3 */}
-            <div className="col-span-1 lg:col-span-4 flex flex-col justify-between gap-6 lg:gap-0 py-2 z-10">
+            {/* Desktop 3-Column Symmetrical Layout */}
+            <div className="relative z-10 grid grid-cols-12 gap-6 items-center">
               
-              {/* Card 1 */}
-              <div 
-                onMouseEnter={() => setHoveredStratCard(1)}
-                onMouseLeave={() => setHoveredStratCard(null)}
-                className={`flex gap-5 bg-gradient-to-br from-white to-zinc-50/50 p-6 rounded-[2rem] border transition-all duration-300 hover:-translate-y-1 select-none ${
-                  hoveredStratCard === 1 
-                    ? "border-[#fcbf4a] shadow-xl shadow-[#0c3773]/5 ring-1 ring-[#fcbf4a]/20" 
-                    : "border-zinc-200/80 shadow-md shadow-zinc-100/40"
-                }`}
-              >
-                <div className={`w-12 h-12 rounded-full shrink-0 flex items-center justify-center transition-all duration-300 ${
-                  hoveredStratCard === 1 ? "bg-[#fcbf4a] text-zinc-950 scale-110" : "bg-[#0c3773] text-white"
-                }`}>
-                  <Search className="w-5 h-5" />
-                </div>
-                <div className="space-y-1.5">
-                  <h4 className="text-lg font-sans font-black text-zinc-950 leading-tight">SEO & AI SEO</h4>
-                  <p className="text-zinc-500 text-[14px] leading-relaxed">
-                    Rank higher on search engines with smart SEO and AI-powered strategies.
-                  </p>
-                </div>
-              </div>
-
-              {/* Card 2 */}
-              <div 
-                onMouseEnter={() => setHoveredStratCard(2)}
-                onMouseLeave={() => setHoveredStratCard(null)}
-                className={`flex gap-5 bg-gradient-to-br from-white to-zinc-50/50 p-6 rounded-[2rem] border transition-all duration-300 hover:-translate-y-1 select-none ${
-                  hoveredStratCard === 2 
-                    ? "border-[#fcbf4a] shadow-xl shadow-[#0c3773]/5 ring-1 ring-[#fcbf4a]/20" 
-                    : "border-zinc-200/80 shadow-md shadow-zinc-100/40"
-                }`}
-              >
-                <div className={`w-12 h-12 rounded-full shrink-0 flex items-center justify-center transition-all duration-300 ${
-                  hoveredStratCard === 2 ? "bg-[#fcbf4a] text-zinc-950 scale-110" : "bg-[#0c3773] text-white"
-                }`}>
-                  <Share2 className="w-5 h-5" />
-                </div>
-                <div className="space-y-1.5">
-                  <h4 className="text-lg font-sans font-black text-zinc-950 leading-tight">Social Media Marketing</h4>
-                  <p className="text-zinc-500 text-[14px] leading-relaxed">
-                    Build brand awareness, engage your audience, and grow your community.
-                  </p>
-                </div>
-              </div>
-
-              {/* Card 3 */}
-              <div 
-                onMouseEnter={() => setHoveredStratCard(3)}
-                onMouseLeave={() => setHoveredStratCard(null)}
-                className={`flex gap-5 bg-gradient-to-br from-white to-zinc-50/50 p-6 rounded-[2rem] border transition-all duration-300 hover:-translate-y-1 select-none ${
-                  hoveredStratCard === 3 
-                    ? "border-[#fcbf4a] shadow-xl shadow-[#0c3773]/5 ring-1 ring-[#fcbf4a]/20" 
-                    : "border-zinc-200/80 shadow-md shadow-zinc-100/40"
-                }`}
-              >
-                <div className={`w-12 h-12 rounded-full shrink-0 flex items-center justify-center transition-all duration-300 ${
-                  hoveredStratCard === 3 ? "bg-[#fcbf4a] text-zinc-950 scale-110" : "bg-[#0c3773] text-white"
-                }`}>
-                  <Target className="w-5 h-5" />
-                </div>
-                <div className="space-y-1.5">
-                  <h4 className="text-lg font-sans font-black text-zinc-950 leading-tight">Google Ads Management</h4>
-                  <p className="text-zinc-500 text-[14px] leading-relaxed">
-                    Target the right audience and get instant leads with high-converting ad campaigns.
-                  </p>
-                </div>
-              </div>
-
-            </div>
-
-            {/* Center Column: Double-ring circular centerpiece with continuous slow rotating gradient and megaphone icon */}
-            <div className="col-span-1 lg:col-span-4 flex items-center justify-center py-8 lg:py-0 z-10">
-              <div className="relative w-72 h-72 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-full flex items-center justify-center select-none">
+              {/* Left Column (Services 1, 2, 3) */}
+              <div className="col-span-4 flex flex-col justify-between h-[580px] pr-2">
                 
-                {/* Pulsing gradient backdrop ring */}
-                <div className={`absolute inset-0 rounded-full bg-gradient-to-r from-[#0c3773] to-[#fcbf4a] opacity-[0.08] blur-xl transition-transform duration-500 ${
-                  hoveredStratCard !== null ? "scale-110" : "scale-100"
-                }`} />
-
-                {/* Outer Ring boundary */}
-                <div className={`absolute inset-2 rounded-full border-2 border-dashed transition-colors duration-500 ${
-                  hoveredStratCard !== null ? "border-[#fcbf4a]/80" : "border-[#0c3773]/30"
-                }`} />
-
-                {/* Main Double Circle */}
-                <div className="absolute inset-8 rounded-full bg-white border border-zinc-200/80 shadow-lg flex flex-col items-center justify-center p-6 text-center">
-                  
-                  {/* Outer circle layout ring */}
-                  <div className="absolute inset-2 rounded-full border border-zinc-100 pointer-events-none" />
-
-                  {/* Megaphone floating icon top container */}
-                  <motion.div 
-                    animate={hoveredStratCard !== null ? {
-                      y: [0, -6, 0],
-                      rotate: [0, 5, -5, 0]
-                    } : {
-                      y: [0, -3, 0]
-                    }}
-                    transition={hoveredStratCard !== null ? {
-                      duration: 0.6,
-                      repeat: Infinity,
-                      repeatType: "reverse"
-                    } : {
-                      duration: 4,
-                      repeat: Infinity,
-                      ease: "easeInOut"
-                    }}
-                    className={`w-14 h-14 sm:w-16 sm:h-16 rounded-full flex items-center justify-center mb-4 sm:mb-5 shadow-inner transition-colors duration-300 ${
-                      hoveredStratCard !== null ? "bg-[#fcbf4a]/15 text-zinc-950" : "bg-zinc-50 text-[#0c3773]"
-                    }`}
-                  >
-                    <Megaphone className={`w-7 sm:w-8 h-7 sm:h-8 transition-transform duration-300 ${hoveredStratCard !== null ? "scale-110" : ""}`} />
-                  </motion.div>
-
-                  {/* Main texts */}
-                  <div className="space-y-1 relative z-10">
-                    <span className="text-zinc-400 font-mono text-[10px] sm:text-xs font-bold tracking-widest uppercase block">
-                      OUR CORE CAPABILITY
-                    </span>
-                    <h3 className="text-xl sm:text-2xl font-sans font-black text-zinc-950 leading-tight">
-                      Digital Solutions
-                    </h3>
-                    <p className="text-sm sm:text-base font-serif italic text-[#0c3773] font-medium">
-                      That Deliver
+                {/* Card 1: Performance Marketing */}
+                <motion.div 
+                  whileHover={{ y: -4, scale: 1.01 }}
+                  className="bg-white border border-zinc-200/90 rounded-2xl p-6 shadow-[0_12px_36px_-15px_rgba(0,0,0,0.06)] flex items-start gap-4 text-left relative group min-h-[160px]"
+                >
+                  <div className="w-12 h-12 rounded-full bg-[#0c3773] text-white flex items-center justify-center shrink-0 shadow-sm transition-transform duration-300 group-hover:scale-110">
+                    <Rocket className="w-5 h-5 text-[#fcbf4a]" />
+                  </div>
+                  <div className="space-y-2 flex-1">
+                    <h3 className="font-extrabold text-lg text-[#0c3773] group-hover:text-amber-600 transition-colors duration-300 font-sans">Performance Marketing</h3>
+                    <p className="text-zinc-650 text-sm leading-relaxed font-medium">
+                      Reach the right audience, generate qualified leads, and maximize every advertising rupee through data-backed campaigns.
                     </p>
-                    <h3 className="text-xl sm:text-2xl font-sans font-black text-zinc-950 leading-tight">
-                      Results
-                    </h3>
-                  </div>
-
-                </div>
-
-              </div>
-            </div>
-
-            {/* Right Column: Cards 4, 5, 6 */}
-            <div className="col-span-1 lg:col-span-4 flex flex-col justify-between gap-6 lg:gap-0 py-2 z-10">
-              
-              {/* Card 4 */}
-              <div 
-                onMouseEnter={() => setHoveredStratCard(4)}
-                onMouseLeave={() => setHoveredStratCard(null)}
-                className={`flex gap-5 bg-gradient-to-br from-white to-zinc-50/50 p-6 rounded-[2rem] border transition-all duration-300 hover:-translate-y-1 select-none ${
-                  hoveredStratCard === 4 
-                    ? "border-[#fcbf4a] shadow-xl shadow-[#0c3773]/5 ring-1 ring-[#fcbf4a]/20" 
-                    : "border-zinc-200/80 shadow-md shadow-zinc-100/40"
-                }`}
-              >
-                <div className={`w-12 h-12 rounded-full shrink-0 flex items-center justify-center transition-all duration-300 ${
-                  hoveredStratCard === 4 ? "bg-[#fcbf4a] text-zinc-950 scale-110" : "bg-[#0c3773] text-white"
-                }`}>
-                  <FileText className="w-5 h-5" />
-                </div>
-                <div className="space-y-1.5">
-                  <h4 className="text-lg font-sans font-black text-zinc-950 leading-tight">Content Marketing</h4>
-                  <p className="text-zinc-500 text-[14px] leading-relaxed">
-                    Engage, inform, and convert your audience with valuable content that builds trust.
-                  </p>
-                </div>
-              </div>
-
-              {/* Card 5 */}
-              <div 
-                onMouseEnter={() => setHoveredStratCard(5)}
-                onMouseLeave={() => setHoveredStratCard(null)}
-                className={`flex gap-5 bg-gradient-to-br from-white to-zinc-50/50 p-6 rounded-[2rem] border transition-all duration-300 hover:-translate-y-1 select-none ${
-                  hoveredStratCard === 5 
-                    ? "border-[#fcbf4a] shadow-xl shadow-[#0c3773]/5 ring-1 ring-[#fcbf4a]/20" 
-                    : "border-zinc-200/80 shadow-md shadow-zinc-100/40"
-                }`}
-              >
-                <div className={`w-12 h-12 rounded-full shrink-0 flex items-center justify-center transition-all duration-300 ${
-                  hoveredStratCard === 5 ? "bg-[#fcbf4a] text-zinc-950 scale-110" : "bg-[#0c3773] text-white"
-                }`}>
-                  <Cpu className="w-5 h-5" />
-                </div>
-                <div className="space-y-1.5">
-                  <h4 className="text-lg font-sans font-black text-zinc-950 leading-tight">AI Powered Marketing</h4>
-                  <p className="text-zinc-500 text-[14px] leading-relaxed">
-                    Leverage AI tools and automation to optimize campaigns and maximize ROI.
-                  </p>
-                </div>
-              </div>
-
-              {/* Card 6 */}
-              <div 
-                onMouseEnter={() => setHoveredStratCard(6)}
-                onMouseLeave={() => setHoveredStratCard(null)}
-                className={`flex gap-5 bg-gradient-to-br from-white to-zinc-50/50 p-6 rounded-[2rem] border transition-all duration-300 hover:-translate-y-1 select-none ${
-                  hoveredStratCard === 6 
-                    ? "border-[#fcbf4a] shadow-xl shadow-[#0c3773]/5 ring-1 ring-[#fcbf4a]/20" 
-                    : "border-zinc-200/80 shadow-md shadow-zinc-100/40"
-                }`}
-              >
-                <div className={`w-12 h-12 rounded-full shrink-0 flex items-center justify-center transition-all duration-300 ${
-                  hoveredStratCard === 6 ? "bg-[#fcbf4a] text-zinc-950 scale-110" : "bg-[#0c3773] text-white"
-                }`}>
-                  <BarChart3 className="w-5 h-5" />
-                </div>
-                <div className="space-y-1.5">
-                  <h4 className="text-lg font-sans font-black text-zinc-950 leading-tight">Analytics & Reporting</h4>
-                  <p className="text-zinc-500 text-[14px] leading-relaxed">
-                    Track performance, measure results, and make data-driven decisions for growth.
-                  </p>
-                </div>
-              </div>
-
-            </div>
-
-          </div>
-
-          {/* Bottom Pill Bar */}
-          <div className="mt-16 bg-white/70 backdrop-blur-md border border-zinc-200/80 rounded-[2rem] md:rounded-full px-8 py-5 shadow-sm max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 md:gap-0 z-10 relative">
-            
-            {/* Item 1: More Visibility */}
-            <div className="flex items-center gap-3 group px-4 py-1">
-              <div className="w-10 h-10 rounded-full bg-[#0c3773]/5 flex items-center justify-center text-[#0c3773] transition-all duration-300 group-hover:bg-[#0c3773] group-hover:text-white">
-                <Users className="w-5 h-5" />
-              </div>
-              <span className="text-[16px] font-bold text-zinc-800 group-hover:text-[#0c3773] transition-colors duration-300">
-                More Visibility
-              </span>
-            </div>
-
-            <div className="hidden md:block w-[1px] h-8 bg-zinc-200/80" />
-
-            {/* Item 2: More Leads */}
-            <div className="flex items-center gap-3 group px-4 py-1">
-              <div className="w-10 h-10 rounded-full bg-[#0c3773]/5 flex items-center justify-center text-[#0c3773] transition-all duration-300 group-hover:bg-[#0c3773] group-hover:text-white">
-                <Target className="w-5 h-5" />
-              </div>
-              <span className="text-[16px] font-bold text-zinc-800 group-hover:text-[#0c3773] transition-colors duration-300">
-                More Leads
-              </span>
-            </div>
-
-            <div className="hidden md:block w-[1px] h-8 bg-zinc-200/80" />
-
-            {/* Item 3: More Sales */}
-            <div className="flex items-center gap-3 group px-4 py-1">
-              <div className="w-10 h-10 rounded-full bg-[#0c3773]/5 flex items-center justify-center text-[#0c3773] transition-all duration-300 group-hover:bg-[#0c3773] group-hover:text-white">
-                <ShoppingCart className="w-5 h-5" />
-              </div>
-              <span className="text-[16px] font-bold text-zinc-800 group-hover:text-[#0c3773] transition-colors duration-300">
-                More Sales
-              </span>
-            </div>
-
-            <div className="hidden md:block w-[1px] h-8 bg-zinc-200/80" />
-
-            {/* Item 4: Sustainable Growth */}
-            <div className="flex items-center gap-3 group px-4 py-1">
-              <div className="w-10 h-10 rounded-full bg-[#0c3773]/5 flex items-center justify-center text-[#0c3773] transition-all duration-300 group-hover:bg-[#0c3773] group-hover:text-white">
-                <TrendingUp className="w-5 h-5" />
-              </div>
-              <span className="text-[16px] font-bold text-zinc-800 group-hover:text-[#0c3773] transition-colors duration-300">
-                Sustainable Growth
-              </span>
-            </div>
-
-          </div>
-
-        </div>
-      </section>
-
-      {/* ==================== SERVICES SECTION ==================== */}
-      <section id="services" className="relative z-20 w-full bg-zinc-50 text-zinc-900 border-t border-zinc-200/60 overflow-hidden p-0 m-0">
-        <div className="absolute top-1/3 right-1/4 -translate-y-1/2 w-[500px] h-[500px] bg-[#0c3773]/5 rounded-full blur-[150px] pointer-events-none" />
-        <div className="absolute bottom-1/4 left-1/3 -translate-y-1/2 w-[350px] h-[350px] bg-[#fcbf4a]/3 rounded-full blur-[120px] pointer-events-none" />
-
-
-
-        {/* DESKTOP HOVER INTERACTIVE ACCORDION BLOCK (Stretches across full viewport edge-to-edge 100vw) */}
-        <div className="hidden lg:flex flex-row w-full h-[85vh] min-h-[750px] items-stretch border-y border-zinc-200/50 bg-zinc-100 relative z-10 select-none">
-          {DATA_SERVICES.map((service, idx) => {
-            const isExpanded = activeServiceIdx === idx;
-            return (
-              <div
-                key={service.id}
-                onMouseEnter={() => setActiveServiceIdx(idx)}
-                className={`relative overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] flex flex-col justify-between border-r border-zinc-200/40 last:border-r-0 cursor-pointer group ${
-                  isExpanded 
-                    ? "flex-[4.2] bg-zinc-950 text-white border-r border-zinc-800" 
-                    : "flex-[0.7] bg-white text-zinc-800 hover:bg-zinc-50 hover:border-r hover:border-zinc-200"
-                }`}
-              >
-                {/* Background Image/Video inside expanded/collapsed card */}
-                <div className={`absolute inset-0 z-0 transition-all duration-1000 ${
-                  isExpanded ? "scale-100 opacity-30" : "scale-105 opacity-[0.02] group-hover:opacity-[0.06]"
-                }`}>
-                  {service.video ? (
-                    <video
-                      autoPlay
-                      loop
-                      muted
-                      playsInline
-                      className="w-full h-full object-cover grayscale brightness-90 group-hover:grayscale-0 transition-all duration-1000"
-                    >
-                      <source src={service.video} type="video/mp4" />
-                    </video>
-                  ) : (
-                    <img 
-                      src={service.image} 
-                      alt={service.title} 
-                      className="w-full h-full object-cover grayscale brightness-90 group-hover:grayscale-0 transition-all duration-1000"
-                      referrerPolicy="no-referrer"
-                    />
-                  )}
-                  {/* Linear color wash/tint for active/inactive states */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/80 to-transparent" />
-                </div>
-
-                {/* Top Header / Icon block */}
-                <div className={`relative z-10 p-8 flex flex-col transition-all duration-500 w-full ${
-                  isExpanded ? "items-start gap-6" : "items-center justify-start gap-6 pt-8 pb-12"
-                }`}>
-                  <div className={`flex items-center w-full ${isExpanded ? "justify-between" : "justify-center"}`}>
-                    <div className={`rounded-full flex items-center justify-center transition-all duration-500 ${
-                      isExpanded 
-                        ? "w-14 h-14 bg-white/10 text-[#fcbf4a]" 
-                        : "w-12 h-12 bg-[#0c3773]/5 text-[#0c3773] group-hover:scale-110"
-                    }`}>
-                      {getServiceIcon(service.icon, isExpanded ? "w-6 h-6 animate-pulse" : "w-5 h-5")}
-                    </div>
-                    {isExpanded && (
-                      <span className="text-[10px] font-mono font-bold text-[#fcbf4a] tracking-widest uppercase bg-white/10 px-4 py-1.5 rounded-full border border-white/5">
-                        SERVICE 0{idx + 1}
-                      </span>
-                    )}
-                  </div>
-
-                  <div className="w-full flex justify-center mt-2">
-                    {!isExpanded && (
-                      /* Rotated Vertical Title: Perfectly starting immediately below the icon */
-                      <div className="vertical-text select-none tracking-widest text-[#0c3773] font-black text-sm lg:text-base xl:text-lg uppercase">
-                        {service.title.split(" (")[0]}
-                      </div>
-                    )}
-                  </div>
-                </div>
-
-                {/* Main Content Areas when active/expanded */}
-                {isExpanded ? (
-                  <div className="relative z-10 p-12 xl:p-16 pt-0 xl:pt-0 flex flex-col justify-end flex-grow space-y-6 animate-fade-in">
-                    <div className="space-y-4 max-w-2xl text-left">
-                      <div className="space-y-2 mb-4">
-                        <span className="text-xs font-mono font-black tracking-widest text-[#fcbf4a] uppercase block animate-fade-in">
-                          SOLUTIONS INTEL
-                        </span>
-                        <h3 className="text-4xl lg:text-5xl xl:text-6xl font-black font-sans leading-none tracking-tight text-white animate-fade-in">
-                          {service.title}
-                        </h3>
-                      </div>
-                      <p className="text-zinc-200 text-sm md:text-base font-medium leading-relaxed max-w-xl">
-                        {service.shortDesc}
-                      </p>
-                    </div>
-
-                    {/* Displaying bullet points / tags inside expanded card */}
-                    <div className="flex flex-wrap gap-2 pt-2 max-w-xl">
-                      {service.tags.map((tag, tagIdx) => (
-                        <span 
-                          key={tagIdx} 
-                          className="px-3.5 py-1.5 text-[10px] font-mono font-bold uppercase tracking-wider bg-white/10 border border-white/5 text-zinc-100 rounded-full hover:bg-white/20 hover:text-white transition-all duration-200"
-                        >
+                    <div className="flex flex-wrap gap-1.5 justify-start pt-1">
+                      {["Meta Ads", "Google Ads", "Lead Generation", "Conversion Optimization", "Campaign Management"].map((tag, i) => (
+                        <span key={i} className="text-[10px] font-mono font-bold px-2 py-0.5 bg-[#0c3773]/5 text-[#0c3773] border border-[#0c3773]/10 rounded">
                           {tag}
                         </span>
                       ))}
                     </div>
-
-                    {/* Expanded CTA trigger */}
-                    <div className="pt-4 flex items-center space-x-6">
-                      <button 
-                        onClick={() => setIsBookingOpen(true)}
-                        className="px-8 py-4 bg-[#fcbf4a] text-black font-sans font-black text-xs uppercase tracking-widest rounded-lg transition-all duration-300 hover:scale-[1.03] active:scale-[0.98] shadow-md hover:shadow-lg flex items-center space-x-2 cursor-pointer"
-                      >
-                        <span>Request Strategy</span>
-                        <ArrowRight className="w-4 h-4" />
-                      </button>
-                      <p className="text-[10px] font-mono text-white/40 max-w-[240px] leading-snug text-left">
-                        Get custom conversion mapping for this channel within 48h.
-                      </p>
-                    </div>
                   </div>
-                ) : (
-                  /* Minimalist Number representation for compact columns */
-                  <div className="relative z-10 text-center pb-8 select-none">
-                    <span className="text-2xl font-mono text-[#0c3773]/20 font-black">
-                      0{idx + 1}
-                    </span>
-                  </div>
-                )}
-              </div>
-            );
-          })}
-        </div>
+                </motion.div>
 
-        {/* MOBILE INTERACTIVE ACCORDION (Visible on screens smaller than lg) */}
-        <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10 w-full mt-12 lg:hidden">
-          <div className="flex flex-col gap-4">
-            {DATA_SERVICES.map((service, idx) => {
-              const isExpanded = activeServiceIdx === idx;
-              return (
-                <div
-                  key={service.id}
-                  onClick={() => setActiveServiceIdx(idx)}
-                  className={`rounded-2xl overflow-hidden border transition-all duration-400 ${
-                    isExpanded 
-                      ? "border-zinc-300 bg-zinc-950 text-white shadow-lg" 
-                      : "border-zinc-200 bg-white text-zinc-800"
-                  }`}
+                {/* Card 2: SEO */}
+                <motion.div 
+                  whileHover={{ y: -4, scale: 1.01 }}
+                  className="bg-white border border-zinc-200/90 rounded-2xl p-6 shadow-[0_12px_36px_-15px_rgba(0,0,0,0.06)] flex items-start gap-4 text-left relative group min-h-[160px]"
                 >
-                  {/* Collapsed Header Bar */}
-                  <div className="p-5 flex items-center justify-between cursor-pointer select-none">
-                    <div className="flex items-center space-x-4">
-                      <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${
-                        isExpanded ? "bg-white/10 text-[#fcbf4a]" : "bg-[#0c3773]/5 text-[#0c3773]"
-                      }`}>
-                        {getServiceIcon(service.icon, "w-5 h-5")}
-                      </div>
-                      <h3 className="font-bold text-xs sm:text-sm md:text-base font-sans text-left leading-tight whitespace-nowrap">
-                        {service.title}
-                      </h3>
-                    </div>
-                    <span className="text-xs font-mono font-semibold text-[#fcbf4a]">
-                      0{idx + 1}
-                    </span>
+                  <div className="w-12 h-12 rounded-full bg-[#0c3773] text-white flex items-center justify-center shrink-0 shadow-sm transition-transform duration-300 group-hover:scale-110">
+                    <Search className="w-5 h-5 text-[#fcbf4a]" />
                   </div>
-
-                  {/* Expanded mobile panel */}
-                  {isExpanded && (
-                    <div className="px-6 pb-6 pt-2 border-t border-white/10 space-y-4 animate-fade-in">
-                      <p className="text-zinc-200 text-xs sm:text-sm font-medium leading-relaxed">
-                        {service.shortDesc}
-                      </p>
-                      
-                      {/* Tags list */}
-                      <div className="flex flex-wrap gap-1.5 pt-1">
-                        {service.tags.map((tag, tagIdx) => (
-                          <span 
-                            key={tagIdx} 
-                            className="px-2.5 py-1 text-[9px] font-mono font-medium tracking-wide bg-white/10 text-zinc-200 rounded-full"
-                          >
-                            • {tag}
-                          </span>
-                        ))}
-                      </div>
-
-                      <div className="pt-2">
-                        <button 
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            setIsBookingOpen(true);
-                          }}
-                          className="w-full py-3 bg-[#fcbf4a] text-black font-sans font-black text-xs uppercase tracking-widest rounded-lg flex items-center justify-center space-x-2"
-                        >
-                          <span>Get Free Strategy</span>
-                          <ArrowRight className="w-3.5 h-3.5" />
-                        </button>
-                      </div>
+                  <div className="space-y-2 flex-1">
+                    <h3 className="font-extrabold text-lg text-[#0c3773] group-hover:text-amber-600 transition-colors duration-300 font-sans">SEO (Search Engine Optimization)</h3>
+                    <p className="text-zinc-650 text-sm leading-relaxed font-medium">
+                      Get found when customers are searching. We help businesses improve rankings, increase organic visibility, and drive long-term traffic that converts.
+                    </p>
+                    <div className="flex flex-wrap gap-1.5 justify-start pt-1">
+                      {["Technical SEO", "On-Page SEO", "Keyword Strategy", "Local SEO", "SEO Audits"].map((tag, i) => (
+                        <span key={i} className="text-[10px] font-mono font-bold px-2 py-0.5 bg-[#0c3773]/5 text-[#0c3773] border border-[#0c3773]/10 rounded">
+                          {tag}
+                        </span>
+                      ))}
                     </div>
-                  )}
+                  </div>
+                </motion.div>
+
+                {/* Card 3: Web App Design & Development */}
+                <motion.div 
+                  whileHover={{ y: -4, scale: 1.01 }}
+                  className="bg-white border border-zinc-200/90 rounded-2xl p-6 shadow-[0_12px_36px_-15px_rgba(0,0,0,0.06)] flex items-start gap-4 text-left relative group min-h-[160px]"
+                >
+                  <div className="w-12 h-12 rounded-full bg-[#0c3773] text-white flex items-center justify-center shrink-0 shadow-sm transition-transform duration-300 group-hover:scale-110">
+                    <Code className="w-5 h-5 text-[#fcbf4a]" />
+                  </div>
+                  <div className="space-y-2 flex-1">
+                    <h3 className="font-extrabold text-lg text-[#0c3773] group-hover:text-amber-600 transition-colors duration-300 font-sans">Web App Design & Development</h3>
+                    <p className="text-zinc-650 text-sm leading-relaxed font-medium">
+                      Great brands deserve great digital experiences. We design and develop websites and web applications that are fast, scalable, and built around user experience.
+                    </p>
+                    <div className="flex flex-wrap gap-1.5 justify-start pt-1">
+                      {["Custom Websites", "Web Applications", "UI/UX Design", "Landing Pages", "E-Commerce Solutions"].map((tag, i) => (
+                        <span key={i} className="text-[10px] font-mono font-bold px-2 py-0.5 bg-[#0c3773]/5 text-[#0c3773] border border-[#0c3773]/10 rounded">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </motion.div>
+
+              </div>
+
+              {/* Center Column (Interactive Central Hub Circle) */}
+              <div className="col-span-4 flex items-center justify-center">
+                <div className="relative w-72 h-72 rounded-full bg-gradient-to-tr from-[#0c3773] to-[#124b96] p-1.5 shadow-[0_20px_50px_rgba(12,55,115,0.25)] group cursor-pointer transition-transform duration-500 hover:scale-[1.02]">
+                  {/* Rotating border accent */}
+                  <div className="absolute inset-0 rounded-full border border-dashed border-[#fcbf4a]/50 animate-[spin_40s_linear_infinite]" />
+                  
+                  {/* Nested elegant ring */}
+                  <div className="w-full h-full rounded-full border-4 border-white/10 bg-[#0c3773] flex flex-col items-center justify-center p-8 text-center text-white relative overflow-hidden">
+                    <div className="absolute -right-12 -top-12 w-32 h-32 bg-[#fcbf4a]/10 rounded-full blur-2xl pointer-events-none" />
+                    <div className="absolute -left-12 -bottom-12 w-32 h-32 bg-sky-500/10 rounded-full blur-2xl pointer-events-none" />
+                    
+                    <Megaphone className="w-12 h-12 text-[#fcbf4a] mb-4 animate-pulse" />
+                    <h4 className="text-2xl font-black tracking-tight leading-tight uppercase font-sans">
+                      Digital Solutions
+                    </h4>
+                    <span className="text-[11px] font-mono tracking-widest text-[#fcbf4a] uppercase block mt-1.5 font-bold">
+                      That Deliver
+                    </span>
+                    <h4 className="text-xl font-bold tracking-tight leading-tight uppercase font-sans mt-0.5 text-zinc-100">
+                      Results
+                    </h4>
+                  </div>
                 </div>
-              );
-            })}
+              </div>
+
+              {/* Right Column (Services 4, 5, 6) */}
+              <div className="col-span-4 flex flex-col justify-between h-[580px] pl-2">
+                
+                {/* Card 4: Video Production */}
+                <motion.div 
+                  whileHover={{ y: -4, scale: 1.01 }}
+                  className="bg-white border border-zinc-200/90 rounded-2xl p-6 shadow-[0_12px_36px_-15px_rgba(0,0,0,0.06)] flex items-start gap-4 text-left relative group min-h-[160px]"
+                >
+                  <div className="w-12 h-12 rounded-full bg-[#0c3773] text-white flex items-center justify-center shrink-0 shadow-sm transition-transform duration-300 group-hover:scale-110">
+                    <Video className="w-5 h-5 text-[#fcbf4a]" />
+                  </div>
+                  <div className="space-y-2 flex-1">
+                    <h3 className="font-extrabold text-lg text-[#0c3773] group-hover:text-amber-600 transition-colors duration-300 font-sans">Video Production</h3>
+                    <p className="text-zinc-650 text-sm leading-relaxed font-medium">
+                      Attention starts with great storytelling. From brand films to social media content, we create videos that engage, inspire, and drive action.
+                    </p>
+                    <div className="flex flex-wrap gap-1.5 justify-start pt-1">
+                      {["Brand Videos", "Commercials", "Reels", "Motion Graphics", "Product Videos"].map((tag, i) => (
+                        <span key={i} className="text-[10px] font-mono font-bold px-2 py-0.5 bg-[#0c3773]/5 text-[#0c3773] border border-[#0c3773]/10 rounded">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </motion.div>
+
+                {/* Card 5: Social Media Management */}
+                <motion.div 
+                  whileHover={{ y: -4, scale: 1.01 }}
+                  className="bg-white border border-zinc-200/90 rounded-2xl p-6 shadow-[0_12px_36px_-15px_rgba(0,0,0,0.06)] flex items-start gap-4 text-left relative group min-h-[160px]"
+                >
+                  <div className="w-12 h-12 rounded-full bg-[#0c3773] text-white flex items-center justify-center shrink-0 shadow-sm transition-transform duration-300 group-hover:scale-110">
+                    <Smartphone className="w-5 h-5 text-[#fcbf4a]" />
+                  </div>
+                  <div className="space-y-2 flex-1">
+                    <h3 className="font-extrabold text-lg text-[#0c3773] group-hover:text-amber-600 transition-colors duration-300 font-sans">Social Media Management</h3>
+                    <p className="text-zinc-650 text-sm leading-relaxed font-medium">
+                      Because consistency builds brands. We create content strategies, campaigns, and communities that help brands stay relevant and connected.
+                    </p>
+                    <div className="flex flex-wrap gap-1.5 justify-start pt-1">
+                      {["Content Planning", "Creative Design", "Reels Strategy", "Community Management", "Monthly Reporting"].map((tag, i) => (
+                        <span key={i} className="text-[10px] font-mono font-bold px-2 py-0.5 bg-[#0c3773]/5 text-[#0c3773] border border-[#0c3773]/10 rounded">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </motion.div>
+
+                {/* Card 6: Graphics & Print Media */}
+                <motion.div 
+                  whileHover={{ y: -4, scale: 1.01 }}
+                  className="bg-white border border-zinc-200/90 rounded-2xl p-6 shadow-[0_12px_36px_-15px_rgba(0,0,0,0.06)] flex items-start gap-4 text-left relative group min-h-[160px]"
+                >
+                  <div className="w-12 h-12 rounded-full bg-[#0c3773] text-white flex items-center justify-center shrink-0 shadow-sm transition-transform duration-300 group-hover:scale-110">
+                    <Palette className="w-5 h-5 text-[#fcbf4a]" />
+                  </div>
+                  <div className="space-y-2 flex-1">
+                    <h3 className="font-extrabold text-lg text-[#0c3773] group-hover:text-amber-600 transition-colors duration-300 font-sans">Graphics & Print Media</h3>
+                    <p className="text-zinc-650 text-sm leading-relaxed font-medium">
+                      Strong visuals create stronger impressions. From digital creatives to print materials, we design assets that make your brand impossible to ignore.
+                    </p>
+                    <div className="flex flex-wrap gap-1.5 justify-start pt-1">
+                      {["Brand Identity", "Brochures", "Flyers", "Packaging", "Marketing Collaterals", "Print Design"].map((tag, i) => (
+                        <span key={i} className="text-[10px] font-mono font-bold px-2 py-0.5 bg-[#0c3773]/5 text-[#0c3773] border border-[#0c3773]/10 rounded">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </motion.div>
+
+              </div>
+
+            </div>
+
           </div>
+
+          {/* MOBILE VIEW: VERTICAL LIST WITH BADGE (lg hidden) */}
+          <div className="block lg:hidden space-y-6">
+            
+            {/* Center Badges circle as a beautiful focal banner at the top */}
+            <div className="flex justify-center mb-8">
+              <div className="relative w-48 h-48 rounded-full bg-gradient-to-tr from-[#0c3773] to-[#124b96] p-1 shadow-lg flex items-center justify-center text-center text-white">
+                <div className="w-full h-full rounded-full bg-[#0c3773] flex flex-col items-center justify-center p-4">
+                  <Megaphone className="w-8 h-8 text-[#fcbf4a] mb-2" />
+                  <h4 className="text-base font-black uppercase font-sans">Digital Solutions</h4>
+                  <span className="text-[9px] font-mono tracking-widest text-[#fcbf4a] uppercase mt-0.5">Deliver Results</span>
+                </div>
+              </div>
+            </div>
+
+            {/* List of 6 Cards stacked sequential order */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              
+              {/* 1. Performance Marketing */}
+              <div className="bg-white border border-zinc-200 rounded-xl p-5 flex items-start gap-4">
+                <div className="w-10 h-10 rounded-full bg-[#0c3773] text-white flex items-center justify-center shrink-0">
+                  <Rocket className="w-4 h-4 text-[#fcbf4a]" />
+                </div>
+                <div className="space-y-1.5 flex-1 text-left">
+                  <h3 className="font-bold text-sm text-[#0c3773] font-sans">Performance Marketing</h3>
+                  <p className="text-zinc-600 text-xs leading-relaxed">
+                    Reach the right audience, generate qualified leads, and maximize every advertising rupee through data-backed campaigns.
+                  </p>
+                  <div className="flex flex-wrap gap-1 pt-1">
+                    {["Meta Ads", "Google Ads", "Lead Generation", "Conversion Optimization", "Campaign Management"].map((tag, i) => (
+                      <span key={i} className="text-[9px] font-mono px-1.5 py-0.5 bg-zinc-100 text-zinc-500 rounded">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* 2. SEO */}
+              <div className="bg-white border border-zinc-200 rounded-xl p-5 flex items-start gap-4">
+                <div className="w-10 h-10 rounded-full bg-[#0c3773] text-white flex items-center justify-center shrink-0">
+                  <Search className="w-4 h-4 text-[#fcbf4a]" />
+                </div>
+                <div className="space-y-1.5 flex-1 text-left">
+                  <h3 className="font-bold text-sm text-[#0c3773] font-sans">SEO (Search Engine Optimization)</h3>
+                  <p className="text-zinc-600 text-xs leading-relaxed">
+                    Get found when customers are searching. We help businesses improve rankings, increase organic visibility, and drive long-term traffic that converts.
+                  </p>
+                  <div className="flex flex-wrap gap-1 pt-1">
+                    {["Technical SEO", "On-Page SEO", "Keyword Strategy", "Local SEO", "SEO Audits"].map((tag, i) => (
+                      <span key={i} className="text-[9px] font-mono px-1.5 py-0.5 bg-zinc-100 text-zinc-500 rounded">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* 3. Web App Design & Development */}
+              <div className="bg-white border border-zinc-200 rounded-xl p-5 flex items-start gap-4">
+                <div className="w-10 h-10 rounded-full bg-[#0c3773] text-white flex items-center justify-center shrink-0">
+                  <Code className="w-4 h-4 text-[#fcbf4a]" />
+                </div>
+                <div className="space-y-1.5 flex-1 text-left">
+                  <h3 className="font-bold text-sm text-[#0c3773] font-sans">Web App Design & Development</h3>
+                  <p className="text-zinc-600 text-xs leading-relaxed">
+                    Great brands deserve great digital experiences. We design and develop websites and web applications that are fast, scalable, and built around user experience.
+                  </p>
+                  <div className="flex flex-wrap gap-1 pt-1">
+                    {["Custom Websites", "Web Applications", "UI/UX Design", "Landing Pages", "E-Commerce Solutions"].map((tag, i) => (
+                      <span key={i} className="text-[9px] font-mono px-1.5 py-0.5 bg-zinc-100 text-zinc-500 rounded">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* 4. Video Production */}
+              <div className="bg-white border border-zinc-200 rounded-xl p-5 flex items-start gap-4">
+                <div className="w-10 h-10 rounded-full bg-[#0c3773] text-white flex items-center justify-center shrink-0">
+                  <Video className="w-4 h-4 text-[#fcbf4a]" />
+                </div>
+                <div className="space-y-1.5 flex-1 text-left">
+                  <h3 className="font-bold text-sm text-[#0c3773] font-sans">Video Production</h3>
+                  <p className="text-zinc-600 text-xs leading-relaxed">
+                    Attention starts with great storytelling. From brand films to social media content, we create videos that engage, inspire, and drive action.
+                  </p>
+                  <div className="flex flex-wrap gap-1 pt-1">
+                    {["Brand Videos", "Commercials", "Reels", "Motion Graphics", "Product Videos"].map((tag, i) => (
+                      <span key={i} className="text-[9px] font-mono px-1.5 py-0.5 bg-zinc-100 text-zinc-500 rounded">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* 5. Social Media Management */}
+              <div className="bg-white border border-zinc-200 rounded-xl p-5 flex items-start gap-4">
+                <div className="w-10 h-10 rounded-full bg-[#0c3773] text-white flex items-center justify-center shrink-0">
+                  <Smartphone className="w-4 h-4 text-[#fcbf4a]" />
+                </div>
+                <div className="space-y-1.5 flex-1 text-left">
+                  <h3 className="font-bold text-sm text-[#0c3773] font-sans">Social Media Management</h3>
+                  <p className="text-zinc-600 text-xs leading-relaxed">
+                    Because consistency builds brands. We create content strategies, campaigns, and communities that help brands stay relevant and connected.
+                  </p>
+                  <div className="flex flex-wrap gap-1 pt-1">
+                    {["Content Planning", "Creative Design", "Reels Strategy", "Community Management", "Monthly Reporting"].map((tag, i) => (
+                      <span key={i} className="text-[9px] font-mono px-1.5 py-0.5 bg-zinc-100 text-zinc-500 rounded">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* 6. Graphics & Print Media */}
+              <div className="bg-white border border-zinc-200 rounded-xl p-5 flex items-start gap-4">
+                <div className="w-10 h-10 rounded-full bg-[#0c3773] text-white flex items-center justify-center shrink-0">
+                  <Palette className="w-4 h-4 text-[#fcbf4a]" />
+                </div>
+                <div className="space-y-1.5 flex-1 text-left">
+                  <h3 className="font-bold text-sm text-[#0c3773] font-sans">Graphics & Print Media</h3>
+                  <p className="text-zinc-600 text-xs leading-relaxed">
+                    Strong visuals create stronger impressions. From digital creatives to print materials, we design assets that make your brand impossible to ignore.
+                  </p>
+                  <div className="flex flex-wrap gap-1 pt-1">
+                    {["Brand Identity", "Brochures", "Flyers", "Packaging", "Marketing Collaterals", "Print Design"].map((tag, i) => (
+                      <span key={i} className="text-[9px] font-mono px-1.5 py-0.5 bg-zinc-100 text-zinc-500 rounded">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+          {/* Bottom Bar: Symmetrical with Pill Shape */}
+          <div className="mt-12 md:mt-16 max-w-4xl mx-auto">
+            <div className="rounded-[2rem] border border-zinc-200/80 bg-white shadow-[0_10px_25px_-10px_rgba(0,0,0,0.02)] py-4 px-6 md:px-8 grid grid-cols-2 md:grid-cols-4 items-center gap-6 divide-y md:divide-y-0 md:divide-x divide-zinc-150">
+              
+              <div className="flex items-center justify-center md:justify-start gap-3 py-2 md:py-0">
+                <div className="w-8 h-8 rounded-full bg-emerald-50 flex items-center justify-center text-emerald-600 shrink-0">
+                  <Eye className="w-4 h-4" />
+                </div>
+                <span className="font-bold text-xs md:text-sm text-zinc-800">More Visibility</span>
+              </div>
+
+              <div className="flex items-center justify-center md:justify-start gap-3 py-2 md:py-0 md:pl-4">
+                <div className="w-8 h-8 rounded-full bg-[#0c3773]/5 flex items-center justify-center text-[#0c3773] shrink-0">
+                  <Target className="w-4 h-4" />
+                </div>
+                <span className="font-bold text-xs md:text-sm text-zinc-800">More Leads</span>
+              </div>
+
+              <div className="flex items-center justify-center md:justify-start gap-3 py-2 md:py-0 md:pl-4">
+                <div className="w-8 h-8 rounded-full bg-[#fcbf4a]/10 flex items-center justify-center text-amber-600 shrink-0">
+                  <ShoppingCart className="w-4 h-4" />
+                </div>
+                <span className="font-bold text-xs md:text-sm text-zinc-800">More Sales</span>
+              </div>
+
+              <div className="flex items-center justify-center md:justify-start gap-3 py-2 md:py-0 md:pl-4">
+                <div className="w-8 h-8 rounded-full bg-sky-50 flex items-center justify-center text-sky-600 shrink-0">
+                  <TrendingUp className="w-4 h-4" />
+                </div>
+                <span className="font-bold text-xs md:text-sm text-zinc-800">Sustainable Growth</span>
+              </div>
+
+            </div>
+          </div>
+
         </div>
       </section>
 
@@ -2003,101 +2068,6 @@ export default function App() {
         </div>
       </section>
 
-      {/* ==================== INSIGHTS & IDEAS SECTION ==================== */}
-      <section id="insights" className="relative z-20 w-full bg-zinc-100 text-zinc-900 py-16 md:py-20 px-6 md:px-12 border-t border-zinc-200/60 overflow-hidden">
-        <div className="absolute top-1/2 left-10 w-[300px] h-[300px] bg-[#0c3773]/3 rounded-full blur-[100px] pointer-events-none" />
-
-        <div className="max-w-7xl mx-auto relative z-10 w-full">
-          
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center mb-16">
-            <div className="lg:col-span-7 space-y-4">
-              <span className="text-xs font-mono font-black tracking-widest text-[#0c3773] uppercase">BRAND CONCEPTS</span>
-              <h2 className="text-4xl md:text-5xl font-sans font-black tracking-tight text-zinc-950 leading-tight">
-                Insights & Ideas
-              </h2>
-              <h3 className="text-xl md:text-2xl font-sans font-bold text-[#0c3773] tracking-tight">
-                What's Working In Digital Right Now?
-              </h3>
-            </div>
-            <div className="lg:col-span-5 space-y-4">
-              <p className="text-zinc-700 font-normal text-sm md:text-base leading-relaxed">
-                Stay updated with marketing insights, growth strategies, industry trends, and practical tips to help your brand stay ahead.
-              </p>
-              <p className="text-zinc-800 font-semibold text-sm md:text-base leading-relaxed pt-2">
-                Because the digital world doesn't slow down—and neither should your business.
-              </p>
-              <div className="pt-4">
-                <button 
-                  onClick={() => setIsArticlesOpen(true)}
-                  className="px-6 py-3.5 bg-[#0c3773] hover:bg-[#082a5a] text-white font-sans font-black text-xs uppercase tracking-widest rounded-lg transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] shadow-md flex items-center space-x-2 cursor-pointer w-fit"
-                >
-                  <span>Explore Articles</span>
-                  <ArrowRight className="w-4 h-4 shrink-0" />
-                </button>
-              </div>
-            </div>
-          </div>
-
-          {/* Redesigned interactive Articles layout connected to states */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {DATA_ARTICLES.map((art) => (
-              <div 
-                key={art.id}
-                onClick={() => {
-                  setActiveArticle(art);
-                  setIsArticlesOpen(true);
-                }}
-                className="group relative bg-white border border-zinc-200/80 hover:border-[#0c3773]/30 rounded-[2rem] overflow-hidden duration-500 transition-all cursor-pointer flex flex-col justify-between shadow-sm hover:shadow-[0_24px_48px_-12px_rgba(12,55,115,0.06)] hover:scale-[1.01] min-h-[480px]"
-              >
-                <div>
-                  {/* Image Area with Zoom & Overlay effects */}
-                  <div className="aspect-[16/10] w-full overflow-hidden bg-zinc-100 relative border-b border-zinc-100">
-                    
-                    {/* Image element */}
-                    <img 
-                      src={art.image} 
-                      alt={art.title} 
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 select-none" 
-                      referrerPolicy="no-referrer" 
-                    />
-                    
-                    {/* Image elegant shadow overlay gradient */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/20 to-transparent pointer-events-none" />
-                  </div>
-
-                  {/* Card Content block */}
-                  <div className="p-6 sm:p-8 space-y-4">
-                    {/* Category Tag pill */}
-                    <span className="inline-flex items-center px-2.5 py-1 rounded-full bg-[#0c3773]/5 text-[#0c3773] text-[9px] font-mono font-black tracking-widest uppercase border border-[#0c3773]/10">
-                      {art.category}
-                    </span>
-
-                    {/* Title */}
-                    <h4 className="text-xl font-extrabold text-zinc-950 group-hover:text-[#0c3773] transition-colors duration-400  leading-snug line-clamp-2 font-sans tracking-tight">
-                      {art.title}
-                    </h4>
-
-                    {/* Excerpt pro-content */}
-                    <p className="text-zinc-500 text-xs sm:text-sm font-medium leading-relaxed line-clamp-2">
-                      {art.excerpt}
-                    </p>
-                  </div>
-                </div>
-
-                {/* Redesigned Card Footer with elegant action trigger */}
-                <div className="px-6 sm:px-8 pb-6 sm:pb-8 pt-5 border-t border-zinc-100 flex items-center justify-between">
-                  <div className="flex items-center gap-1 text-[#0c3773] font-sans font-black text-xs uppercase tracking-widest group-hover:text-amber-600 transition-colors duration-300">
-                    <span>Read Insight</span>
-                    <ArrowRight className="w-3.5 h-3.5 ml-1 transition-transform duration-300 group-hover:translate-x-1 shrink-0" />
-                  </div>
-                </div>
-
-              </div>
-            ))}
-          </div>
-
-        </div>
-      </section>
 
       {/* ==================== FINAL CTA SECTION ==================== */}
       <section id="cta" className="relative z-20 w-full bg-black text-white py-16 md:py-20 border-t border-white/5 overflow-hidden">
