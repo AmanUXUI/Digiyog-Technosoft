@@ -1326,31 +1326,51 @@ export default function App() {
             
             {/* SVG Connection Paths Overlay for lg screens */}
             <svg 
-              className="absolute inset-0 w-full h-full pointer-events-none overflow-visible z-0"
+              className="absolute inset-0 w-full h-full pointer-events-none overflow-visible z-10"
               viewBox="0 0 1200 680"
               preserveAspectRatio="none"
             >
+              <defs>
+                <linearGradient id="beam-grad-l2r" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="#fcbf4a" stopOpacity="0" />
+                  <stop offset="50%" stopColor="#fcbf4a" stopOpacity="1" />
+                  <stop offset="100%" stopColor="#fcbf4a" stopOpacity="0" />
+                </linearGradient>
+                <linearGradient id="beam-grad-r2l" x1="100%" y1="0%" x2="0%" y2="0%">
+                  <stop offset="0%" stopColor="#fcbf4a" stopOpacity="0" />
+                  <stop offset="50%" stopColor="#fcbf4a" stopOpacity="1" />
+                  <stop offset="100%" stopColor="#fcbf4a" stopOpacity="0" />
+                </linearGradient>
+              </defs>
+
               {/* Left Top Card Path */}
-              <motion.path 
-                d="M 380 120 C 500 120, 480 340, 600 340" 
+              <path 
+                d="M 380 90 C 500 90, 480 340, 600 340" 
                 fill="none" 
                 stroke={hoveredService === 1 ? "#fcbf4a" : "#0c3773"} 
-                strokeWidth={hoveredService === 1 ? "4" : "2"} 
-                strokeDasharray={hoveredService === 1 ? "8 4" : "6 4"} 
-                className={`${hoveredService === 1 ? "opacity-100" : "opacity-30"} transition-all duration-300`}
-                initial={{ pathLength: 0 }}
+                strokeWidth={hoveredService === 1 ? "4" : "2.5"} 
+                className={`${hoveredService === 1 ? "opacity-100" : "opacity-45"} transition-all duration-300`}
+              />
+              <motion.path 
+                d="M 380 90 C 500 90, 480 340, 600 340" 
+                fill="none" 
+                stroke="url(#beam-grad-l2r)" 
+                strokeWidth={hoveredService === 1 ? "5.5" : "3.5"} 
+                strokeLinecap="round"
+                strokeDasharray="40 110"
+                className={`${hoveredService === 1 ? "opacity-100" : "opacity-80"} transition-all duration-300`}
                 animate={{ 
-                  pathLength: 1,
-                  strokeDashoffset: hoveredService === 1 ? [0, -20] : 0
+                  strokeDashoffset: [150, 0]
                 }}
                 transition={{ 
-                  strokeDashoffset: hoveredService === 1 ? { repeat: Infinity, ease: "linear", duration: 1 } : { duration: 0 },
-                  default: { duration: 1.5, delay: 0.2 }
+                  repeat: Infinity, 
+                  ease: "linear", 
+                  duration: hoveredService === 1 ? 1.4 : 2.5
                 }}
               />
               {/* Left Top Hidden wider hover path */}
               <path 
-                d="M 380 120 C 500 120, 480 340, 600 340" 
+                d="M 380 90 C 500 90, 480 340, 600 340" 
                 fill="none" 
                 stroke="transparent" 
                 strokeWidth="24" 
@@ -1360,21 +1380,28 @@ export default function App() {
               />
 
               {/* Left Middle Card Path */}
-              <motion.path 
+              <path 
                 d="M 380 340 L 600 340" 
                 fill="none" 
                 stroke={hoveredService === 2 ? "#fcbf4a" : "#0c3773"} 
-                strokeWidth={hoveredService === 2 ? "4" : "2"} 
-                strokeDasharray={hoveredService === 2 ? "8 4" : "6 4"} 
-                className={`${hoveredService === 2 ? "opacity-100" : "opacity-30"} transition-all duration-300`}
-                initial={{ pathLength: 0 }}
+                strokeWidth={hoveredService === 2 ? "4" : "2.5"} 
+                className={`${hoveredService === 2 ? "opacity-100" : "opacity-45"} transition-all duration-300`}
+              />
+              <motion.path 
+                d="M 380 340 L 600 340" 
+                fill="none" 
+                stroke="url(#beam-grad-l2r)" 
+                strokeWidth={hoveredService === 2 ? "5.5" : "3.5"} 
+                strokeLinecap="round"
+                strokeDasharray="40 110"
+                className={`${hoveredService === 2 ? "opacity-100" : "opacity-80"} transition-all duration-300`}
                 animate={{ 
-                  pathLength: 1,
-                  strokeDashoffset: hoveredService === 2 ? [0, -20] : 0
+                  strokeDashoffset: [150, 0]
                 }}
                 transition={{ 
-                  strokeDashoffset: hoveredService === 2 ? { repeat: Infinity, ease: "linear", duration: 1 } : { duration: 0 },
-                  default: { duration: 1.5, delay: 0.4 }
+                  repeat: Infinity, 
+                  ease: "linear", 
+                  duration: hoveredService === 2 ? 1.4 : 2.5
                 }}
               />
               {/* Left Middle Hidden wider hover path */}
@@ -1389,26 +1416,33 @@ export default function App() {
               />
 
               {/* Left Bottom Card Path */}
-              <motion.path 
-                d="M 380 560 C 500 560, 480 340, 600 340" 
+              <path 
+                d="M 380 590 C 500 590, 480 340, 600 340" 
                 fill="none" 
                 stroke={hoveredService === 3 ? "#fcbf4a" : "#0c3773"} 
-                strokeWidth={hoveredService === 3 ? "4" : "2"} 
-                strokeDasharray={hoveredService === 3 ? "8 4" : "6 4"} 
-                className={`${hoveredService === 3 ? "opacity-100" : "opacity-30"} transition-all duration-300`}
-                initial={{ pathLength: 0 }}
+                strokeWidth={hoveredService === 3 ? "4" : "2.5"} 
+                className={`${hoveredService === 3 ? "opacity-100" : "opacity-45"} transition-all duration-300`}
+              />
+              <motion.path 
+                d="M 380 590 C 500 590, 480 340, 600 340" 
+                fill="none" 
+                stroke="url(#beam-grad-l2r)" 
+                strokeWidth={hoveredService === 3 ? "5.5" : "3.5"} 
+                strokeLinecap="round"
+                strokeDasharray="40 110"
+                className={`${hoveredService === 3 ? "opacity-100" : "opacity-80"} transition-all duration-300`}
                 animate={{ 
-                  pathLength: 1,
-                  strokeDashoffset: hoveredService === 3 ? [0, -20] : 0
+                  strokeDashoffset: [150, 0]
                 }}
                 transition={{ 
-                  strokeDashoffset: hoveredService === 3 ? { repeat: Infinity, ease: "linear", duration: 1 } : { duration: 0 },
-                  default: { duration: 1.5, delay: 0.6 }
+                  repeat: Infinity, 
+                  ease: "linear", 
+                  duration: hoveredService === 3 ? 1.4 : 2.5
                 }}
               />
               {/* Left Bottom Hidden wider hover path */}
               <path 
-                d="M 380 560 C 500 560, 480 340, 600 340" 
+                d="M 380 590 C 500 590, 480 340, 600 340" 
                 fill="none" 
                 stroke="transparent" 
                 strokeWidth="24" 
@@ -1418,26 +1452,33 @@ export default function App() {
               />
 
               {/* Right Top Card Path */}
-              <motion.path 
-                d="M 820 120 C 700 120, 720 340, 600 340" 
+              <path 
+                d="M 820 90 C 700 90, 720 340, 600 340" 
                 fill="none" 
                 stroke={hoveredService === 4 ? "#fcbf4a" : "#0c3773"} 
-                strokeWidth={hoveredService === 4 ? "4" : "2"} 
-                strokeDasharray={hoveredService === 4 ? "8 4" : "6 4"} 
-                className={`${hoveredService === 4 ? "opacity-100" : "opacity-30"} transition-all duration-300`}
-                initial={{ pathLength: 0 }}
+                strokeWidth={hoveredService === 4 ? "4" : "2.5"} 
+                className={`${hoveredService === 4 ? "opacity-100" : "opacity-45"} transition-all duration-300`}
+              />
+              <motion.path 
+                d="M 820 90 C 700 90, 720 340, 600 340" 
+                fill="none" 
+                stroke="url(#beam-grad-r2l)" 
+                strokeWidth={hoveredService === 4 ? "5.5" : "3.5"} 
+                strokeLinecap="round"
+                strokeDasharray="40 110"
+                className={`${hoveredService === 4 ? "opacity-100" : "opacity-80"} transition-all duration-300`}
                 animate={{ 
-                  pathLength: 1,
-                  strokeDashoffset: hoveredService === 4 ? [0, -20] : 0
+                  strokeDashoffset: [150, 0]
                 }}
                 transition={{ 
-                  strokeDashoffset: hoveredService === 4 ? { repeat: Infinity, ease: "linear", duration: 1 } : { duration: 0 },
-                  default: { duration: 1.5, delay: 0.2 }
+                  repeat: Infinity, 
+                  ease: "linear", 
+                  duration: hoveredService === 4 ? 1.4 : 2.5
                 }}
               />
               {/* Right Top Hidden wider hover path */}
               <path 
-                d="M 820 120 C 700 120, 720 340, 600 340" 
+                d="M 820 90 C 700 90, 720 340, 600 340" 
                 fill="none" 
                 stroke="transparent" 
                 strokeWidth="24" 
@@ -1447,21 +1488,28 @@ export default function App() {
               />
 
               {/* Right Middle Card Path */}
-              <motion.path 
+              <path 
                 d="M 820 340 L 600 340" 
                 fill="none" 
                 stroke={hoveredService === 5 ? "#fcbf4a" : "#0c3773"} 
-                strokeWidth={hoveredService === 5 ? "4" : "2"} 
-                strokeDasharray={hoveredService === 5 ? "8 4" : "6 4"} 
-                className={`${hoveredService === 5 ? "opacity-100" : "opacity-30"} transition-all duration-300`}
-                initial={{ pathLength: 0 }}
+                strokeWidth={hoveredService === 5 ? "4" : "2.5"} 
+                className={`${hoveredService === 5 ? "opacity-100" : "opacity-45"} transition-all duration-300`}
+              />
+              <motion.path 
+                d="M 820 340 L 600 340" 
+                fill="none" 
+                stroke="url(#beam-grad-r2l)" 
+                strokeWidth={hoveredService === 5 ? "5.5" : "3.5"} 
+                strokeLinecap="round"
+                strokeDasharray="40 110"
+                className={`${hoveredService === 5 ? "opacity-100" : "opacity-80"} transition-all duration-300`}
                 animate={{ 
-                  pathLength: 1,
-                  strokeDashoffset: hoveredService === 5 ? [0, -20] : 0
+                  strokeDashoffset: [150, 0]
                 }}
                 transition={{ 
-                  strokeDashoffset: hoveredService === 5 ? { repeat: Infinity, ease: "linear", duration: 1 } : { duration: 0 },
-                  default: { duration: 1.5, delay: 0.4 }
+                  repeat: Infinity, 
+                  ease: "linear", 
+                  duration: hoveredService === 5 ? 1.4 : 2.5
                 }}
               />
               {/* Right Middle Hidden wider hover path */}
@@ -1476,26 +1524,33 @@ export default function App() {
               />
 
               {/* Right Bottom Card Path */}
-              <motion.path 
-                d="M 820 560 C 700 560, 720 340, 600 340" 
+              <path 
+                d="M 820 590 C 700 590, 720 340, 600 340" 
                 fill="none" 
                 stroke={hoveredService === 6 ? "#fcbf4a" : "#0c3773"} 
-                strokeWidth={hoveredService === 6 ? "4" : "2"} 
-                strokeDasharray={hoveredService === 6 ? "8 4" : "6 4"} 
-                className={`${hoveredService === 6 ? "opacity-100" : "opacity-30"} transition-all duration-300`}
-                initial={{ pathLength: 0 }}
+                strokeWidth={hoveredService === 6 ? "4" : "2.5"} 
+                className={`${hoveredService === 6 ? "opacity-100" : "opacity-45"} transition-all duration-300`}
+              />
+              <motion.path 
+                d="M 820 590 C 700 590, 720 340, 600 340" 
+                fill="none" 
+                stroke="url(#beam-grad-r2l)" 
+                strokeWidth={hoveredService === 6 ? "5.5" : "3.5"} 
+                strokeLinecap="round"
+                strokeDasharray="40 110"
+                className={`${hoveredService === 6 ? "opacity-100" : "opacity-80"} transition-all duration-300`}
                 animate={{ 
-                  pathLength: 1,
-                  strokeDashoffset: hoveredService === 6 ? [0, -20] : 0
+                  strokeDashoffset: [150, 0]
                 }}
                 transition={{ 
-                  strokeDashoffset: hoveredService === 6 ? { repeat: Infinity, ease: "linear", duration: 1 } : { duration: 0 },
-                  default: { duration: 1.5, delay: 0.6 }
+                  repeat: Infinity, 
+                  ease: "linear", 
+                  duration: hoveredService === 6 ? 1.4 : 2.5
                 }}
               />
               {/* Right Bottom Hidden wider hover path */}
               <path 
-                d="M 820 560 C 700 560, 720 340, 600 340" 
+                d="M 820 590 C 700 590, 720 340, 600 340" 
                 fill="none" 
                 stroke="transparent" 
                 strokeWidth="24" 
@@ -1504,209 +1559,299 @@ export default function App() {
                 onMouseLeave={() => setHoveredService(null)}
               />
 
-              {/* Connecting Nodes (dots) on Central Hub Circle */}
-              <circle 
-                cx="485" 
-                cy="225" 
-                r={hoveredService === 1 ? "8" : "5"} 
-                fill={hoveredService === 1 ? "#fcbf4a" : "#0c3773"} 
-                className="transition-all duration-350 cursor-pointer pointer-events-auto"
-                onMouseEnter={() => setHoveredService(1)}
-                onMouseLeave={() => setHoveredService(null)}
-              />
-              <circle 
-                cx="460" 
-                cy="340" 
-                r={hoveredService === 2 ? "8" : "5"} 
-                fill={hoveredService === 2 ? "#fcbf4a" : "#0c3773"} 
-                className="transition-all duration-350 cursor-pointer pointer-events-auto"
-                onMouseEnter={() => setHoveredService(2)}
-                onMouseLeave={() => setHoveredService(null)}
-              />
-              <circle 
-                cx="485" 
-                cy="455" 
-                r={hoveredService === 3 ? "8" : "5"} 
-                fill={hoveredService === 3 ? "#fcbf4a" : "#0c3773"} 
-                className="transition-all duration-350 cursor-pointer pointer-events-auto"
-                onMouseEnter={() => setHoveredService(3)}
-                onMouseLeave={() => setHoveredService(null)}
-              />
-
-              <circle 
-                cx="715" 
-                cy="225" 
-                r={hoveredService === 4 ? "8" : "5"} 
-                fill={hoveredService === 4 ? "#fcbf4a" : "#0c3773"} 
-                className="transition-all duration-350 cursor-pointer pointer-events-auto"
-                onMouseEnter={() => setHoveredService(4)}
-                onMouseLeave={() => setHoveredService(null)}
-              />
-              <circle 
-                cx="740" 
-                cy="340" 
-                r={hoveredService === 5 ? "8" : "5"} 
-                fill={hoveredService === 5 ? "#fcbf4a" : "#0c3773"} 
-                className="transition-all duration-350 cursor-pointer pointer-events-auto"
-                onMouseEnter={() => setHoveredService(5)}
-                onMouseLeave={() => setHoveredService(null)}
-              />
-              <circle 
-                cx="715" 
-                cy="455" 
-                r={hoveredService === 6 ? "8" : "5"} 
-                fill={hoveredService === 6 ? "#fcbf4a" : "#0c3773"} 
-                className="transition-all duration-350 cursor-pointer pointer-events-auto"
-                onMouseEnter={() => setHoveredService(6)}
-                onMouseLeave={() => setHoveredService(null)}
-              />
+              {/* Connecting Nodes (dots) on Central Hub Circle removed */}
             </svg>
 
             {/* Desktop 3-Column Symmetrical Layout */}
-            <div className="relative z-10 grid grid-cols-12 gap-6 items-center">
+            <div className="relative z-20 grid grid-cols-12 gap-6 items-center">
               
               {/* Left Column (Services 1, 2, 3) */}
-              <div className="col-span-4 flex flex-col gap-6 justify-center pr-2">
+              <div className="col-span-4 flex flex-col justify-between h-[680px] py-0 pr-4">
                 
                 {/* Card 1: Performance Marketing */}
                 <motion.div 
-                  whileHover={{ y: -4, scale: 1.01 }}
+                  whileHover={{ y: -2 }}
+                  animate={{ x: hoveredService === 1 ? 8 : 0 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 25 }}
                   onMouseEnter={() => setHoveredService(1)}
                   onMouseLeave={() => setHoveredService(null)}
-                  className={`transition-all duration-300 flex items-start gap-4 text-left relative group min-h-[160px] p-6 rounded-lg border ${
+                  className={`transition-all duration-300 flex items-start gap-4 text-left relative group h-[180px] p-6 rounded-2xl border ${
                     hoveredService === 1 
-                      ? "bg-amber-50/10 border-amber-500/30 shadow-[0_20px_40px_-15px_rgba(252,191,74,0.15)] scale-[1.01]" 
-                      : "bg-white border-zinc-200/90 shadow-[0_12px_36px_-15px_rgba(0,0,0,0.06)]"
+                      ? "bg-white border-amber-400/40 shadow-[0_20px_45px_-12px_rgba(252,191,74,0.18)]" 
+                      : "bg-white/80 backdrop-blur-sm border-zinc-200/80 shadow-[0_8px_30px_rgba(0,0,0,0.02)]"
                   }`}
                 >
-                  <div className="w-12 h-12 rounded-full bg-[#0c3773] text-white flex items-center justify-center shrink-0 shadow-sm transition-transform duration-300 group-hover:scale-110">
-                    <Rocket className="w-5 h-5 text-[#fcbf4a]" />
+                  <div className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 shadow-sm transition-all duration-300 ${
+                    hoveredService === 1 ? "bg-[#0c3773] text-white scale-110" : "bg-zinc-100 text-[#0c3773]"
+                  }`}>
+                    <Rocket className="w-5 h-5 transition-colors duration-300" />
                   </div>
-                  <div className="space-y-2 flex-1">
-                    <h3 className="font-extrabold text-lg text-[#0c3773] group-hover:text-amber-600 transition-colors duration-300 font-sans">Performance Marketing</h3>
-                    <p className="text-zinc-650 text-sm leading-relaxed font-medium">
-                      Reach the right audience, generate qualified leads, and maximize every advertising rupee through data-backed campaigns.
-                    </p>
-                    <div className="flex flex-wrap gap-1.5 justify-start pt-1">
-                      {["Meta Ads", "Google Ads", "Lead Generation", "Conversion Optimization", "Campaign Management"].map((tag, i) => (
-                        <span key={i} className="text-[10px] font-mono font-bold px-2 py-0.5 bg-[#0c3773]/5 text-[#0c3773] border border-[#0c3773]/10 rounded">
+                  <div className="space-y-1.5 flex-1 flex flex-col justify-between h-full">
+                    <div>
+                      <h3 className="font-extrabold text-base md:text-lg text-[#0c3773] group-hover:text-amber-600 transition-colors duration-300 font-sans leading-snug">Performance Marketing</h3>
+                      <p className="text-zinc-650 text-xs leading-relaxed font-semibold mt-1">
+                        Reach the right audience, generate qualified leads, and maximize every advertising rupee through data-backed campaigns.
+                      </p>
+                    </div>
+                    <div className="flex flex-wrap gap-1">
+                      {["Meta Ads", "Google Ads", "Lead Gen", "Conversion"].map((tag, i) => (
+                        <span key={i} className={`text-[10px] font-mono font-bold px-2 py-0.5 rounded border transition-colors duration-300 ${
+                          hoveredService === 1 
+                            ? "bg-amber-500/10 text-amber-700 border-amber-500/15" 
+                            : "bg-zinc-100 text-zinc-500 border-zinc-200/60"
+                        }`}>
                           {tag}
                         </span>
                       ))}
                     </div>
+                  </div>
+
+                  {/* Symmetrical plug socket on right edge */}
+                  <div className={`absolute -right-2 top-1/2 -translate-y-1/2 w-4 h-4 rounded-full border bg-white flex items-center justify-center transition-all duration-300 ${
+                    hoveredService === 1 ? "border-[#fcbf4a] scale-110 shadow-[0_0_8px_rgba(252,191,74,0.8)]" : "border-zinc-200"
+                  }`}>
+                    <div className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
+                      hoveredService === 1 ? "bg-[#fcbf4a]" : "bg-zinc-300"
+                    }`} />
                   </div>
                 </motion.div>
 
                 {/* Card 2: SEO */}
                 <motion.div 
-                  whileHover={{ y: -4, scale: 1.01 }}
+                  whileHover={{ y: -2 }}
+                  animate={{ x: hoveredService === 2 ? 8 : 0 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 25 }}
                   onMouseEnter={() => setHoveredService(2)}
                   onMouseLeave={() => setHoveredService(null)}
-                  className={`transition-all duration-300 flex items-start gap-4 text-left relative group min-h-[160px] p-6 rounded-lg border ${
+                  className={`transition-all duration-300 flex items-start gap-4 text-left relative group h-[180px] p-6 rounded-2xl border ${
                     hoveredService === 2 
-                      ? "bg-amber-50/10 border-amber-500/30 shadow-[0_20px_40px_-15px_rgba(252,191,74,0.15)] scale-[1.01]" 
-                      : "bg-white border-zinc-200/90 shadow-[0_12px_36px_-15px_rgba(0,0,0,0.06)]"
+                      ? "bg-white border-amber-400/40 shadow-[0_20px_45px_-12px_rgba(252,191,74,0.18)]" 
+                      : "bg-white/80 backdrop-blur-sm border-zinc-200/80 shadow-[0_8px_30px_rgba(0,0,0,0.02)]"
                   }`}
                 >
-                  <div className="w-12 h-12 rounded-full bg-[#0c3773] text-white flex items-center justify-center shrink-0 shadow-sm transition-transform duration-300 group-hover:scale-110">
-                    <Search className="w-5 h-5 text-[#fcbf4a]" />
+                  <div className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 shadow-sm transition-all duration-300 ${
+                    hoveredService === 2 ? "bg-[#0c3773] text-white scale-110" : "bg-zinc-100 text-[#0c3773]"
+                  }`}>
+                    <Search className="w-5 h-5 transition-colors duration-300" />
                   </div>
-                  <div className="space-y-2 flex-1">
-                    <h3 className="font-extrabold text-lg text-[#0c3773] group-hover:text-amber-600 transition-colors duration-300 font-sans">SEO (Search Engine Optimization)</h3>
-                    <p className="text-zinc-650 text-sm leading-relaxed font-medium">
-                      Get found when customers are searching. We help businesses improve rankings, increase organic visibility, and drive long-term traffic that converts.
-                    </p>
-                    <div className="flex flex-wrap gap-1.5 justify-start pt-1">
-                      {["Technical SEO", "On-Page SEO", "Keyword Strategy", "Local SEO", "SEO Audits"].map((tag, i) => (
-                        <span key={i} className="text-[10px] font-mono font-bold px-2 py-0.5 bg-[#0c3773]/5 text-[#0c3773] border border-[#0c3773]/10 rounded">
+                  <div className="space-y-1.5 flex-1 flex flex-col justify-between h-full">
+                    <div>
+                      <h3 className="font-extrabold text-base md:text-lg text-[#0c3773] group-hover:text-amber-600 transition-colors duration-300 font-sans leading-snug">SEO (Search Engine)</h3>
+                      <p className="text-zinc-650 text-xs leading-relaxed font-semibold mt-1">
+                        Get found when customers are searching. We help businesses improve rankings, increase organic visibility, and drive traffic that converts.
+                      </p>
+                    </div>
+                    <div className="flex flex-wrap gap-1">
+                      {["Technical SEO", "On-Page", "Keyword Strategy", "Local SEO"].map((tag, i) => (
+                        <span key={i} className={`text-[10px] font-mono font-bold px-2 py-0.5 rounded border transition-colors duration-300 ${
+                          hoveredService === 2 
+                            ? "bg-amber-500/10 text-amber-700 border-amber-500/15" 
+                            : "bg-zinc-100 text-zinc-500 border-zinc-200/60"
+                        }`}>
                           {tag}
                         </span>
                       ))}
                     </div>
+                  </div>
+
+                  {/* Symmetrical plug socket on right edge */}
+                  <div className={`absolute -right-2 top-1/2 -translate-y-1/2 w-4 h-4 rounded-full border bg-white flex items-center justify-center transition-all duration-300 ${
+                    hoveredService === 2 ? "border-[#fcbf4a] scale-110 shadow-[0_0_8px_rgba(252,191,74,0.8)]" : "border-zinc-200"
+                  }`}>
+                    <div className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
+                      hoveredService === 2 ? "bg-[#fcbf4a]" : "bg-zinc-300"
+                    }`} />
                   </div>
                 </motion.div>
 
                 {/* Card 3: Web App Design & Development */}
                 <motion.div 
-                  whileHover={{ y: -4, scale: 1.01 }}
+                  whileHover={{ y: -2 }}
+                  animate={{ x: hoveredService === 3 ? 8 : 0 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 25 }}
                   onMouseEnter={() => setHoveredService(3)}
                   onMouseLeave={() => setHoveredService(null)}
-                  className={`transition-all duration-300 flex items-start gap-4 text-left relative group min-h-[160px] p-6 rounded-lg border ${
+                  className={`transition-all duration-300 flex items-start gap-4 text-left relative group h-[180px] p-6 rounded-2xl border ${
                     hoveredService === 3 
-                      ? "bg-amber-50/10 border-amber-500/30 shadow-[0_20px_40px_-15px_rgba(252,191,74,0.15)] scale-[1.01]" 
-                      : "bg-white border-zinc-200/90 shadow-[0_12px_36px_-15px_rgba(0,0,0,0.06)]"
+                      ? "bg-white border-amber-400/40 shadow-[0_20px_45px_-12px_rgba(252,191,74,0.18)]" 
+                      : "bg-white/80 backdrop-blur-sm border-zinc-200/80 shadow-[0_8px_30px_rgba(0,0,0,0.02)]"
                   }`}
                 >
-                  <div className="w-12 h-12 rounded-full bg-[#0c3773] text-white flex items-center justify-center shrink-0 shadow-sm transition-transform duration-300 group-hover:scale-110">
-                    <Code className="w-5 h-5 text-[#fcbf4a]" />
+                  <div className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 shadow-sm transition-all duration-300 ${
+                    hoveredService === 3 ? "bg-[#0c3773] text-white scale-110" : "bg-zinc-100 text-[#0c3773]"
+                  }`}>
+                    <Code className="w-5 h-5 transition-colors duration-300" />
                   </div>
-                  <div className="space-y-2 flex-1">
-                    <h3 className="font-extrabold text-lg text-[#0c3773] group-hover:text-amber-600 transition-colors duration-300 font-sans">Web App Design & Development</h3>
-                    <p className="text-zinc-650 text-sm leading-relaxed font-medium">
-                      Great brands deserve great digital experiences. We design and develop websites and web applications that are fast, scalable, and built around user experience.
-                    </p>
-                    <div className="flex flex-wrap gap-1.5 justify-start pt-1">
-                      {["Custom Websites", "Web Applications", "UI/UX Design", "Landing Pages", "E-Commerce Solutions"].map((tag, i) => (
-                        <span key={i} className="text-[10px] font-mono font-bold px-2 py-0.5 bg-[#0c3773]/5 text-[#0c3773] border border-[#0c3773]/10 rounded">
+                  <div className="space-y-1.5 flex-1 flex flex-col justify-between h-full">
+                    <div>
+                      <h3 className="font-extrabold text-base md:text-lg text-[#0c3773] group-hover:text-amber-600 transition-colors duration-300 font-sans leading-snug">Web Design & Dev</h3>
+                      <p className="text-zinc-650 text-xs leading-relaxed font-semibold mt-1">
+                        Great brands deserve great digital experiences. We design and develop websites that are fast, scalable, and built around UX.
+                      </p>
+                    </div>
+                    <div className="flex flex-wrap gap-1">
+                      {["Custom Web", "Web Apps", "UI/UX Design", "E-Commerce"].map((tag, i) => (
+                        <span key={i} className={`text-[10px] font-mono font-bold px-2 py-0.5 rounded border transition-colors duration-300 ${
+                          hoveredService === 3 
+                            ? "bg-amber-500/10 text-amber-700 border-amber-500/15" 
+                            : "bg-zinc-100 text-zinc-500 border-zinc-200/60"
+                        }`}>
                           {tag}
                         </span>
                       ))}
                     </div>
+                  </div>
+
+                  {/* Symmetrical plug socket on right edge */}
+                  <div className={`absolute -right-2 top-1/2 -translate-y-1/2 w-4 h-4 rounded-full border bg-white flex items-center justify-center transition-all duration-300 ${
+                    hoveredService === 3 ? "border-[#fcbf4a] scale-110 shadow-[0_0_8px_rgba(252,191,74,0.8)]" : "border-zinc-200"
+                  }`}>
+                    <div className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
+                      hoveredService === 3 ? "bg-[#fcbf4a]" : "bg-zinc-300"
+                    }`} />
                   </div>
                 </motion.div>
 
               </div>
 
               {/* Center Column (Interactive Central Hub Circle) */}
-              <div className="col-span-4 flex items-center justify-center">
-                <div className="relative w-72 h-72 rounded-full bg-gradient-to-tr from-[#0c3773] to-[#124b96] p-1.5 shadow-[0_20px_50px_rgba(12,55,115,0.25)] group cursor-pointer transition-transform duration-500 hover:scale-[1.02]">
-                  {/* Rotating border accent */}
-                  <div className="absolute inset-0 rounded-full border border-dashed border-[#fcbf4a]/50 animate-[spin_40s_linear_infinite]" />
-                  
-                  {/* Nested elegant ring */}
-                  <div className="w-full h-full rounded-full border-4 border-white/10 bg-[#0c3773] flex flex-col items-center justify-center p-8 text-center text-white relative overflow-hidden">
-                    <div className="absolute -right-12 -top-12 w-32 h-32 bg-[#fcbf4a]/10 rounded-full blur-2xl pointer-events-none" />
-                    <div className="absolute -left-12 -bottom-12 w-32 h-32 bg-sky-500/10 rounded-full blur-2xl pointer-events-none" />
-                    
-                    <Megaphone className="w-12 h-12 text-[#fcbf4a] mb-4 animate-pulse" />
-                    <h4 className="text-2xl font-black tracking-tight leading-tight uppercase font-sans">
-                      Digital Solutions
-                    </h4>
-                    <span className="text-[11px] font-mono tracking-widest text-[#fcbf4a] uppercase block mt-1.5 font-bold">
-                      That Deliver
-                    </span>
-                    <h4 className="text-xl font-bold tracking-tight leading-tight uppercase font-sans mt-0.5 text-zinc-100">
-                      Results
-                    </h4>
-                  </div>
+              <div className="col-span-4 flex items-center justify-center relative">
+                
+                {/* Concentric ripples radiating from the center */}
+                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                  <motion.div 
+                    className="absolute w-80 h-80 rounded-full border border-[#fcbf4a]/30 bg-[#fcbf4a]/3"
+                    animate={{ scale: [0.9, 1.3], opacity: [0.7, 0] }}
+                    transition={{ repeat: Infinity, duration: 2.8, ease: "easeOut" }}
+                  />
+                  <motion.div 
+                    className="absolute w-96 h-96 rounded-full border border-[#0c3773]/20 bg-[#0c3773]/2"
+                    animate={{ scale: [0.9, 1.45], opacity: [0.5, 0] }}
+                    transition={{ repeat: Infinity, duration: 3.8, delay: 0.8, ease: "easeOut" }}
+                  />
+                  <motion.div 
+                    className="absolute w-[440px] h-[440px] rounded-full border border-[#fcbf4a]/10"
+                    animate={{ scale: [0.9, 1.55], opacity: [0.4, 0] }}
+                    transition={{ repeat: Infinity, duration: 4.8, delay: 1.6, ease: "easeOut" }}
+                  />
                 </div>
+
+                <motion.div 
+                  className={`relative w-80 h-80 rounded-full p-1.5 shadow-2xl transition-all duration-500 cursor-pointer flex items-center justify-center ${
+                    hoveredService !== null 
+                      ? "bg-gradient-to-tr from-[#fcbf4a] via-[#144ea1] to-[#0c3773] shadow-[0_30px_70px_-10px_rgba(12,55,115,0.55)] scale-[1.05]" 
+                      : "bg-gradient-to-tr from-[#0c3773] via-[#104285] to-[#124b96] shadow-[0_25px_60px_-15px_rgba(12,55,115,0.4)] hover:scale-[1.02]"
+                  }`}
+                  whileHover={{ scale: 1.03 }}
+                >
+                  {/* Inner spinning dot ring */}
+                  <div className="absolute inset-4 rounded-full border-2 border-dotted border-white/40 animate-[spin_25s_linear_infinite_reverse]" />
+
+                  {/* Elegant High-Contrast Opaque Core */}
+                  <div className="w-full h-full rounded-full border-2 border-white/20 bg-[#031530] flex flex-col items-center justify-center p-6 text-center text-white relative overflow-hidden shadow-inner">
+                    {/* Glowing background orbs inside the core */}
+                    <div className="absolute -right-6 -top-6 w-32 h-32 bg-[#fcbf4a]/25 rounded-full blur-2xl pointer-events-none animate-pulse" />
+                    <div className="absolute -left-6 -bottom-6 w-32 h-32 bg-sky-400/25 rounded-full blur-2xl pointer-events-none animate-pulse" />
+                    <div className={`absolute inset-0 bg-gradient-to-tr from-transparent via-[#fcbf4a]/10 to-transparent opacity-0 transition-opacity duration-500 ${hoveredService !== null ? "opacity-100" : ""}`} />
+
+                    <div className="relative z-10 flex flex-col items-center">
+                      {/* Central Glowing Icon Holder */}
+                      <div className={`w-14 h-14 rounded-full bg-white/10 border-2 border-white/20 flex items-center justify-center mb-3 transition-all duration-300 ${hoveredService !== null ? "bg-amber-500/20 border-amber-400/50 scale-110 shadow-[0_0_15px_rgba(252,191,74,0.4)]" : "shadow-[0_0_10px_rgba(255,255,255,0.05)]"}`}>
+                        <Megaphone className={`w-6 h-6 transition-all duration-300 ${hoveredService !== null ? "text-[#fcbf4a] scale-110" : "text-zinc-100"}`} />
+                      </div>
+                      
+                      <span className="text-[10px] font-mono tracking-[0.25em] text-[#fcbf4a] font-extrabold uppercase mb-1 drop-shadow-sm">
+                        CENTRAL ENGINE
+                      </span>
+                      
+                      <h4 className="text-2xl font-black tracking-wider leading-none uppercase font-sans text-white drop-shadow-[0_2px_8px_rgba(255,255,255,0.15)]">
+                        DIGIYOG
+                      </h4>
+                      
+                      <div className="w-16 h-[2px] bg-gradient-to-r from-transparent via-[#fcbf4a] to-transparent my-2.5" />
+                      
+                      <div className="min-h-[40px] flex items-center justify-center px-2">
+                        <p className="text-xs font-sans font-bold tracking-wide text-zinc-100 leading-normal max-w-[200px] text-center drop-shadow-md">
+                          {hoveredService !== null 
+                            ? `Powering: ${
+                                hoveredService === 1 ? "Performance Marketing" :
+                                hoveredService === 2 ? "SEO Strategy" :
+                                hoveredService === 3 ? "Web Design & Dev" :
+                                hoveredService === 4 ? "Video Production" :
+                                hoveredService === 5 ? "Social Media" :
+                                hoveredService === 6 ? "Graphics & Print" : "Core Systems"
+                              }`
+                            : "Connecting all digital growth touchpoints"
+                          }
+                        </p>
+                      </div>
+
+                      {/* Dynamic Visual Pulse Waves */}
+                      <div className="flex items-end gap-1.5 mt-3.5 h-4 justify-center">
+                        {[1, 2, 3, 4, 5, 6, 7].map((bar) => (
+                          <motion.div 
+                            key={bar}
+                            className={`w-[3px] rounded-full ${hoveredService !== null ? "bg-[#fcbf4a] shadow-[0_0_5px_rgba(252,191,74,0.8)]" : "bg-sky-400"}`}
+                            animate={{ 
+                              height: hoveredService !== null ? [5, 16, 5] : [5, 10, 5]
+                            }}
+                            transition={{ 
+                              repeat: Infinity, 
+                              duration: 0.4 + (bar % 3) * 0.12,
+                              ease: "easeInOut" 
+                            }}
+                          />
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
               </div>
 
               {/* Right Column (Services 4, 5, 6) */}
-              <div className="col-span-4 flex flex-col gap-6 justify-center pl-2">
+              <div className="col-span-4 flex flex-col justify-between h-[680px] py-0 pl-4">
                 
                 {/* Card 4: Video Production */}
                 <motion.div 
-                  whileHover={{ y: -4, scale: 1.01 }}
+                  whileHover={{ y: -2 }}
+                  animate={{ x: hoveredService === 4 ? -8 : 0 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 25 }}
                   onMouseEnter={() => setHoveredService(4)}
                   onMouseLeave={() => setHoveredService(null)}
-                  className={`transition-all duration-300 flex items-start gap-4 text-left relative group min-h-[160px] p-6 rounded-lg border ${
+                  className={`transition-all duration-300 flex items-start gap-4 text-left relative group h-[180px] p-6 rounded-2xl border ${
                     hoveredService === 4 
-                      ? "bg-amber-50/10 border-amber-500/30 shadow-[0_20px_40px_-15px_rgba(252,191,74,0.15)] scale-[1.01]" 
-                      : "bg-white border-zinc-200/90 shadow-[0_12px_36px_-15px_rgba(0,0,0,0.06)]"
+                      ? "bg-white border-amber-400/40 shadow-[0_20px_45px_-12px_rgba(252,191,74,0.18)]" 
+                      : "bg-white/80 backdrop-blur-sm border-zinc-200/80 shadow-[0_8px_30px_rgba(0,0,0,0.02)]"
                   }`}
                 >
-                  <div className="w-12 h-12 rounded-full bg-[#0c3773] text-white flex items-center justify-center shrink-0 shadow-sm transition-transform duration-300 group-hover:scale-110">
-                    <Video className="w-5 h-5 text-[#fcbf4a]" />
+                  {/* Symmetrical plug socket on left edge */}
+                  <div className={`absolute -left-2 top-1/2 -translate-y-1/2 w-4 h-4 rounded-full border bg-white flex items-center justify-center transition-all duration-300 ${
+                    hoveredService === 4 ? "border-[#fcbf4a] scale-110 shadow-[0_0_8px_rgba(252,191,74,0.8)]" : "border-zinc-200"
+                  }`}>
+                    <div className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
+                      hoveredService === 4 ? "bg-[#fcbf4a]" : "bg-zinc-300"
+                    }`} />
                   </div>
-                  <div className="space-y-2 flex-1">
-                    <h3 className="font-extrabold text-lg text-[#0c3773] group-hover:text-amber-600 transition-colors duration-300 font-sans">Video Production</h3>
-                    <p className="text-zinc-650 text-sm leading-relaxed font-medium">
-                      Attention starts with great storytelling. From brand films to social media content, we create videos that engage, inspire, and drive action.
-                    </p>
-                    <div className="flex flex-wrap gap-1.5 justify-start pt-1">
-                      {["Brand Videos", "Commercials", "Reels", "Motion Graphics", "Product Videos"].map((tag, i) => (
-                        <span key={i} className="text-[10px] font-mono font-bold px-2 py-0.5 bg-[#0c3773]/5 text-[#0c3773] border border-[#0c3773]/10 rounded">
+
+                  <div className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 shadow-sm transition-all duration-300 ${
+                    hoveredService === 4 ? "bg-[#0c3773] text-white scale-110" : "bg-zinc-100 text-[#0c3773]"
+                  }`}>
+                    <Video className="w-5 h-5 transition-colors duration-300" />
+                  </div>
+                  <div className="space-y-1.5 flex-1 flex flex-col justify-between h-full">
+                    <div>
+                      <h3 className="font-extrabold text-base md:text-lg text-[#0c3773] group-hover:text-amber-600 transition-colors duration-300 font-sans leading-snug">Video Production</h3>
+                      <p className="text-zinc-650 text-xs leading-relaxed font-semibold mt-1">
+                        Attention starts with great storytelling. From brand films to reels, we create videos that engage, inspire, and drive action.
+                      </p>
+                    </div>
+                    <div className="flex flex-wrap gap-1">
+                      {["Brand Videos", "Commercials", "Reels", "Motion Graphics"].map((tag, i) => (
+                        <span key={i} className={`text-[10px] font-mono font-bold px-2 py-0.5 rounded border transition-colors duration-300 ${
+                          hoveredService === 4 
+                            ? "bg-amber-500/10 text-amber-700 border-amber-500/15" 
+                            : "bg-zinc-100 text-zinc-500 border-zinc-200/60"
+                        }`}>
                           {tag}
                         </span>
                       ))}
@@ -1716,26 +1861,45 @@ export default function App() {
 
                 {/* Card 5: Social Media Management */}
                 <motion.div 
-                  whileHover={{ y: -4, scale: 1.01 }}
+                  whileHover={{ y: -2 }}
+                  animate={{ x: hoveredService === 5 ? -8 : 0 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 25 }}
                   onMouseEnter={() => setHoveredService(5)}
                   onMouseLeave={() => setHoveredService(null)}
-                  className={`transition-all duration-300 flex items-start gap-4 text-left relative group min-h-[160px] p-6 rounded-lg border ${
+                  className={`transition-all duration-300 flex items-start gap-4 text-left relative group h-[180px] p-6 rounded-2xl border ${
                     hoveredService === 5 
-                      ? "bg-amber-50/10 border-amber-500/30 shadow-[0_20px_40px_-15px_rgba(252,191,74,0.15)] scale-[1.01]" 
-                      : "bg-white border-zinc-200/90 shadow-[0_12px_36px_-15px_rgba(0,0,0,0.06)]"
+                      ? "bg-white border-amber-400/40 shadow-[0_20px_45px_-12px_rgba(252,191,74,0.18)]" 
+                      : "bg-white/80 backdrop-blur-sm border-zinc-200/80 shadow-[0_8px_30px_rgba(0,0,0,0.02)]"
                   }`}
                 >
-                  <div className="w-12 h-12 rounded-full bg-[#0c3773] text-white flex items-center justify-center shrink-0 shadow-sm transition-transform duration-300 group-hover:scale-110">
-                    <Smartphone className="w-5 h-5 text-[#fcbf4a]" />
+                  {/* Symmetrical plug socket on left edge */}
+                  <div className={`absolute -left-2 top-1/2 -translate-y-1/2 w-4 h-4 rounded-full border bg-white flex items-center justify-center transition-all duration-300 ${
+                    hoveredService === 5 ? "border-[#fcbf4a] scale-110 shadow-[0_0_8px_rgba(252,191,74,0.8)]" : "border-zinc-200"
+                  }`}>
+                    <div className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
+                      hoveredService === 5 ? "bg-[#fcbf4a]" : "bg-zinc-300"
+                    }`} />
                   </div>
-                  <div className="space-y-2 flex-1">
-                    <h3 className="font-extrabold text-lg text-[#0c3773] group-hover:text-amber-600 transition-colors duration-300 font-sans">Social Media Management</h3>
-                    <p className="text-zinc-650 text-sm leading-relaxed font-medium">
-                      Because consistency builds brands. We create content strategies, campaigns, and communities that help brands stay relevant and connected.
-                    </p>
-                    <div className="flex flex-wrap gap-1.5 justify-start pt-1">
-                      {["Content Planning", "Creative Design", "Reels Strategy", "Community Management", "Monthly Reporting"].map((tag, i) => (
-                        <span key={i} className="text-[10px] font-mono font-bold px-2 py-0.5 bg-[#0c3773]/5 text-[#0c3773] border border-[#0c3773]/10 rounded">
+
+                  <div className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 shadow-sm transition-all duration-300 ${
+                    hoveredService === 5 ? "bg-[#0c3773] text-white scale-110" : "bg-zinc-100 text-[#0c3773]"
+                  }`}>
+                    <Smartphone className="w-5 h-5 transition-colors duration-300" />
+                  </div>
+                  <div className="space-y-1.5 flex-1 flex flex-col justify-between h-full">
+                    <div>
+                      <h3 className="font-extrabold text-base md:text-lg text-[#0c3773] group-hover:text-amber-600 transition-colors duration-300 font-sans leading-snug">Social Media</h3>
+                      <p className="text-zinc-650 text-xs leading-relaxed font-semibold mt-1">
+                        Consistency builds brands. We create content strategies, creative campaigns, and communities that help brands stay connected.
+                      </p>
+                    </div>
+                    <div className="flex flex-wrap gap-1">
+                      {["Planning", "Reels Strategy", "Community", "Design"].map((tag, i) => (
+                        <span key={i} className={`text-[10px] font-mono font-bold px-2 py-0.5 rounded border transition-colors duration-300 ${
+                          hoveredService === 5 
+                            ? "bg-amber-500/10 text-amber-700 border-amber-500/15" 
+                            : "bg-zinc-100 text-zinc-500 border-zinc-200/60"
+                        }`}>
                           {tag}
                         </span>
                       ))}
@@ -1745,26 +1909,45 @@ export default function App() {
 
                 {/* Card 6: Graphics & Print Media */}
                 <motion.div 
-                  whileHover={{ y: -4, scale: 1.01 }}
+                  whileHover={{ y: -2 }}
+                  animate={{ x: hoveredService === 6 ? -8 : 0 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 25 }}
                   onMouseEnter={() => setHoveredService(6)}
                   onMouseLeave={() => setHoveredService(null)}
-                  className={`transition-all duration-300 flex items-start gap-4 text-left relative group min-h-[160px] p-6 rounded-lg border ${
+                  className={`transition-all duration-300 flex items-start gap-4 text-left relative group h-[180px] p-6 rounded-2xl border ${
                     hoveredService === 6 
-                      ? "bg-amber-50/10 border-amber-500/30 shadow-[0_20px_40px_-15px_rgba(252,191,74,0.15)] scale-[1.01]" 
-                      : "bg-white border-zinc-200/90 shadow-[0_12px_36px_-15px_rgba(0,0,0,0.06)]"
+                      ? "bg-white border-amber-400/40 shadow-[0_20px_45px_-12px_rgba(252,191,74,0.18)]" 
+                      : "bg-white/80 backdrop-blur-sm border-zinc-200/80 shadow-[0_8px_30px_rgba(0,0,0,0.02)]"
                   }`}
                 >
-                  <div className="w-12 h-12 rounded-full bg-[#0c3773] text-white flex items-center justify-center shrink-0 shadow-sm transition-transform duration-300 group-hover:scale-110">
-                    <Palette className="w-5 h-5 text-[#fcbf4a]" />
+                  {/* Symmetrical plug socket on left edge */}
+                  <div className={`absolute -left-2 top-1/2 -translate-y-1/2 w-4 h-4 rounded-full border bg-white flex items-center justify-center transition-all duration-300 ${
+                    hoveredService === 6 ? "border-[#fcbf4a] scale-110 shadow-[0_0_8px_rgba(252,191,74,0.8)]" : "border-zinc-200"
+                  }`}>
+                    <div className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
+                      hoveredService === 6 ? "bg-[#fcbf4a]" : "bg-zinc-300"
+                    }`} />
                   </div>
-                  <div className="space-y-2 flex-1">
-                    <h3 className="font-extrabold text-lg text-[#0c3773] group-hover:text-amber-600 transition-colors duration-300 font-sans">Graphics & Print Media</h3>
-                    <p className="text-zinc-650 text-sm leading-relaxed font-medium">
-                      Strong visuals create stronger impressions. From digital creatives to print materials, we design assets that make your brand impossible to ignore.
-                    </p>
-                    <div className="flex flex-wrap gap-1.5 justify-start pt-1">
-                      {["Brand Identity", "Brochures", "Flyers", "Packaging", "Marketing Collaterals", "Print Design"].map((tag, i) => (
-                        <span key={i} className="text-[10px] font-mono font-bold px-2 py-0.5 bg-[#0c3773]/5 text-[#0c3773] border border-[#0c3773]/10 rounded">
+
+                  <div className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 shadow-sm transition-all duration-300 ${
+                    hoveredService === 6 ? "bg-[#0c3773] text-white scale-110" : "bg-zinc-100 text-[#0c3773]"
+                  }`}>
+                    <Palette className="w-5 h-5 transition-colors duration-300" />
+                  </div>
+                  <div className="space-y-1.5 flex-1 flex flex-col justify-between h-full">
+                    <div>
+                      <h3 className="font-extrabold text-base md:text-lg text-[#0c3773] group-hover:text-amber-600 transition-colors duration-300 font-sans leading-snug">Graphics & Print Media</h3>
+                      <p className="text-zinc-650 text-xs leading-relaxed font-semibold mt-1">
+                        Strong visuals create stronger impressions. We design assets that make your brand impossible to ignore.
+                      </p>
+                    </div>
+                    <div className="flex flex-wrap gap-1">
+                      {["Identity", "Packaging", "Collaterals", "Print Design"].map((tag, i) => (
+                        <span key={i} className={`text-[10px] font-mono font-bold px-2 py-0.5 rounded border transition-colors duration-300 ${
+                          hoveredService === 6 
+                            ? "bg-amber-500/10 text-amber-700 border-amber-500/15" 
+                            : "bg-zinc-100 text-zinc-500 border-zinc-200/60"
+                        }`}>
                           {tag}
                         </span>
                       ))}
