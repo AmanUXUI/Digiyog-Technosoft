@@ -1193,13 +1193,13 @@ export default function App() {
               </div>
             </div>
 
-            {/* Right Column: 3 Horizontal Moving Logo Sliders with Continuous Autoplay wrapped in a premium dark container */}
+            {/* Right Column: 3 Horizontal Moving Logo Sliders with Continuous Autoplay wrapped in a premium white container */}
             <div className="lg:col-span-6 relative w-full">
-              <div className="relative w-full bg-zinc-900 border border-white/5 rounded-lg p-6 md:p-8 shadow-sm overflow-hidden flex flex-col gap-7 z-10">
+              <div className="relative w-full bg-white border border-zinc-200/80 rounded-lg p-6 md:p-8 shadow-sm overflow-hidden flex flex-col gap-7 z-10">
                 
                 {/* Fade out masks for left/right premium blur effect over the white container */}
-                <div className="absolute top-0 bottom-0 left-0 w-16 bg-gradient-to-r from-zinc-900 to-transparent z-10 pointer-events-none" />
-                <div className="absolute top-0 bottom-0 right-0 w-16 bg-gradient-to-l from-zinc-900 to-transparent z-10 pointer-events-none" />
+                <div className="absolute top-0 bottom-0 left-0 w-16 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
+                <div className="absolute top-0 bottom-0 right-0 w-16 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
 
                 {/* Row 1: Left -> Right */}
                 <div className="w-full overflow-hidden py-1">
