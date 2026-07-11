@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from "react";
 import { Search, X, ArrowRight, Send, Check, Menu, ChevronRight, Globe, Users, Award, Sparkles, TrendingUp, Code, Video, Share2, Palette, ChevronUp, ChevronDown, Lightbulb, Target, Settings, Rocket, Star, Quote, Calendar, Clock, MessageCircle, Megaphone, Smartphone, Laptop, Eye, ShoppingCart } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { LiquidMetal, MeshGradient } from '@paper-design/shaders-react';
+import { ShapeGrid } from "./components/ShapeGrid";
+import Particles from "./components/Particles";
 
 const getCategoryIcon = (category: string) => {
   switch (category) {
@@ -592,7 +594,7 @@ export default function App() {
       </div>
 
       {/* 2. DYNAMIC NAVIGATION HEADER - FLOATING GLASS BRIDGE */}
-      <header className="relative z-40 w-full px-6 md:px-12 py-4 bg-white/85 backdrop-blur-md border-b border-zinc-200/60 flex items-center justify-between transition-all duration-500 shadow-[0_1px_3px_rgba(0,0,0,0.02)]">
+      <header className="absolute top-4 left-4 right-4 lg:left-8 lg:right-8 xl:left-12 xl:right-12 z-40 max-w-7xl xl:mx-auto px-6 py-3 bg-white/85 backdrop-blur-md border border-zinc-200/50 rounded-2xl flex items-center justify-between transition-all duration-500 shadow-[0_12px_40px_-15px_rgba(0,0,0,0.08)]">
         
         {/* Left Side: Logo Container (exact 25% width) */}
         <div className="w-1/4 sm:w-[25%] flex items-center justify-start">
@@ -672,18 +674,22 @@ export default function App() {
       </header>
 
       {/* 3. HERO INSANELY BEAUTIFUL TYPOGRAPHY BLOCK */}
-      <main className="relative z-10 w-full px-6 py-12 md:px-12 flex-grow flex items-center min-h-[70vh] md:min-h-[80vh] overflow-hidden bg-white text-zinc-950">
+      <main className="relative z-10 w-full px-6 pt-28 pb-12 md:px-12 md:pt-36 lg:pt-40 flex-grow flex items-center min-h-[70vh] md:min-h-[80vh] overflow-hidden bg-white text-zinc-950">
         
-        {/* Background MeshGradient from Paper Design */}
-        <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden flex justify-center items-center">
-          <MeshGradient 
-            speed={1} 
-            scale={1} 
-            distortion={0.8} 
-            swirl={0.1} 
-            colors={['#7BA3FF', '#FFFFFF', '#FFFFFF']} 
-            style={{ height: '1080px', width: '1920px' }} 
-          />
+        {/* Background Particles */}
+        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+          <div className="w-full h-full relative pointer-events-auto">
+            <Particles
+              particleColors={["#0c3773", "#fcbf4a", "#a1a1aa"]}
+              particleCount={200}
+              particleSpread={10}
+              speed={0.1}
+              particleBaseSize={100}
+              moveParticlesOnHover={false}
+              alphaParticles={false}
+              disableRotation={false}
+            />
+          </div>
         </div>
 
         <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center relative z-10">
@@ -956,7 +962,7 @@ export default function App() {
                 </svg>
               </div>
 
-              <div className="relative z-10 w-full h-[450px] rounded-3xl overflow-hidden border border-zinc-200/80 shadow-[0_15px_30px_-5px_rgba(0,0,0,0.05)] hover:shadow-xl transition-all duration-500">
+              <div className="relative z-10 w-full h-[450px] rounded-lg overflow-hidden border border-zinc-200/80 shadow-[0_15px_30px_-5px_rgba(0,0,0,0.05)] hover:shadow-xl transition-all duration-500">
                 <img 
                   src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=600&h=900&q=80" 
                   alt="Creative design team collaborating over notebook and laptop" 
@@ -970,7 +976,7 @@ export default function App() {
             <div className="relative w-full sm:w-1/2 flex flex-col justify-between gap-6">
               
               {/* Right top image */}
-              <div className="relative w-full h-[212px] rounded-3xl overflow-hidden border border-zinc-200/80 shadow-[0_15px_30px_-5px_rgba(0,0,0,0.05)] hover:shadow-xl transition-all duration-500">
+              <div className="relative w-full h-[212px] rounded-lg overflow-hidden border border-zinc-200/80 shadow-[0_15px_30px_-5px_rgba(0,0,0,0.05)] hover:shadow-xl transition-all duration-500">
                 <img 
                   src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=600&h=400&q=80" 
                   alt="Digiyog teammates analyzing charts and performance data" 
@@ -980,7 +986,7 @@ export default function App() {
               </div>
 
               {/* Right bottom image */}
-              <div className="relative w-full h-[212px] rounded-3xl overflow-hidden border border-zinc-200/80 shadow-[0_15px_30px_-5px_rgba(0,0,0,0.05)] hover:shadow-xl transition-all duration-500">
+              <div className="relative w-full h-[212px] rounded-lg overflow-hidden border border-zinc-200/80 shadow-[0_15px_30px_-5px_rgba(0,0,0,0.05)] hover:shadow-xl transition-all duration-500">
                 <img 
                   src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&h=400&q=80" 
                   alt="The professional Digiyog team members gathered in office" 
@@ -991,7 +997,7 @@ export default function App() {
             </div>
 
             {/* Center overlapping floating badge/card */}
-            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white/95 backdrop-blur-md rounded-2xl border border-zinc-200/80 p-5 shadow-[0_20px_40px_-10px_rgba(12,55,115,0.08)] max-w-[280px] z-20 hover:scale-[1.03] transition-transform duration-300">
+            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white/95 backdrop-blur-md rounded-lg border border-zinc-200/80 p-5 shadow-[0_20px_40px_-10px_rgba(12,55,115,0.08)] max-w-[280px] z-20 hover:scale-[1.03] transition-transform duration-300">
               <p className="text-zinc-800 text-xs sm:text-sm font-semibold leading-relaxed">
                 Leveraging <span className="text-[#0c3773] font-bold">10+ years</span> of IT expertise to help businesses operate more efficiently.
               </p>
@@ -1046,17 +1052,17 @@ export default function App() {
 
               {/* Brand Statement cards styled as structured staircase Blocks */}
               <div className="grid grid-cols-1 sm:grid-cols-12 gap-4 pt-4">
-                <div className="premium-hover-card sm:col-span-6 p-6 rounded-2xl bg-zinc-50 border border-zinc-200/80 hover:border-zinc-300 hover:bg-white hover:shadow-md hover:-translate-y-1">
+                <div className="premium-hover-card sm:col-span-6 p-6 rounded-lg bg-zinc-50 border border-zinc-200/80 hover:border-zinc-300 hover:bg-white hover:shadow-md hover:-translate-y-1">
                   <span className="text-[10px] font-mono tracking-wider text-zinc-400 block mb-2"> STATUS 01 </span>
                   <p className="text-zinc-800 text-sm md:text-base font-medium">Anyone can run ads.</p>
                 </div>
 
-                <div className="premium-hover-card sm:col-span-6 p-6 rounded-2xl bg-zinc-50 border border-zinc-200/80 hover:border-zinc-300 hover:bg-white hover:shadow-md hover:-translate-y-1">
+                <div className="premium-hover-card sm:col-span-6 p-6 rounded-lg bg-zinc-50 border border-zinc-200/80 hover:border-zinc-300 hover:bg-white hover:shadow-md hover:-translate-y-1">
                   <span className="text-[10px] font-mono tracking-wider text-zinc-400 block mb-2"> STATUS 02 </span>
                   <p className="text-zinc-800 text-sm md:text-base font-medium">Anyone can post content.</p>
                 </div>
 
-                <div className="premium-hover-card sm:col-span-12 p-8 rounded-2xl bg-[#0c3773] border border-[#0c3773] flex flex-col justify-between min-h-[140px] relative overflow-hidden shadow-md text-white hover:shadow-lg hover:-translate-y-1">
+                <div className="premium-hover-card sm:col-span-12 p-8 rounded-lg bg-[#0c3773] border border-[#0c3773] flex flex-col justify-between min-h-[140px] relative overflow-hidden shadow-md text-white hover:shadow-lg hover:-translate-y-1">
                   <div className="absolute -right-4 -bottom-4 w-24 h-24 bg-[#fcbf4a]/10 rounded-full blur-2xl" />
                   <span className="text-[10px] font-mono tracking-wider text-[#fcbf4a] block mb-4"> REAL QUESTION </span>
                   <p className="text-white font-black text-lg sm:text-l leading-snug relative z-10">
@@ -1071,10 +1077,10 @@ export default function App() {
 
             {/* Right Column: Interactive Digital Philosophy Block */}
             <div className="lg:col-span-6 space-y-12">
-              <div className="premium-hover-card p-8 sm:p-10 rounded-3xl bg-zinc-50 border border-zinc-200/80 relative overflow-hidden flex flex-col justify-between min-h-[320px] group hover:bg-white hover:border-zinc-300/80 hover:shadow-xl hover:-translate-y-1">
+              <div className="premium-hover-card p-8 sm:p-10 rounded-lg bg-zinc-50 border border-zinc-200/80 relative overflow-hidden flex flex-col justify-between min-h-[320px] group hover:bg-white hover:border-zinc-300/80 hover:shadow-xl hover:-translate-y-1">
                 {/* Thin golden linear highlights */}
-                <div className="absolute top-0 right-0 w-16 h-16 border-t font-mono border-r border-[#fcbf4a]/40 rounded-tr-3xl group-hover:border-[#fcbf4a]/60 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] pointer-events-none" />
-                <div className="absolute bottom-0 left-0 w-16 h-16 border-b border-l border-zinc-200 rounded-bl-3xl group-hover:border-zinc-300 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] pointer-events-none" />
+                <div className="absolute top-0 right-0 w-16 h-16 border-t font-mono border-r border-[#fcbf4a]/40 rounded-tr-lg group-hover:border-[#fcbf4a]/60 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] pointer-events-none" />
+                <div className="absolute bottom-0 left-0 w-16 h-16 border-b border-l border-zinc-200 rounded-bl-lg group-hover:border-zinc-300 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] pointer-events-none" />
 
                 <div className="space-y-6">
                   <img 
@@ -1100,7 +1106,7 @@ export default function App() {
               </div>
 
               {/* Action trigger portal card */}
-              <div className="flex items-center space-x-4 p-4 rounded-2xl bg-[#0c3773]/5 border border-[#0c3773]/10 max-w-sm">
+              <div className="flex items-center space-x-4 p-4 rounded-lg bg-[#0c3773]/5 border border-[#0c3773]/10 max-w-sm">
                 <div className="w-2.5 h-2.5 rounded-full bg-[#0c3773] animate-pulse shrink-0" />
                 <p className="text-xs font-mono font-medium text-zinc-800">
                   Ready to rise above the noise? 
@@ -1115,10 +1121,10 @@ export default function App() {
       </section>
 
       {/* ==================== CLIENT SHOWCASE / TRUSTED BY SECTION ==================== */}
-      <section id="contributions" className="relative z-20 w-full bg-zinc-50 text-zinc-900 py-16 md:py-20 px-6 md:px-12 border-t border-zinc-200/60 overflow-hidden">
+      <section id="contributions" className="relative z-20 w-full bg-zinc-950 text-white py-16 md:py-20 px-6 md:px-12 border-t border-white/5 overflow-hidden">
         {/* Ambient glow backgrounds */}
-        <div className="absolute top-1/2 left-10 w-[300px] h-[300px] bg-[#0c3773]/3 rounded-full blur-[100px] pointer-events-none" />
-        <div className="absolute bottom-5 right-1/4 w-[250px] h-[250px] bg-[#fcbf4a]/4 rounded-full blur-[80px] pointer-events-none" />
+        <div className="absolute top-1/2 left-10 w-[300px] h-[300px] bg-[#0c3773]/15 rounded-full blur-[100px] pointer-events-none" />
+        <div className="absolute bottom-5 right-1/4 w-[250px] h-[250px] bg-[#fcbf4a]/10 rounded-full blur-[80px] pointer-events-none" />
 
         <div className="max-w-7xl mx-auto relative z-10 w-full">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
@@ -1126,60 +1132,60 @@ export default function App() {
             {/* Left Column: Crisp, left-aligned explanation and branding details */}
             <div className="lg:col-span-6 space-y-5">
               <div className="space-y-2">
-                <span className="text-xs font-mono font-black tracking-widest text-[#0c3773] uppercase block">
+                <span className="text-xs font-mono font-black tracking-widest text-[#fcbf4a] uppercase block">
                   CLIENT SHOWCASE & PARTNERS
                 </span>
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-sans font-black tracking-tight text-zinc-950 leading-tight">
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-sans font-black tracking-tight text-white leading-tight">
                   Trusted by Leading Institutions & Brands
                 </h2>
               </div>
 
-              <p className="text-zinc-600 text-[18px] leading-[29px] font-normal">
+              <p className="text-zinc-400 text-[18px] leading-[29px] font-normal">
                 Over the past decade, we have partnered with world-renowned universities and enterprises to design high-performance media buying, conversion funnels, and marketing analytics that scale brand influence.
               </p>
 
               {/* Service Areas & Impact Bullet Points */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
                 <div className="flex gap-2.5">
-                  <div className="w-5 h-5 rounded-full bg-[#0c3773]/10 flex items-center justify-center shrink-0 mt-0.5">
-                    <Check className="w-3 h-3 text-[#0c3773]" />
+                  <div className="w-5 h-5 rounded-full bg-[#fcbf4a]/10 flex items-center justify-center shrink-0 mt-0.5">
+                    <Check className="w-3 h-3 text-[#fcbf4a]" />
                   </div>
                   <div>
-                    <h4 className="text-[16px] font-bold text-zinc-950">Institutional Outreach</h4>
-                    <p className="text-zinc-500 text-[14px] mt-0.5 leading-relaxed">Scaling recruitment with audience intelligence models.</p>
+                    <h4 className="text-[16px] font-bold text-white">Institutional Outreach</h4>
+                    <p className="text-zinc-400 text-[14px] mt-0.5 leading-relaxed">Scaling recruitment with audience intelligence models.</p>
                   </div>
                 </div>
                 <div className="flex gap-2.5">
-                  <div className="w-5 h-5 rounded-full bg-[#0c3773]/10 flex items-center justify-center shrink-0 mt-0.5">
-                    <Check className="w-3 h-3 text-[#0c3773]" />
+                  <div className="w-5 h-5 rounded-full bg-[#fcbf4a]/10 flex items-center justify-center shrink-0 mt-0.5">
+                    <Check className="w-3 h-3 text-[#fcbf4a]" />
                   </div>
                   <div>
-                    <h4 className="text-[16px] font-bold text-zinc-950">Precision Tracking</h4>
-                    <p className="text-zinc-500 text-[14px] mt-0.5 leading-relaxed">Deploying robust, GDPR-compliant attribution tracking.</p>
+                    <h4 className="text-[16px] font-bold text-white">Precision Tracking</h4>
+                    <p className="text-zinc-400 text-[14px] mt-0.5 leading-relaxed">Deploying robust, GDPR-compliant attribution tracking.</p>
                   </div>
                 </div>
               </div>
 
               {/* High-Impact Metrics Grid (from Reference) */}
-              <div className="grid grid-cols-3 gap-4 pt-6 pb-2 border-t border-zinc-200/80">
+              <div className="grid grid-cols-3 gap-4 pt-6 pb-2 border-t border-white/10">
                 <div className="space-y-1">
-                  <div className="text-2xl md:text-3xl font-sans font-black text-zinc-950 tracking-tight leading-none">1,500+</div>
-                  <div className="text-xs text-zinc-500 font-medium leading-tight">Projects Delivered</div>
+                  <div className="text-2xl md:text-3xl font-sans font-black text-white tracking-tight leading-none">1,500+</div>
+                  <div className="text-xs text-zinc-400 font-medium leading-tight">Projects Delivered</div>
                 </div>
                 <div className="space-y-1">
-                  <div className="text-2xl md:text-3xl font-sans font-black text-zinc-950 tracking-tight leading-none">500+</div>
-                  <div className="text-xs text-zinc-500 font-medium leading-tight">Active Clients</div>
+                  <div className="text-2xl md:text-3xl font-sans font-black text-white tracking-tight leading-none">500+</div>
+                  <div className="text-xs text-zinc-400 font-medium leading-tight">Active Clients</div>
                 </div>
                 <div className="space-y-1">
-                  <div className="text-2xl md:text-3xl font-sans font-black text-zinc-950 tracking-tight leading-none">7+ Years</div>
-                  <div className="text-xs text-zinc-500 font-medium leading-tight">Industry Experience</div>
+                  <div className="text-2xl md:text-3xl font-sans font-black text-white tracking-tight leading-none">7+ Years</div>
+                  <div className="text-xs text-zinc-400 font-medium leading-tight">Industry Experience</div>
                 </div>
               </div>
 
               <div className="pt-2">
                 <a 
                   href="#contact" 
-                  className="inline-flex items-center gap-2 text-[#0c3773] font-sans font-black text-xs uppercase tracking-widest hover:text-[#fcbf4a] transition-colors duration-300 group"
+                  className="inline-flex items-center gap-2 text-[#fcbf4a] font-sans font-black text-xs uppercase tracking-widest hover:text-white transition-colors duration-300 group"
                 >
                   <span>Explore Collaboration</span>
                   <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" />
@@ -1187,13 +1193,13 @@ export default function App() {
               </div>
             </div>
 
-            {/* Right Column: 3 Horizontal Moving Logo Sliders with Continuous Autoplay wrapped in a premium white container */}
+            {/* Right Column: 3 Horizontal Moving Logo Sliders with Continuous Autoplay wrapped in a premium dark container */}
             <div className="lg:col-span-6 relative w-full">
-              <div className="relative w-full bg-white border border-zinc-200/80 rounded-[2.5rem] p-6 md:p-8 shadow-sm overflow-hidden flex flex-col gap-7 z-10">
+              <div className="relative w-full bg-zinc-900 border border-white/5 rounded-lg p-6 md:p-8 shadow-sm overflow-hidden flex flex-col gap-7 z-10">
                 
                 {/* Fade out masks for left/right premium blur effect over the white container */}
-                <div className="absolute top-0 bottom-0 left-0 w-16 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
-                <div className="absolute top-0 bottom-0 right-0 w-16 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
+                <div className="absolute top-0 bottom-0 left-0 w-16 bg-gradient-to-r from-zinc-900 to-transparent z-10 pointer-events-none" />
+                <div className="absolute top-0 bottom-0 right-0 w-16 bg-gradient-to-l from-zinc-900 to-transparent z-10 pointer-events-none" />
 
                 {/* Row 1: Left -> Right */}
                 <div className="w-full overflow-hidden py-1">
@@ -1567,7 +1573,7 @@ export default function App() {
                   whileHover={{ y: -4, scale: 1.01 }}
                   onMouseEnter={() => setHoveredService(1)}
                   onMouseLeave={() => setHoveredService(null)}
-                  className={`transition-all duration-300 flex items-start gap-4 text-left relative group min-h-[160px] p-6 rounded-2xl border ${
+                  className={`transition-all duration-300 flex items-start gap-4 text-left relative group min-h-[160px] p-6 rounded-lg border ${
                     hoveredService === 1 
                       ? "bg-amber-50/10 border-amber-500/30 shadow-[0_20px_40px_-15px_rgba(252,191,74,0.15)] scale-[1.01]" 
                       : "bg-white border-zinc-200/90 shadow-[0_12px_36px_-15px_rgba(0,0,0,0.06)]"
@@ -1596,7 +1602,7 @@ export default function App() {
                   whileHover={{ y: -4, scale: 1.01 }}
                   onMouseEnter={() => setHoveredService(2)}
                   onMouseLeave={() => setHoveredService(null)}
-                  className={`transition-all duration-300 flex items-start gap-4 text-left relative group min-h-[160px] p-6 rounded-2xl border ${
+                  className={`transition-all duration-300 flex items-start gap-4 text-left relative group min-h-[160px] p-6 rounded-lg border ${
                     hoveredService === 2 
                       ? "bg-amber-50/10 border-amber-500/30 shadow-[0_20px_40px_-15px_rgba(252,191,74,0.15)] scale-[1.01]" 
                       : "bg-white border-zinc-200/90 shadow-[0_12px_36px_-15px_rgba(0,0,0,0.06)]"
@@ -1625,7 +1631,7 @@ export default function App() {
                   whileHover={{ y: -4, scale: 1.01 }}
                   onMouseEnter={() => setHoveredService(3)}
                   onMouseLeave={() => setHoveredService(null)}
-                  className={`transition-all duration-300 flex items-start gap-4 text-left relative group min-h-[160px] p-6 rounded-2xl border ${
+                  className={`transition-all duration-300 flex items-start gap-4 text-left relative group min-h-[160px] p-6 rounded-lg border ${
                     hoveredService === 3 
                       ? "bg-amber-50/10 border-amber-500/30 shadow-[0_20px_40px_-15px_rgba(252,191,74,0.15)] scale-[1.01]" 
                       : "bg-white border-zinc-200/90 shadow-[0_12px_36px_-15px_rgba(0,0,0,0.06)]"
@@ -1684,7 +1690,7 @@ export default function App() {
                   whileHover={{ y: -4, scale: 1.01 }}
                   onMouseEnter={() => setHoveredService(4)}
                   onMouseLeave={() => setHoveredService(null)}
-                  className={`transition-all duration-300 flex items-start gap-4 text-left relative group min-h-[160px] p-6 rounded-2xl border ${
+                  className={`transition-all duration-300 flex items-start gap-4 text-left relative group min-h-[160px] p-6 rounded-lg border ${
                     hoveredService === 4 
                       ? "bg-amber-50/10 border-amber-500/30 shadow-[0_20px_40px_-15px_rgba(252,191,74,0.15)] scale-[1.01]" 
                       : "bg-white border-zinc-200/90 shadow-[0_12px_36px_-15px_rgba(0,0,0,0.06)]"
@@ -1713,7 +1719,7 @@ export default function App() {
                   whileHover={{ y: -4, scale: 1.01 }}
                   onMouseEnter={() => setHoveredService(5)}
                   onMouseLeave={() => setHoveredService(null)}
-                  className={`transition-all duration-300 flex items-start gap-4 text-left relative group min-h-[160px] p-6 rounded-2xl border ${
+                  className={`transition-all duration-300 flex items-start gap-4 text-left relative group min-h-[160px] p-6 rounded-lg border ${
                     hoveredService === 5 
                       ? "bg-amber-50/10 border-amber-500/30 shadow-[0_20px_40px_-15px_rgba(252,191,74,0.15)] scale-[1.01]" 
                       : "bg-white border-zinc-200/90 shadow-[0_12px_36px_-15px_rgba(0,0,0,0.06)]"
@@ -1742,7 +1748,7 @@ export default function App() {
                   whileHover={{ y: -4, scale: 1.01 }}
                   onMouseEnter={() => setHoveredService(6)}
                   onMouseLeave={() => setHoveredService(null)}
-                  className={`transition-all duration-300 flex items-start gap-4 text-left relative group min-h-[160px] p-6 rounded-2xl border ${
+                  className={`transition-all duration-300 flex items-start gap-4 text-left relative group min-h-[160px] p-6 rounded-lg border ${
                     hoveredService === 6 
                       ? "bg-amber-50/10 border-amber-500/30 shadow-[0_20px_40px_-15px_rgba(252,191,74,0.15)] scale-[1.01]" 
                       : "bg-white border-zinc-200/90 shadow-[0_12px_36px_-15px_rgba(0,0,0,0.06)]"
@@ -1790,7 +1796,7 @@ export default function App() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               
               {/* 1. Performance Marketing */}
-              <div className="bg-white border border-zinc-200 rounded-xl p-5 flex items-start gap-4">
+              <div className="bg-white border border-zinc-200 rounded-lg p-5 flex items-start gap-4">
                 <div className="w-10 h-10 rounded-full bg-[#0c3773] text-white flex items-center justify-center shrink-0">
                   <Rocket className="w-4 h-4 text-[#fcbf4a]" />
                 </div>
@@ -1810,7 +1816,7 @@ export default function App() {
               </div>
 
               {/* 2. SEO */}
-              <div className="bg-white border border-zinc-200 rounded-xl p-5 flex items-start gap-4">
+              <div className="bg-white border border-zinc-200 rounded-lg p-5 flex items-start gap-4">
                 <div className="w-10 h-10 rounded-full bg-[#0c3773] text-white flex items-center justify-center shrink-0">
                   <Search className="w-4 h-4 text-[#fcbf4a]" />
                 </div>
@@ -1830,7 +1836,7 @@ export default function App() {
               </div>
 
               {/* 3. Web App Design & Development */}
-              <div className="bg-white border border-zinc-200 rounded-xl p-5 flex items-start gap-4">
+              <div className="bg-white border border-zinc-200 rounded-lg p-5 flex items-start gap-4">
                 <div className="w-10 h-10 rounded-full bg-[#0c3773] text-white flex items-center justify-center shrink-0">
                   <Code className="w-4 h-4 text-[#fcbf4a]" />
                 </div>
@@ -1850,7 +1856,7 @@ export default function App() {
               </div>
 
               {/* 4. Video Production */}
-              <div className="bg-white border border-zinc-200 rounded-xl p-5 flex items-start gap-4">
+              <div className="bg-white border border-zinc-200 rounded-lg p-5 flex items-start gap-4">
                 <div className="w-10 h-10 rounded-full bg-[#0c3773] text-white flex items-center justify-center shrink-0">
                   <Video className="w-4 h-4 text-[#fcbf4a]" />
                 </div>
@@ -1870,7 +1876,7 @@ export default function App() {
               </div>
 
               {/* 5. Social Media Management */}
-              <div className="bg-white border border-zinc-200 rounded-xl p-5 flex items-start gap-4">
+              <div className="bg-white border border-zinc-200 rounded-lg p-5 flex items-start gap-4">
                 <div className="w-10 h-10 rounded-full bg-[#0c3773] text-white flex items-center justify-center shrink-0">
                   <Smartphone className="w-4 h-4 text-[#fcbf4a]" />
                 </div>
@@ -1890,7 +1896,7 @@ export default function App() {
               </div>
 
               {/* 6. Graphics & Print Media */}
-              <div className="bg-white border border-zinc-200 rounded-xl p-5 flex items-start gap-4">
+              <div className="bg-white border border-zinc-200 rounded-lg p-5 flex items-start gap-4">
                 <div className="w-10 h-10 rounded-full bg-[#0c3773] text-white flex items-center justify-center shrink-0">
                   <Palette className="w-4 h-4 text-[#fcbf4a]" />
                 </div>
@@ -1961,7 +1967,7 @@ export default function App() {
             
             {/* Left Column: Metrics & Targets Tracker */}
             <div className="lg:col-span-6 space-y-8 order-2 lg:order-1">
-              <div className="p-8 rounded-3xl bg-zinc-50 border border-zinc-200/80 space-y-6 relative overflow-hidden">
+              <div className="p-8 rounded-lg bg-zinc-50 border border-zinc-200/80 space-y-6 relative overflow-hidden">
                 <div className="absolute -right-12 -top-12 w-32 h-32 bg-[#0c3773]/5 rounded-full blur-3xl pointer-events-none" />
                 <div className="flex items-center justify-between border-b border-zinc-200/80 pb-4">
                   <span className="text-[10px] font-mono tracking-wider text-[#0c3773] font-bold uppercase">CORE METRIC TELEMETRY</span>
@@ -1974,25 +1980,25 @@ export default function App() {
 
                 <div className="space-y-4 font-sans text-zinc-800">
                   <div className="grid grid-cols-2 gap-4">
-                    <div className="p-5 bg-white rounded-2xl border border-zinc-200/60 flex flex-col justify-between">
+                    <div className="p-5 bg-white rounded-lg border border-zinc-200/60 flex flex-col justify-between">
                       <span className="text-xs text-zinc-500 font-semibold uppercase font-mono tracking-widest text-[10px]">General Goal</span>
                       <h4 className="text-base font-bold text-zinc-900 tracking-tight mt-2">Every project has a goal.</h4>
                     </div>
-                    <div className="p-5 bg-white rounded-2xl border border-zinc-200/60 font-mono">
+                    <div className="p-5 bg-white rounded-lg border border-zinc-200/60 font-mono">
                       <p className="text-2xl font-black text-[#0c3773]">+312%</p>
                       <span className="text-[9px] text-zinc-500 uppercase tracking-widest block mt-1">More leads.</span>
                     </div>
-                    <div className="p-5 bg-white rounded-2xl border border-zinc-200/60 font-mono">
+                    <div className="p-5 bg-white rounded-lg border border-zinc-200/60 font-mono">
                       <p className="text-2xl font-black text-zinc-900">+240%</p>
                       <span className="text-[9px] text-zinc-500 uppercase tracking-widest block mt-1">More visibility.</span>
                     </div>
-                    <div className="p-5 bg-white rounded-2xl border border-zinc-200/60 font-mono">
+                    <div className="p-5 bg-white rounded-lg border border-zinc-200/60 font-mono">
                       <p className="text-2xl font-black text-[#0c3773]">5.1x</p>
                       <span className="text-[9px] text-zinc-500 uppercase tracking-widest block mt-1">More engagement.</span>
                     </div>
                   </div>
                   
-                  <div className="p-5 bg-[#0c3773]/5 border border-[#0c3773]/15 rounded-2xl flex items-center justify-between font-mono">
+                  <div className="p-5 bg-[#0c3773]/5 border border-[#0c3773]/15 rounded-lg flex items-center justify-between font-mono">
                     <div>
                       <span className="text-[9px] text-zinc-500 uppercase tracking-widest block">Primary Objective</span>
                       <p className="text-lg font-black text-[#0c3773]">More growth.</p>
@@ -2057,7 +2063,7 @@ export default function App() {
               </div>
 
               {/* Styled statement card keeping text exactly */}
-              <div className="p-8 rounded-2xl bg-[#0c3773]/95 border border-[#0c3773] text-white shadow-md relative overflow-hidden group">
+              <div className="p-8 rounded-lg bg-[#0c3773]/95 border border-[#0c3773] text-white shadow-md relative overflow-hidden group">
                 <div className="absolute top-0 left-0 w-1 h-full bg-[#fcbf4a]" />
                 <p className="text-white text-base md:text-lg font-semibold leading-relaxed">
                   Because your brand deserves more than copy-paste marketing.
@@ -2079,7 +2085,7 @@ export default function App() {
                 ].map((benefit, idx) => (
                   <div 
                     key={idx}
-                    className="p-6 rounded-2xl bg-zinc-50 border border-zinc-200/80 hover:border-[#0c3773]/20 hover:shadow-md transition-all duration-300 flex items-start space-x-4 group"
+                    className="p-6 rounded-lg bg-zinc-50 border border-zinc-200/80 hover:border-[#0c3773]/20 hover:shadow-md transition-all duration-300 flex items-start space-x-4 group"
                   >
                     <div className="w-6 h-6 rounded-full bg-[#0c3773]/10 border border-[#0c3773]/20 flex items-center justify-center text-[#0c3773] shrink-0 mt-0.5 group-hover:bg-[#0c3773] group-hover:text-white transition-all duration-300">
                       <Check className="w-3.5 h-3.5" strokeWidth={3} />
@@ -2126,11 +2132,11 @@ export default function App() {
 
               {/* Supporting context / Micro stats panels */}
               <div className="grid grid-cols-2 gap-4 pt-4 border-t border-white/10">
-                <div className="bg-zinc-900/50 backdrop-blur border border-white/5 p-5 rounded-2xl">
+                <div className="bg-zinc-900/50 backdrop-blur border border-white/5 p-5 rounded-lg">
                   <span className="block text-2xl font-black text-[#fcbf4a] font-mono">100%</span>
                   <span className="text-xs text-zinc-400 font-medium tracking-wide">Data-Driven Iterations</span>
                 </div>
-                <div className="bg-zinc-900/50 backdrop-blur border border-white/5 p-5 rounded-2xl">
+                <div className="bg-zinc-900/50 backdrop-blur border border-white/5 p-5 rounded-lg">
                   <span className="block text-2xl font-black text-white font-mono">5-Step</span>
                   <span className="text-xs text-zinc-400 font-medium tracking-wide">Optimization Loop</span>
                 </div>
@@ -2161,10 +2167,10 @@ export default function App() {
                 {[...DATA_PROCESS_STEPS, ...DATA_PROCESS_STEPS].map((step, idx) => (
                   <div 
                     key={idx}
-                    className="w-[280px] sm:w-[320px] shrink-0 bg-zinc-900/40 backdrop-blur-md border border-white/5 rounded-2xl p-6 sm:p-8 relative group hover:border-[#fcbf4a]/35 hover:bg-zinc-900/70 transition-all duration-500 cursor-pointer flex flex-col justify-between min-h-[280px] hover:shadow-[0_15px_30px_-5px_rgba(252,191,74,0.03)]"
+                    className="w-[280px] sm:w-[320px] shrink-0 bg-zinc-900/40 backdrop-blur-md border border-white/5 rounded-lg p-6 sm:p-8 relative group hover:border-[#fcbf4a]/35 hover:bg-zinc-900/70 transition-all duration-500 cursor-pointer flex flex-col justify-between min-h-[280px] hover:shadow-[0_15px_30px_-5px_rgba(252,191,74,0.03)]"
                   >
                     {/* Golden accent linear path highlight */}
-                    <div className="absolute top-0 right-0 w-12 h-12 border-t border-r border-[#fcbf4a]/10 group-hover:border-[#fcbf4a]/40 rounded-tr-2xl transition-all duration-500 pointer-events-none" />
+                    <div className="absolute top-0 right-0 w-12 h-12 border-t border-r border-[#fcbf4a]/10 group-hover:border-[#fcbf4a]/40 rounded-tr-lg transition-all duration-500 pointer-events-none" />
 
                     <div className="space-y-4">
                       <div className="flex items-center justify-between">
@@ -2221,7 +2227,7 @@ export default function App() {
             {DATA_TESTIMONIALS.map((t) => (
               <div 
                 key={t.id}
-                className="bg-white rounded-2xl p-6 sm:p-8 border border-zinc-200/80 hover:border-zinc-300 duration-400 transition-all hover:shadow-md flex flex-col justify-between min-h-[260px] relative"
+                className="bg-white rounded-lg p-6 sm:p-8 border border-zinc-200/80 hover:border-zinc-300 duration-400 transition-all hover:shadow-md flex flex-col justify-between min-h-[260px] relative"
               >
                 <div className="space-y-4">
                   {/* Star Ratings */}
