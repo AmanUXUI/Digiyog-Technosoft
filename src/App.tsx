@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Search, X, ArrowRight, Send, Check, Menu, ChevronRight, Globe, Users, Award, Sparkles, TrendingUp, Code, Video, Share2, Palette, ChevronUp, ChevronDown, Lightbulb, Target, Settings, Rocket, Star, Quote, Calendar, Clock, MessageCircle, Megaphone, Smartphone, Laptop, Eye, ShoppingCart } from "lucide-react";
+import { Search, X, ArrowRight, Send, Check, Menu, ChevronRight, Globe, Users, Award, Sparkles, TrendingUp, Code, Video, Share2, Palette, ChevronUp, ChevronDown, Lightbulb, Target, Settings, Rocket, Star, Quote, Calendar, Clock, MessageCircle, Megaphone, Smartphone, Laptop, Eye, ShoppingCart, Phone } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { LiquidMetal, MeshGradient } from '@paper-design/shaders-react';
 import { ShapeGrid } from "./components/ShapeGrid";
@@ -2439,6 +2439,97 @@ export default function App() {
             ))}
           </div>
 
+        </div>
+      </section>
+
+
+      {/* ==================== GROWTH READINESS SECTION ==================== */}
+      <section id="growth-readiness" className="relative z-20 w-full bg-white text-zinc-950 py-20 px-6 md:px-12 border-t border-zinc-200/60 overflow-hidden">
+        {/* Subtle premium background glow matching home page */}
+        <div className="absolute top-0 left-0 w-96 h-96 bg-[#0c3773]/3 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#fcbf4a]/3 rounded-full blur-[120px] pointer-events-none" />
+
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+            
+            {/* Left Content Column */}
+            <div className="lg:col-span-7 space-y-8 text-left">
+              <div className="space-y-4">
+                <span className="text-[#0c3773] text-xs sm:text-sm font-sans font-bold tracking-[0.16em] uppercase block">
+                  GROWTH INSIGHTS
+                </span>
+                
+                <h2 className="leading-[1.15] font-sans font-normal text-[42px] text-zinc-950 tracking-[-0.03em] text-left">
+                  Is Your Business Ready to <br />
+                  <span className="relative inline-block text-[#0c3773] mt-2 text-[48px] font-black">
+                    Grow with Strategic Web Design <br className="hidden sm:inline" />
+                    and Digital Marketing?
+                    <svg 
+                      className="absolute left-0 -bottom-3 w-full h-[15px] text-[#fcbf4a]" 
+                      viewBox="0 0 320 18" 
+                      fill="none" 
+                      preserveAspectRatio="none" 
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path 
+                        d="M4 12 C 100 4, 220 4, 316 12" 
+                        stroke="currentColor" 
+                        strokeWidth="4" 
+                        strokeLinecap="round" 
+                        strokeLinejoin="round" 
+                      />
+                    </svg>
+                  </span>
+                </h2>
+              </div>
+
+              {/* Vertical left accent matching home page's narrative layouts */}
+              <div className="border-l-2 border-[#0c3773]/30 pl-6">
+                <p className="text-zinc-600 font-sans text-base md:text-lg leading-relaxed max-w-2xl font-medium">
+                  We bring innovative ideas in web design along with effective marketing techniques that can work wonders for your business in making you stand out.
+                </p>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="pt-4 flex flex-col sm:flex-row items-start sm:items-center gap-4">
+                <button
+                  onClick={() => setIsBookingOpen(true)}
+                  className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-[#fcbf4a] to-[#f3a91e] hover:from-[#fcbf4a] hover:to-[#fcbf4a] text-black font-sans font-black text-xs uppercase tracking-widest rounded-lg transition-all duration-300 hover:scale-[1.03] active:scale-[0.98] shadow-md hover:shadow-lg flex items-center justify-center gap-2.5 cursor-pointer shrink-0"
+                >
+                  <span>Get my free proposal</span>
+                  <ArrowRight className="w-4 h-4 shrink-0" />
+                </button>
+
+                <a
+                  href="https://wa.me/1234567890"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full sm:w-auto px-8 py-4 bg-[#25D366] hover:bg-[#20ba59] text-white font-sans font-black text-xs uppercase tracking-widest rounded-lg transition-all duration-300 hover:scale-[1.03] active:scale-[0.98] shadow-md hover:shadow-lg flex items-center justify-center gap-2.5 cursor-pointer shrink-0"
+                >
+                  <MessageCircle className="w-4 h-4 fill-current shrink-0" />
+                  <span>Connect on WhatsApp</span>
+                </a>
+              </div>
+
+
+            </div>
+
+            {/* Right Photo Column */}
+            <div className="lg:col-span-5 relative flex justify-center lg:justify-end">
+              {/* Back subtle gold and blue ambient glow */}
+              <div className="absolute -inset-10 bg-gradient-to-tr from-[#0c3773]/5 to-[#fcbf4a]/5 rounded-full blur-3xl pointer-events-none" />
+              
+              <div className="relative w-full max-w-[380px] lg:max-w-md aspect-[3/4] rounded-3xl overflow-hidden border border-zinc-200/60 shadow-[0_24px_60px_-15px_rgba(12,55,115,0.08)] bg-zinc-50 group">
+                <img 
+                  src="https://imgh.in/host/dqa957" 
+                  alt="Strategic Digital Specialist" 
+                  className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-103"
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+            </div>
+
+          </div>
         </div>
       </section>
 
