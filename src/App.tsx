@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "motion/react";
 import { LiquidMetal, MeshGradient } from '@paper-design/shaders-react';
 import { ShapeGrid } from "./components/ShapeGrid";
 import Particles from "./components/Particles";
+import AboutUsPage from "./components/AboutUsPage";
 
 const getCategoryIcon = (category: string) => {
   switch (category) {
@@ -499,10 +500,41 @@ export default function App() {
   const [proposalWebsite, setProposalWebsite] = useState("");
   const [proposalSubmitted, setProposalSubmitted] = useState(false);
 
-  // Interactive UI states for the newly added PDF sections
+  // Page routing state
+  const [currentPage, setCurrentPage] = useState<"home" | "about">("home");
   const [isBookingOpen, setIsBookingOpen] = useState(false);
   const [isCaseStudiesOpen, setIsCaseStudiesOpen] = useState(false);
   const [isArticlesOpen, setIsArticlesOpen] = useState(false);
+  const [isCareersOpen, setIsCareersOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
+
+  const handleNavigateHomeAndScroll = (elementId: string) => {
+    if (currentPage !== "home") {
+      setCurrentPage("home");
+      setTimeout(() => {
+        const el = document.getElementById(elementId);
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth", block: elementId === "proposal-form" ? "center" : "start" });
+        }
+      }, 150);
+    } else {
+      const el = document.getElementById(elementId);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: elementId === "proposal-form" ? "center" : "start" });
+      }
+    }
+  };
+
+  const [careersFormData, setCareersFormData] = useState({
+    name: "",
+    email: "",
+    position: "React Developer",
+    resume: "",
+    portfolio: ""
+  });
+  const [careersSubmitted, setCareersSubmitted] = useState(false);
+
   const [showBottomCTA, setShowBottomCTA] = useState(true);
   const [activeArticle, setActiveArticle] = useState<any | null>(null);
   const [caseStudyFilter, setCaseStudyFilter] = useState("ALL");
@@ -598,7 +630,10 @@ export default function App() {
         
         {/* Left Side: Logo Container (exact 25% width) */}
         <div className="w-1/4 sm:w-[25%] flex items-center justify-start">
-          <div className="cursor-pointer relative group flex items-center h-12 sm:h-14 md:h-16 lg:h-18">
+          <div className="cursor-pointer relative group flex items-center h-12 sm:h-14 md:h-16 lg:h-18" onClick={() => {
+            setCurrentPage("home");
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }}>
             <img 
               referrerPolicy="no-referrer"
               src="https://imgh.in/host/36nsc8" 
@@ -609,72 +644,277 @@ export default function App() {
         </div>
  
         {/* Center: Main Navigation (Desktop) */}
-        <nav className="hidden lg:flex flex-1 items-center justify-center space-x-6 text-xs font-semibold tracking-[0.2em] text-zinc-600 font-satoshi">
-          {[
-            { 
-              name: "WORK", 
-              id: "work",
-              items: ["Case Studies", "Brands", "Creative Index", "International Projects"]
-            },
-            { 
-              name: "EXPERTISE", 
-              id: "expertise",
-              items: ["Connected Experiences", "Data & Intelligence", "Media Orchestration", "Loyalty & CRM"]
-            },
-            { 
-              name: "PARTNERS", 
-              id: "partners",
-              items: ["Salesforce", "Adobe", "Google Marketing Platform", "Meta Business"]
-            },
-            { 
-              name: "CAREERS", 
-              id: "careers",
-              items: ["Our Culture", "Open Roles", "Life at Digiyog"]
-            }
-          ].map((menu) => (
-            <div 
-              key={menu.id} 
-              className="relative cursor-pointer py-1.5 px-3 rounded-full hover:bg-zinc-100/60 transition-colors duration-300"
-              onMouseEnter={() => setActiveMenu(menu.id)}
-              onMouseLeave={() => setActiveMenu(null)}
-            >
-              <span className="hover:text-[#0c3773] transition-colors duration-300">
-                {menu.name}
-              </span>
-              
-              {/* Active Menu indicator line */}
-              {activeMenu === menu.id && (
-                <motion.div 
-                  layoutId="header-active-line" 
-                  className="absolute bottom-[-2px] left-4 right-4 h-[2px] bg-[#0c3773]"
-                  transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                />
-              )}
-            </div>
-          ))}
-        </nav>
- 
-        {/* Right Side: Interactive Utilities */}
-        <div className="w-auto lg:w-[25%] flex items-center justify-end">
-          
-          {/* CONTACT US (Pill shape, smooth scrolls to inline form, keeping user on page with no popups) */}
+        <nav className="hidden lg:flex flex-1 items-center justify-center space-x-2 text-xs font-semibold tracking-[0.2em] text-zinc-600 font-satoshi">
+          {/* About Us */}
           <button 
-            id="contact-btn"
             onClick={() => {
-              const el = document.getElementById("proposal-form");
-              if (el) {
-                el.scrollIntoView({ behavior: "smooth", block: "center" });
+              setCurrentPage("about");
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }}
+            className={`cursor-pointer py-1.5 px-4 rounded-full hover:bg-zinc-100/60 transition-colors duration-300 hover:text-[#0c3773] text-[10px] md:text-xs tracking-[0.16em] uppercase font-bold ${
+              currentPage === "about" ? "bg-[#0c3773]/10 text-[#0c3773]" : ""
+            }`}
+          >
+            About Us
+          </button>
+
+          {/* Services with Hover Dropdown */}
+          <div 
+            className="relative"
+            onMouseEnter={() => setActiveMenu("services")}
+            onMouseLeave={() => setActiveMenu(null)}
+          >
+            <button 
+              onClick={() => handleNavigateHomeAndScroll("services")}
+              className="cursor-pointer py-1.5 px-4 rounded-full hover:bg-zinc-100/60 transition-colors duration-300 hover:text-[#0c3773] flex items-center gap-1 text-[10px] md:text-xs tracking-[0.16em] uppercase font-bold"
+            >
+              <span>Services</span>
+              <ChevronDown className="w-3 h-3 text-zinc-500 shrink-0" />
+            </button>
+
+            {/* Dropdown overlay */}
+            <AnimatePresence>
+              {activeMenu === "services" && (
+                <motion.div
+                  initial={{ opacity: 0, y: 12, scale: 0.98 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: 12, scale: 0.98 }}
+                  transition={{ duration: 0.15 }}
+                  className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-72 bg-white border border-zinc-200 rounded-xl shadow-[0_12px_30px_rgba(0,0,0,0.12)] p-2 z-[99] text-left"
+                >
+                  {[
+                    { name: "Performance Marketing", index: 1 },
+                    { name: "SEO (Search Engine Optimization)", index: 2 },
+                    { name: "Web App Design & Development", index: 3 },
+                    { name: "Video Production", index: 4 },
+                    { name: "SMM (Social Media Management)", index: 5 },
+                    { name: "Graphics & Print Media", index: 6 }
+                  ].map((srv) => (
+                    <button
+                      key={srv.index}
+                      onClick={() => {
+                        handleNavigateHomeAndScroll("services");
+                        setHoveredService(srv.index);
+                        setActiveMenu(null);
+                      }}
+                      className="block w-full text-left px-4 py-2.5 text-[11px] font-extrabold text-zinc-600 hover:text-[#0c3773] hover:bg-zinc-50 rounded-lg transition-colors uppercase tracking-[0.12em] font-satoshi cursor-pointer"
+                    >
+                      {srv.name}
+                    </button>
+                  ))}
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+
+          {/* Case Studies */}
+          <button 
+            onClick={() => {
+              if (currentPage !== "home") {
+                setCurrentPage("home");
+                setTimeout(() => {
+                  const el = document.getElementById("case-studies");
+                  if (el) el.scrollIntoView({ behavior: "smooth" });
+                  setIsCaseStudiesOpen(true);
+                }, 150);
+              } else {
+                const el = document.getElementById("case-studies");
+                if (el) el.scrollIntoView({ behavior: "smooth" });
+                setIsCaseStudiesOpen(true);
               }
             }}
-            className="inline-flex items-center text-[10px] md:text-xs font-bold tracking-[0.2em] text-[#0c3773] border border-[#0c3773]/20 bg-[#0c3773]/5 hover:bg-[#0c3773] hover:text-white hover:border-transparent px-6 py-2.5 rounded-full transition-all duration-350 active:scale-95 cursor-pointer font-satoshi animate-pulse"
+            className="cursor-pointer py-1.5 px-4 rounded-full hover:bg-zinc-100/60 transition-colors duration-300 hover:text-[#0c3773] text-[10px] md:text-xs tracking-[0.16em] uppercase font-bold"
+          >
+            Case Studies
+          </button>
+
+          {/* Career */}
+          <button 
+            onClick={() => setIsCareersOpen(true)}
+            className="cursor-pointer py-1.5 px-4 rounded-full hover:bg-zinc-100/60 transition-colors duration-300 hover:text-[#0c3773] text-[10px] md:text-xs tracking-[0.16em] uppercase font-bold"
+          >
+            Career
+          </button>
+
+          {/* Blogs */}
+          <button 
+            onClick={() => setIsArticlesOpen(true)}
+            className="cursor-pointer py-1.5 px-4 rounded-full hover:bg-zinc-100/60 transition-colors duration-300 hover:text-[#0c3773] text-[10px] md:text-xs tracking-[0.16em] uppercase font-bold"
+          >
+            Blogs
+          </button>
+        </nav>
+ 
+        {/* Right Side: Interactive Utilities & Mobile Hamburger */}
+        <div className="w-auto lg:w-[25%] flex items-center justify-end gap-3">
+          
+          {/* CONTACT US (Pill shape, smooth scrolls to inline form) */}
+          <button 
+            id="contact-btn"
+            onClick={() => handleNavigateHomeAndScroll("proposal-form")}
+            className="inline-flex items-center text-[10px] md:text-xs font-bold tracking-[0.2em] text-[#0c3773] border border-[#0c3773]/20 bg-[#0c3773]/5 hover:bg-[#0c3773] hover:text-white hover:border-transparent px-5 py-2 sm:px-6 sm:py-2.5 rounded-full transition-all duration-350 active:scale-95 cursor-pointer font-satoshi animate-pulse shrink-0"
           >
             CONTACT US
           </button>
+
+          {/* Mobile Menu Burger Trigger */}
+          <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="lg:hidden w-10 h-10 rounded-full border border-zinc-200 bg-white/60 backdrop-blur-sm flex items-center justify-center hover:bg-zinc-50 active:scale-95 transition-all text-zinc-700 cursor-pointer shrink-0"
+            aria-label="Toggle Menu"
+          >
+            {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </button>
+
+          {/* Mobile Dropdown Navigation Menu */}
+          <AnimatePresence>
+            {isMobileMenuOpen && (
+              <motion.div
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.25 }}
+                className="absolute top-[calc(100%+8px)] left-0 right-0 z-50 bg-white/95 backdrop-blur-lg border border-zinc-200/70 rounded-2xl shadow-xl p-5 flex flex-col gap-3 text-left lg:hidden font-satoshi"
+              >
+                {/* About Us */}
+                <button
+                  onClick={() => {
+                    setCurrentPage("about");
+                    setIsMobileMenuOpen(false);
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                  }}
+                  className="text-xs font-bold tracking-[0.16em] text-zinc-700 hover:text-[#0c3773] uppercase py-2 border-b border-zinc-100 text-left cursor-pointer"
+                >
+                  About Us
+                </button>
+
+                {/* Services (Accordion) */}
+                <div className="flex flex-col">
+                  <button
+                    onClick={() => setIsMobileServicesOpen(!isMobileServicesOpen)}
+                    className="flex items-center justify-between text-xs font-bold tracking-[0.16em] text-zinc-700 hover:text-[#0c3773] uppercase py-2 border-b border-zinc-100 text-left cursor-pointer"
+                  >
+                    <span>Services</span>
+                    <ChevronDown className={`w-3.5 h-3.5 text-zinc-500 transition-transform duration-300 ${isMobileServicesOpen ? 'rotate-180' : ''}`} />
+                  </button>
+
+                  <AnimatePresence>
+                    {isMobileServicesOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        className="overflow-hidden flex flex-col gap-2 pl-4 pt-2 pb-1"
+                      >
+                        {[
+                          { name: "Performance Marketing", index: 1 },
+                          { name: "SEO (Search Engine Optimization)", index: 2 },
+                          { name: "Web App Design & Development", index: 3 },
+                          { name: "Video Production", index: 4 },
+                          { name: "SMM (Social Media Management)", index: 5 },
+                          { name: "Graphics & Print Media", index: 6 }
+                        ].map((srv) => (
+                          <button
+                            key={srv.index}
+                            onClick={() => {
+                              handleNavigateHomeAndScroll("services");
+                              setHoveredService(srv.index);
+                              setIsMobileMenuOpen(false);
+                            }}
+                            className="text-[11px] font-bold text-zinc-500 hover:text-amber-600 py-1.5 text-left border-l border-zinc-200 pl-3 uppercase tracking-wider cursor-pointer"
+                          >
+                            {srv.name}
+                          </button>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+
+                {/* Case Studies */}
+                <button
+                  onClick={() => {
+                    setIsMobileMenuOpen(false);
+                    if (currentPage !== "home") {
+                      setCurrentPage("home");
+                      setTimeout(() => {
+                        const el = document.getElementById("case-studies");
+                        if (el) el.scrollIntoView({ behavior: "smooth" });
+                        setIsCaseStudiesOpen(true);
+                      }, 150);
+                    } else {
+                      const el = document.getElementById("case-studies");
+                      if (el) el.scrollIntoView({ behavior: "smooth" });
+                      setIsCaseStudiesOpen(true);
+                    }
+                  }}
+                  className="text-xs font-bold tracking-[0.16em] text-zinc-700 hover:text-[#0c3773] uppercase py-2 border-b border-zinc-100 text-left cursor-pointer"
+                >
+                  Case Studies
+                </button>
+
+                {/* Career */}
+                <button
+                  onClick={() => {
+                    setIsCareersOpen(true);
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className="text-xs font-bold tracking-[0.16em] text-zinc-700 hover:text-[#0c3773] uppercase py-2 border-b border-zinc-100 text-left cursor-pointer"
+                >
+                  Career
+                </button>
+
+                {/* Blogs */}
+                <button
+                  onClick={() => {
+                    setIsArticlesOpen(true);
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className="text-xs font-bold tracking-[0.16em] text-zinc-700 hover:text-[#0c3773] uppercase py-2 border-b border-zinc-100 text-left cursor-pointer"
+                >
+                  Blogs
+                </button>
+
+                {/* Contact Us */}
+                <button
+                  onClick={() => {
+                    handleNavigateHomeAndScroll("proposal-form");
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className="text-xs font-bold tracking-[0.16em] text-[#0c3773] hover:text-amber-600 uppercase py-2 text-left cursor-pointer"
+                >
+                  Contact Us
+                </button>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </header>
 
-      {/* 3. HERO INSANELY BEAUTIFUL TYPOGRAPHY BLOCK */}
-      <main className="relative z-10 w-full px-6 pt-28 pb-12 md:px-12 md:pt-36 lg:pt-40 flex-grow flex items-center min-h-[70vh] md:min-h-[80vh] overflow-hidden bg-white text-zinc-950">
+      <AnimatePresence mode="wait">
+        {currentPage === "about" ? (
+          <motion.div
+            key="about-page"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.3 }}
+          >
+            <AboutUsPage 
+              onNavigateHomeAndScroll={handleNavigateHomeAndScroll} 
+              setIsBookingOpen={setIsBookingOpen} 
+            />
+          </motion.div>
+        ) : (
+          <motion.div
+            key="home-page"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            {/* 3. HERO INSANELY BEAUTIFUL TYPOGRAPHY BLOCK */}
+            <main className="relative z-10 w-full px-6 pt-28 pb-12 md:px-12 md:pt-36 lg:pt-40 flex-grow flex items-center min-h-[70vh] md:min-h-[80vh] overflow-hidden bg-white text-zinc-950">
         
         {/* Background Particles */}
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
@@ -1575,7 +1815,7 @@ export default function App() {
                   transition={{ type: "spring", stiffness: 300, damping: 25 }}
                   onMouseEnter={() => setHoveredService(1)}
                   onMouseLeave={() => setHoveredService(null)}
-                  className={`transition-all duration-300 flex items-start gap-4 text-left relative group h-[180px] p-6 rounded-2xl border ${
+                  className={`transition-all duration-300 flex items-start gap-4 text-left relative group h-[190px] p-5 rounded-2xl border ${
                     hoveredService === 1 
                       ? "bg-white border-amber-400/40 shadow-[0_20px_45px_-12px_rgba(252,191,74,0.18)]" 
                       : "bg-white/80 backdrop-blur-sm border-zinc-200/80 shadow-[0_8px_30px_rgba(0,0,0,0.02)]"
@@ -1593,16 +1833,32 @@ export default function App() {
                         Reach the right audience, generate qualified leads, and maximize every advertising rupee through data-backed campaigns.
                       </p>
                     </div>
-                    <div className="flex flex-wrap gap-1">
-                      {["Meta Ads", "Google Ads", "Lead Gen", "Conversion"].map((tag, i) => (
-                        <span key={i} className={`text-[10px] font-mono font-bold px-2 py-0.5 rounded border transition-colors duration-300 ${
-                          hoveredService === 1 
-                            ? "bg-amber-500/10 text-amber-700 border-amber-500/15" 
-                            : "bg-zinc-100 text-zinc-500 border-zinc-200/60"
-                        }`}>
-                          {tag}
-                        </span>
-                      ))}
+                    <div className="flex items-center justify-between gap-2 mt-auto pt-1 w-full">
+                      <div className="flex flex-wrap gap-1">
+                        {["Meta Ads", "Google Ads", "Lead Gen", "Conversion"].map((tag, i) => (
+                          <span key={i} className={`text-[10px] font-mono font-bold px-1.5 py-0.5 rounded border transition-colors duration-300 ${
+                            hoveredService === 1 
+                              ? "bg-amber-500/10 text-amber-700 border-amber-500/15" 
+                              : "bg-zinc-100 text-zinc-500 border-zinc-200/60"
+                          }`}>
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                      <button
+                        onClick={() => {
+                          const contactSec = document.getElementById("contact");
+                          if (contactSec) {
+                            contactSec.scrollIntoView({ behavior: "smooth" });
+                          }
+                        }}
+                        className={`text-[10px] font-mono font-extrabold tracking-wider uppercase flex items-center gap-0.5 shrink-0 transition-all duration-300 cursor-pointer ${
+                          hoveredService === 1 ? "text-amber-600 hover:text-amber-700" : "text-[#0c3773]/85 hover:text-[#0c3773]"
+                        }`}
+                      >
+                        Learn More
+                        <ChevronRight className="w-3.5 h-3.5" />
+                      </button>
                     </div>
                   </div>
 
@@ -1623,7 +1879,7 @@ export default function App() {
                   transition={{ type: "spring", stiffness: 300, damping: 25 }}
                   onMouseEnter={() => setHoveredService(2)}
                   onMouseLeave={() => setHoveredService(null)}
-                  className={`transition-all duration-300 flex items-start gap-4 text-left relative group h-[180px] p-6 rounded-2xl border ${
+                  className={`transition-all duration-300 flex items-start gap-4 text-left relative group h-[190px] p-5 rounded-2xl border ${
                     hoveredService === 2 
                       ? "bg-white border-amber-400/40 shadow-[0_20px_45px_-12px_rgba(252,191,74,0.18)]" 
                       : "bg-white/80 backdrop-blur-sm border-zinc-200/80 shadow-[0_8px_30px_rgba(0,0,0,0.02)]"
@@ -1641,16 +1897,32 @@ export default function App() {
                         Get found when customers are searching. We help businesses improve rankings, increase organic visibility, and drive traffic that converts.
                       </p>
                     </div>
-                    <div className="flex flex-wrap gap-1">
-                      {["Technical SEO", "On-Page", "Keyword Strategy", "Local SEO"].map((tag, i) => (
-                        <span key={i} className={`text-[10px] font-mono font-bold px-2 py-0.5 rounded border transition-colors duration-300 ${
-                          hoveredService === 2 
-                            ? "bg-amber-500/10 text-amber-700 border-amber-500/15" 
-                            : "bg-zinc-100 text-zinc-500 border-zinc-200/60"
-                        }`}>
-                          {tag}
-                        </span>
-                      ))}
+                    <div className="flex items-center justify-between gap-2 mt-auto pt-1 w-full">
+                      <div className="flex flex-wrap gap-1">
+                        {["Technical SEO", "On-Page", "Keyword Strategy", "Local SEO"].map((tag, i) => (
+                          <span key={i} className={`text-[10px] font-mono font-bold px-1.5 py-0.5 rounded border transition-colors duration-300 ${
+                            hoveredService === 2 
+                              ? "bg-amber-500/10 text-amber-700 border-amber-500/15" 
+                              : "bg-zinc-100 text-zinc-500 border-zinc-200/60"
+                          }`}>
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                      <button
+                        onClick={() => {
+                          const contactSec = document.getElementById("contact");
+                          if (contactSec) {
+                            contactSec.scrollIntoView({ behavior: "smooth" });
+                          }
+                        }}
+                        className={`text-[10px] font-mono font-extrabold tracking-wider uppercase flex items-center gap-0.5 shrink-0 transition-all duration-300 cursor-pointer ${
+                          hoveredService === 2 ? "text-amber-600 hover:text-amber-700" : "text-[#0c3773]/85 hover:text-[#0c3773]"
+                        }`}
+                      >
+                        Learn More
+                        <ChevronRight className="w-3.5 h-3.5" />
+                      </button>
                     </div>
                   </div>
 
@@ -1671,7 +1943,7 @@ export default function App() {
                   transition={{ type: "spring", stiffness: 300, damping: 25 }}
                   onMouseEnter={() => setHoveredService(3)}
                   onMouseLeave={() => setHoveredService(null)}
-                  className={`transition-all duration-300 flex items-start gap-4 text-left relative group h-[180px] p-6 rounded-2xl border ${
+                  className={`transition-all duration-300 flex items-start gap-4 text-left relative group h-[190px] p-5 rounded-2xl border ${
                     hoveredService === 3 
                       ? "bg-white border-amber-400/40 shadow-[0_20px_45px_-12px_rgba(252,191,74,0.18)]" 
                       : "bg-white/80 backdrop-blur-sm border-zinc-200/80 shadow-[0_8px_30px_rgba(0,0,0,0.02)]"
@@ -1689,16 +1961,32 @@ export default function App() {
                         Great brands deserve great digital experiences. We design and develop websites that are fast, scalable, and built around UX.
                       </p>
                     </div>
-                    <div className="flex flex-wrap gap-1">
-                      {["Custom Web", "Web Apps", "UI/UX Design", "E-Commerce"].map((tag, i) => (
-                        <span key={i} className={`text-[10px] font-mono font-bold px-2 py-0.5 rounded border transition-colors duration-300 ${
-                          hoveredService === 3 
-                            ? "bg-amber-500/10 text-amber-700 border-amber-500/15" 
-                            : "bg-zinc-100 text-zinc-500 border-zinc-200/60"
-                        }`}>
-                          {tag}
-                        </span>
-                      ))}
+                    <div className="flex items-center justify-between gap-2 mt-auto pt-1 w-full">
+                      <div className="flex flex-wrap gap-1">
+                        {["Custom Web", "Web Apps", "UI/UX Design", "E-Commerce"].map((tag, i) => (
+                          <span key={i} className={`text-[10px] font-mono font-bold px-1.5 py-0.5 rounded border transition-colors duration-300 ${
+                            hoveredService === 3 
+                              ? "bg-amber-500/10 text-amber-700 border-amber-500/15" 
+                              : "bg-zinc-100 text-zinc-500 border-zinc-200/60"
+                          }`}>
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                      <button
+                        onClick={() => {
+                          const contactSec = document.getElementById("contact");
+                          if (contactSec) {
+                            contactSec.scrollIntoView({ behavior: "smooth" });
+                          }
+                        }}
+                        className={`text-[10px] font-mono font-extrabold tracking-wider uppercase flex items-center gap-0.5 shrink-0 transition-all duration-300 cursor-pointer ${
+                          hoveredService === 3 ? "text-amber-600 hover:text-amber-700" : "text-[#0c3773]/85 hover:text-[#0c3773]"
+                        }`}
+                      >
+                        Learn More
+                        <ChevronRight className="w-3.5 h-3.5" />
+                      </button>
                     </div>
                   </div>
 
@@ -1818,7 +2106,7 @@ export default function App() {
                   transition={{ type: "spring", stiffness: 300, damping: 25 }}
                   onMouseEnter={() => setHoveredService(4)}
                   onMouseLeave={() => setHoveredService(null)}
-                  className={`transition-all duration-300 flex items-start gap-4 text-left relative group h-[180px] p-6 rounded-2xl border ${
+                  className={`transition-all duration-300 flex items-start gap-4 text-left relative group h-[190px] p-5 rounded-2xl border ${
                     hoveredService === 4 
                       ? "bg-white border-amber-400/40 shadow-[0_20px_45px_-12px_rgba(252,191,74,0.18)]" 
                       : "bg-white/80 backdrop-blur-sm border-zinc-200/80 shadow-[0_8px_30px_rgba(0,0,0,0.02)]"
@@ -1845,16 +2133,32 @@ export default function App() {
                         Attention starts with great storytelling. From brand films to reels, we create videos that engage, inspire, and drive action.
                       </p>
                     </div>
-                    <div className="flex flex-wrap gap-1">
-                      {["Brand Videos", "Commercials", "Reels", "Motion Graphics"].map((tag, i) => (
-                        <span key={i} className={`text-[10px] font-mono font-bold px-2 py-0.5 rounded border transition-colors duration-300 ${
-                          hoveredService === 4 
-                            ? "bg-amber-500/10 text-amber-700 border-amber-500/15" 
-                            : "bg-zinc-100 text-zinc-500 border-zinc-200/60"
-                        }`}>
-                          {tag}
-                        </span>
-                      ))}
+                    <div className="flex items-center justify-between gap-2 mt-auto pt-1 w-full">
+                      <div className="flex flex-wrap gap-1">
+                        {["Brand Videos", "Commercials", "Reels", "Motion Graphics"].map((tag, i) => (
+                          <span key={i} className={`text-[10px] font-mono font-bold px-1.5 py-0.5 rounded border transition-colors duration-300 ${
+                            hoveredService === 4 
+                              ? "bg-amber-500/10 text-amber-700 border-amber-500/15" 
+                              : "bg-zinc-100 text-zinc-500 border-zinc-200/60"
+                          }`}>
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                      <button
+                        onClick={() => {
+                          const contactSec = document.getElementById("contact");
+                          if (contactSec) {
+                            contactSec.scrollIntoView({ behavior: "smooth" });
+                          }
+                        }}
+                        className={`text-[10px] font-mono font-extrabold tracking-wider uppercase flex items-center gap-0.5 shrink-0 transition-all duration-300 cursor-pointer ${
+                          hoveredService === 4 ? "text-amber-600 hover:text-amber-700" : "text-[#0c3773]/85 hover:text-[#0c3773]"
+                        }`}
+                      >
+                        Learn More
+                        <ChevronRight className="w-3.5 h-3.5" />
+                      </button>
                     </div>
                   </div>
                 </motion.div>
@@ -1866,7 +2170,7 @@ export default function App() {
                   transition={{ type: "spring", stiffness: 300, damping: 25 }}
                   onMouseEnter={() => setHoveredService(5)}
                   onMouseLeave={() => setHoveredService(null)}
-                  className={`transition-all duration-300 flex items-start gap-4 text-left relative group h-[180px] p-6 rounded-2xl border ${
+                  className={`transition-all duration-300 flex items-start gap-4 text-left relative group h-[190px] p-5 rounded-2xl border ${
                     hoveredService === 5 
                       ? "bg-white border-amber-400/40 shadow-[0_20px_45px_-12px_rgba(252,191,74,0.18)]" 
                       : "bg-white/80 backdrop-blur-sm border-zinc-200/80 shadow-[0_8px_30px_rgba(0,0,0,0.02)]"
@@ -1893,16 +2197,32 @@ export default function App() {
                         Consistency builds brands. We create content strategies, creative campaigns, and communities that help brands stay connected.
                       </p>
                     </div>
-                    <div className="flex flex-wrap gap-1">
-                      {["Planning", "Reels Strategy", "Community", "Design"].map((tag, i) => (
-                        <span key={i} className={`text-[10px] font-mono font-bold px-2 py-0.5 rounded border transition-colors duration-300 ${
-                          hoveredService === 5 
-                            ? "bg-amber-500/10 text-amber-700 border-amber-500/15" 
-                            : "bg-zinc-100 text-zinc-500 border-zinc-200/60"
-                        }`}>
-                          {tag}
-                        </span>
-                      ))}
+                    <div className="flex items-center justify-between gap-2 mt-auto pt-1 w-full">
+                      <div className="flex flex-wrap gap-1">
+                        {["Planning", "Reels Strategy", "Community", "Design"].map((tag, i) => (
+                          <span key={i} className={`text-[10px] font-mono font-bold px-1.5 py-0.5 rounded border transition-colors duration-300 ${
+                            hoveredService === 5 
+                              ? "bg-amber-500/10 text-amber-700 border-amber-500/15" 
+                              : "bg-zinc-100 text-zinc-500 border-zinc-200/60"
+                          }`}>
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                      <button
+                        onClick={() => {
+                          const contactSec = document.getElementById("contact");
+                          if (contactSec) {
+                            contactSec.scrollIntoView({ behavior: "smooth" });
+                          }
+                        }}
+                        className={`text-[10px] font-mono font-extrabold tracking-wider uppercase flex items-center gap-0.5 shrink-0 transition-all duration-300 cursor-pointer ${
+                          hoveredService === 5 ? "text-amber-600 hover:text-amber-700" : "text-[#0c3773]/85 hover:text-[#0c3773]"
+                        }`}
+                      >
+                        Learn More
+                        <ChevronRight className="w-3.5 h-3.5" />
+                      </button>
                     </div>
                   </div>
                 </motion.div>
@@ -1914,7 +2234,7 @@ export default function App() {
                   transition={{ type: "spring", stiffness: 300, damping: 25 }}
                   onMouseEnter={() => setHoveredService(6)}
                   onMouseLeave={() => setHoveredService(null)}
-                  className={`transition-all duration-300 flex items-start gap-4 text-left relative group h-[180px] p-6 rounded-2xl border ${
+                  className={`transition-all duration-300 flex items-start gap-4 text-left relative group h-[190px] p-5 rounded-2xl border ${
                     hoveredService === 6 
                       ? "bg-white border-amber-400/40 shadow-[0_20px_45px_-12px_rgba(252,191,74,0.18)]" 
                       : "bg-white/80 backdrop-blur-sm border-zinc-200/80 shadow-[0_8px_30px_rgba(0,0,0,0.02)]"
@@ -1941,16 +2261,32 @@ export default function App() {
                         Strong visuals create stronger impressions. We design assets that make your brand impossible to ignore.
                       </p>
                     </div>
-                    <div className="flex flex-wrap gap-1">
-                      {["Identity", "Packaging", "Collaterals", "Print Design"].map((tag, i) => (
-                        <span key={i} className={`text-[10px] font-mono font-bold px-2 py-0.5 rounded border transition-colors duration-300 ${
-                          hoveredService === 6 
-                            ? "bg-amber-500/10 text-amber-700 border-amber-500/15" 
-                            : "bg-zinc-100 text-zinc-500 border-zinc-200/60"
-                        }`}>
-                          {tag}
-                        </span>
-                      ))}
+                    <div className="flex items-center justify-between gap-2 mt-auto pt-1 w-full">
+                      <div className="flex flex-wrap gap-1">
+                        {["Identity", "Packaging", "Collaterals", "Print Design"].map((tag, i) => (
+                          <span key={i} className={`text-[10px] font-mono font-bold px-1.5 py-0.5 rounded border transition-colors duration-300 ${
+                            hoveredService === 6 
+                              ? "bg-amber-500/10 text-amber-700 border-amber-500/15" 
+                              : "bg-zinc-100 text-zinc-500 border-zinc-200/60"
+                          }`}>
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                      <button
+                        onClick={() => {
+                          const contactSec = document.getElementById("contact");
+                          if (contactSec) {
+                            contactSec.scrollIntoView({ behavior: "smooth" });
+                          }
+                        }}
+                        className={`text-[10px] font-mono font-extrabold tracking-wider uppercase flex items-center gap-0.5 shrink-0 transition-all duration-300 cursor-pointer ${
+                          hoveredService === 6 ? "text-amber-600 hover:text-amber-700" : "text-[#0c3773]/85 hover:text-[#0c3773]"
+                        }`}
+                      >
+                        Learn More
+                        <ChevronRight className="w-3.5 h-3.5" />
+                      </button>
                     </div>
                   </div>
                 </motion.div>
@@ -1983,17 +2319,33 @@ export default function App() {
                 <div className="w-10 h-10 rounded-full bg-[#0c3773] text-white flex items-center justify-center shrink-0">
                   <Rocket className="w-4 h-4 text-[#fcbf4a]" />
                 </div>
-                <div className="space-y-1.5 flex-1 text-left">
-                  <h3 className="font-bold text-sm text-[#0c3773] font-sans">Performance Marketing</h3>
-                  <p className="text-zinc-600 text-xs leading-relaxed">
-                    Reach the right audience, generate qualified leads, and maximize every advertising rupee through data-backed campaigns.
-                  </p>
-                  <div className="flex flex-wrap gap-1 pt-1">
-                    {["Meta Ads", "Google Ads", "Lead Generation", "Conversion Optimization", "Campaign Management"].map((tag, i) => (
-                      <span key={i} className="text-[9px] font-mono px-1.5 py-0.5 bg-zinc-100 text-zinc-500 rounded">
-                        {tag}
-                      </span>
-                    ))}
+                <div className="space-y-1.5 flex-1 text-left flex flex-col justify-between h-full">
+                  <div>
+                    <h3 className="font-bold text-sm text-[#0c3773] font-sans">Performance Marketing</h3>
+                    <p className="text-zinc-600 text-xs leading-relaxed">
+                      Reach the right audience, generate qualified leads, and maximize every advertising rupee through data-backed campaigns.
+                    </p>
+                  </div>
+                  <div className="flex items-center justify-between gap-2 pt-3 border-t border-zinc-100 mt-2">
+                    <div className="flex flex-wrap gap-1">
+                      {["Meta Ads", "Google Ads", "Lead Gen"].map((tag, i) => (
+                        <span key={i} className="text-[9px] font-mono px-1.5 py-0.5 bg-zinc-100 text-zinc-500 rounded">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                    <button
+                      onClick={() => {
+                        const contactSec = document.getElementById("contact");
+                        if (contactSec) {
+                          contactSec.scrollIntoView({ behavior: "smooth" });
+                        }
+                      }}
+                      className="text-[10px] font-mono font-extrabold tracking-wider uppercase flex items-center gap-0.5 text-[#0c3773] hover:text-amber-600 shrink-0 transition-all duration-300 cursor-pointer"
+                    >
+                      Learn More
+                      <ChevronRight className="w-3.5 h-3.5" />
+                    </button>
                   </div>
                 </div>
               </div>
@@ -2003,17 +2355,33 @@ export default function App() {
                 <div className="w-10 h-10 rounded-full bg-[#0c3773] text-white flex items-center justify-center shrink-0">
                   <Search className="w-4 h-4 text-[#fcbf4a]" />
                 </div>
-                <div className="space-y-1.5 flex-1 text-left">
-                  <h3 className="font-bold text-sm text-[#0c3773] font-sans">SEO (Search Engine Optimization)</h3>
-                  <p className="text-zinc-600 text-xs leading-relaxed">
-                    Get found when customers are searching. We help businesses improve rankings, increase organic visibility, and drive long-term traffic that converts.
-                  </p>
-                  <div className="flex flex-wrap gap-1 pt-1">
-                    {["Technical SEO", "On-Page SEO", "Keyword Strategy", "Local SEO", "SEO Audits"].map((tag, i) => (
-                      <span key={i} className="text-[9px] font-mono px-1.5 py-0.5 bg-zinc-100 text-zinc-500 rounded">
-                        {tag}
-                      </span>
-                    ))}
+                <div className="space-y-1.5 flex-1 text-left flex flex-col justify-between h-full">
+                  <div>
+                    <h3 className="font-bold text-sm text-[#0c3773] font-sans">SEO (Search Engine Optimization)</h3>
+                    <p className="text-zinc-600 text-xs leading-relaxed">
+                      Get found when customers are searching. We help businesses improve rankings, increase organic visibility, and drive long-term traffic that converts.
+                    </p>
+                  </div>
+                  <div className="flex items-center justify-between gap-2 pt-3 border-t border-zinc-100 mt-2">
+                    <div className="flex flex-wrap gap-1">
+                      {["Technical SEO", "On-Page", "Keywords"].map((tag, i) => (
+                        <span key={i} className="text-[9px] font-mono px-1.5 py-0.5 bg-zinc-100 text-zinc-500 rounded">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                    <button
+                      onClick={() => {
+                        const contactSec = document.getElementById("contact");
+                        if (contactSec) {
+                          contactSec.scrollIntoView({ behavior: "smooth" });
+                        }
+                      }}
+                      className="text-[10px] font-mono font-extrabold tracking-wider uppercase flex items-center gap-0.5 text-[#0c3773] hover:text-amber-600 shrink-0 transition-all duration-300 cursor-pointer"
+                    >
+                      Learn More
+                      <ChevronRight className="w-3.5 h-3.5" />
+                    </button>
                   </div>
                 </div>
               </div>
@@ -2023,17 +2391,33 @@ export default function App() {
                 <div className="w-10 h-10 rounded-full bg-[#0c3773] text-white flex items-center justify-center shrink-0">
                   <Code className="w-4 h-4 text-[#fcbf4a]" />
                 </div>
-                <div className="space-y-1.5 flex-1 text-left">
-                  <h3 className="font-bold text-sm text-[#0c3773] font-sans">Web App Design & Development</h3>
-                  <p className="text-zinc-600 text-xs leading-relaxed">
-                    Great brands deserve great digital experiences. We design and develop websites and web applications that are fast, scalable, and built around user experience.
-                  </p>
-                  <div className="flex flex-wrap gap-1 pt-1">
-                    {["Custom Websites", "Web Applications", "UI/UX Design", "Landing Pages", "E-Commerce Solutions"].map((tag, i) => (
-                      <span key={i} className="text-[9px] font-mono px-1.5 py-0.5 bg-zinc-100 text-zinc-500 rounded">
-                        {tag}
-                      </span>
-                    ))}
+                <div className="space-y-1.5 flex-1 text-left flex flex-col justify-between h-full">
+                  <div>
+                    <h3 className="font-bold text-sm text-[#0c3773] font-sans">Web App Design & Development</h3>
+                    <p className="text-zinc-600 text-xs leading-relaxed">
+                      Great brands deserve great digital experiences. We design and develop websites and web applications that are fast, scalable, and built around user experience.
+                    </p>
+                  </div>
+                  <div className="flex items-center justify-between gap-2 pt-3 border-t border-zinc-100 mt-2">
+                    <div className="flex flex-wrap gap-1">
+                      {["Custom Web", "Web Apps", "UI/UX"].map((tag, i) => (
+                        <span key={i} className="text-[9px] font-mono px-1.5 py-0.5 bg-zinc-100 text-zinc-500 rounded">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                    <button
+                      onClick={() => {
+                        const contactSec = document.getElementById("contact");
+                        if (contactSec) {
+                          contactSec.scrollIntoView({ behavior: "smooth" });
+                        }
+                      }}
+                      className="text-[10px] font-mono font-extrabold tracking-wider uppercase flex items-center gap-0.5 text-[#0c3773] hover:text-amber-600 shrink-0 transition-all duration-300 cursor-pointer"
+                    >
+                      Learn More
+                      <ChevronRight className="w-3.5 h-3.5" />
+                    </button>
                   </div>
                 </div>
               </div>
@@ -2043,17 +2427,33 @@ export default function App() {
                 <div className="w-10 h-10 rounded-full bg-[#0c3773] text-white flex items-center justify-center shrink-0">
                   <Video className="w-4 h-4 text-[#fcbf4a]" />
                 </div>
-                <div className="space-y-1.5 flex-1 text-left">
-                  <h3 className="font-bold text-sm text-[#0c3773] font-sans">Video Production</h3>
-                  <p className="text-zinc-600 text-xs leading-relaxed">
-                    Attention starts with great storytelling. From brand films to social media content, we create videos that engage, inspire, and drive action.
-                  </p>
-                  <div className="flex flex-wrap gap-1 pt-1">
-                    {["Brand Videos", "Commercials", "Reels", "Motion Graphics", "Product Videos"].map((tag, i) => (
-                      <span key={i} className="text-[9px] font-mono px-1.5 py-0.5 bg-zinc-100 text-zinc-500 rounded">
-                        {tag}
-                      </span>
-                    ))}
+                <div className="space-y-1.5 flex-1 text-left flex flex-col justify-between h-full">
+                  <div>
+                    <h3 className="font-bold text-sm text-[#0c3773] font-sans">Video Production</h3>
+                    <p className="text-zinc-600 text-xs leading-relaxed">
+                      Attention starts with great storytelling. From brand films to social media content, we create videos that engage, inspire, and drive action.
+                    </p>
+                  </div>
+                  <div className="flex items-center justify-between gap-2 pt-3 border-t border-zinc-100 mt-2">
+                    <div className="flex flex-wrap gap-1">
+                      {["Brand Videos", "Reels", "Motion"].map((tag, i) => (
+                        <span key={i} className="text-[9px] font-mono px-1.5 py-0.5 bg-zinc-100 text-zinc-500 rounded">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                    <button
+                      onClick={() => {
+                        const contactSec = document.getElementById("contact");
+                        if (contactSec) {
+                          contactSec.scrollIntoView({ behavior: "smooth" });
+                        }
+                      }}
+                      className="text-[10px] font-mono font-extrabold tracking-wider uppercase flex items-center gap-0.5 text-[#0c3773] hover:text-amber-600 shrink-0 transition-all duration-300 cursor-pointer"
+                    >
+                      Learn More
+                      <ChevronRight className="w-3.5 h-3.5" />
+                    </button>
                   </div>
                 </div>
               </div>
@@ -2063,17 +2463,33 @@ export default function App() {
                 <div className="w-10 h-10 rounded-full bg-[#0c3773] text-white flex items-center justify-center shrink-0">
                   <Smartphone className="w-4 h-4 text-[#fcbf4a]" />
                 </div>
-                <div className="space-y-1.5 flex-1 text-left">
-                  <h3 className="font-bold text-sm text-[#0c3773] font-sans">Social Media Management</h3>
-                  <p className="text-zinc-600 text-xs leading-relaxed">
-                    Because consistency builds brands. We create content strategies, campaigns, and communities that help brands stay relevant and connected.
-                  </p>
-                  <div className="flex flex-wrap gap-1 pt-1">
-                    {["Content Planning", "Creative Design", "Reels Strategy", "Community Management", "Monthly Reporting"].map((tag, i) => (
-                      <span key={i} className="text-[9px] font-mono px-1.5 py-0.5 bg-zinc-100 text-zinc-500 rounded">
-                        {tag}
-                      </span>
-                    ))}
+                <div className="space-y-1.5 flex-1 text-left flex flex-col justify-between h-full">
+                  <div>
+                    <h3 className="font-bold text-sm text-[#0c3773] font-sans">Social Media Management</h3>
+                    <p className="text-zinc-600 text-xs leading-relaxed">
+                      Because consistency builds brands. We create content strategies, campaigns, and communities that help brands stay relevant and connected.
+                    </p>
+                  </div>
+                  <div className="flex items-center justify-between gap-2 pt-3 border-t border-zinc-100 mt-2">
+                    <div className="flex flex-wrap gap-1">
+                      {["Planning", "Reels", "Community"].map((tag, i) => (
+                        <span key={i} className="text-[9px] font-mono px-1.5 py-0.5 bg-zinc-100 text-zinc-500 rounded">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                    <button
+                      onClick={() => {
+                        const contactSec = document.getElementById("contact");
+                        if (contactSec) {
+                          contactSec.scrollIntoView({ behavior: "smooth" });
+                        }
+                      }}
+                      className="text-[10px] font-mono font-extrabold tracking-wider uppercase flex items-center gap-0.5 text-[#0c3773] hover:text-amber-600 shrink-0 transition-all duration-300 cursor-pointer"
+                    >
+                      Learn More
+                      <ChevronRight className="w-3.5 h-3.5" />
+                    </button>
                   </div>
                 </div>
               </div>
@@ -2083,17 +2499,33 @@ export default function App() {
                 <div className="w-10 h-10 rounded-full bg-[#0c3773] text-white flex items-center justify-center shrink-0">
                   <Palette className="w-4 h-4 text-[#fcbf4a]" />
                 </div>
-                <div className="space-y-1.5 flex-1 text-left">
-                  <h3 className="font-bold text-sm text-[#0c3773] font-sans">Graphics & Print Media</h3>
-                  <p className="text-zinc-600 text-xs leading-relaxed">
-                    Strong visuals create stronger impressions. From digital creatives to print materials, we design assets that make your brand impossible to ignore.
-                  </p>
-                  <div className="flex flex-wrap gap-1 pt-1">
-                    {["Brand Identity", "Brochures", "Flyers", "Packaging", "Marketing Collaterals", "Print Design"].map((tag, i) => (
-                      <span key={i} className="text-[9px] font-mono px-1.5 py-0.5 bg-zinc-100 text-zinc-500 rounded">
-                        {tag}
-                      </span>
-                    ))}
+                <div className="space-y-1.5 flex-1 text-left flex flex-col justify-between h-full">
+                  <div>
+                    <h3 className="font-bold text-sm text-[#0c3773] font-sans">Graphics & Print Media</h3>
+                    <p className="text-zinc-600 text-xs leading-relaxed">
+                      Strong visuals create stronger impressions. From digital creatives to print materials, we design assets that make your brand impossible to ignore.
+                    </p>
+                  </div>
+                  <div className="flex items-center justify-between gap-2 pt-3 border-t border-zinc-100 mt-2">
+                    <div className="flex flex-wrap gap-1">
+                      {["Identity", "Packaging", "Print"].map((tag, i) => (
+                        <span key={i} className="text-[9px] font-mono px-1.5 py-0.5 bg-zinc-100 text-zinc-500 rounded">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                    <button
+                      onClick={() => {
+                        const contactSec = document.getElementById("contact");
+                        if (contactSec) {
+                          contactSec.scrollIntoView({ behavior: "smooth" });
+                        }
+                      }}
+                      className="text-[10px] font-mono font-extrabold tracking-wider uppercase flex items-center gap-0.5 text-[#0c3773] hover:text-amber-600 shrink-0 transition-all duration-300 cursor-pointer"
+                    >
+                      Learn More
+                      <ChevronRight className="w-3.5 h-3.5" />
+                    </button>
                   </div>
                 </div>
               </div>
@@ -2572,6 +3004,9 @@ export default function App() {
 
         </div>
       </section>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* ==================== INTERACTIVE LAYER MODALS (True Inline Overlay Utilities) ==================== */}
 
@@ -2939,6 +3374,553 @@ export default function App() {
                 >
                   Consult Directly with Strategists
                 </button>
+              </div>
+
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
+
+      {/* 4. CAREERS OPPORTUNITY CONSOLE */}
+      <AnimatePresence>
+        {isCareersOpen && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => {
+                setIsCareersOpen(false);
+                setCareersSubmitted(false);
+              }}
+              className="absolute inset-0 bg-neutral-950/80 backdrop-blur-md" 
+            />
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95, y: 30 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 30 }}
+              className="relative z-10 w-full max-w-2xl bg-white text-neutral-900 rounded-[2.5rem] shadow-2xl p-8 overflow-y-auto max-h-[90vh] font-sans text-left"
+            >
+              
+              <div className="flex items-center justify-between pb-6 border-b border-neutral-200 mb-6">
+                <div>
+                  <span className="text-xs font-mono font-bold tracking-widest text-[#0c3773] uppercase">DIGIYOG TALENT HUB</span>
+                  <h3 className="text-xl font-black text-neutral-950 uppercase tracking-tight">Careers & Opportunities</h3>
+                </div>
+                <button 
+                  onClick={() => {
+                    setIsCareersOpen(false);
+                    setCareersSubmitted(false);
+                  }}
+                  className="w-10 h-10 rounded-full border border-neutral-200 flex items-center justify-center hover:bg-neutral-100 text-neutral-500 transition-all active:scale-95 cursor-pointer"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+
+              {careersSubmitted ? (
+                <div className="py-12 text-center space-y-4">
+                  <div className="w-16 h-16 bg-[#fcbf4a]/10 text-amber-600 rounded-full flex items-center justify-center mx-auto text-2xl font-black">
+                    ✓
+                  </div>
+                  <h4 className="text-xl font-black text-neutral-950 uppercase tracking-tight">Application Submitted!</h4>
+                  <p className="text-neutral-600 font-semibold max-w-sm mx-auto text-sm leading-relaxed">
+                    Thank you for applying to Digiyog Technosoft. Our recruitment team will review your application and contact you shortly.
+                  </p>
+                  <button
+                    onClick={() => {
+                      setCareersSubmitted(false);
+                      setIsCareersOpen(false);
+                    }}
+                    className="mt-6 px-6 py-2.5 bg-[#0c3773] text-white text-xs font-bold tracking-wider rounded-full hover:bg-blue-900 transition-all uppercase"
+                  >
+                    Close Portal
+                  </button>
+                </div>
+              ) : (
+                <div className="space-y-6">
+                  <div>
+                    <h4 className="text-sm font-black text-[#0c3773] uppercase tracking-wide mb-3">Active Roles Available:</h4>
+                    <div className="grid grid-cols-1 gap-3">
+                      {[
+                        { title: "Senior React / Fullstack Developer", type: "Full-Time • Remote", desc: "Expertise in React, Vite, Tailwind CSS, Node.js and interactive front-ends." },
+                        { title: "SEO Specialist & Content Strategist", type: "Full-Time • Hybrid", desc: "Proven track record with organic scaling, GEO/AEO optimization and search engine algorithms." },
+                        { title: "Performance Marketing Lead", type: "Full-Time • Noida / Hybrid", desc: "Experienced in managing high-budget Meta/Google ads and scaling ROI." }
+                      ].map((role, rIdx) => (
+                        <div key={rIdx} className="p-4 border border-zinc-150 rounded-xl bg-zinc-50 hover:bg-zinc-100/50 transition-colors">
+                          <div className="flex justify-between items-start gap-2">
+                            <h5 className="font-black text-sm text-zinc-950 tracking-tight">{role.title}</h5>
+                            <span className="text-[10px] font-mono font-bold text-amber-600 uppercase shrink-0">{role.type}</span>
+                          </div>
+                          <p className="text-[11px] text-zinc-500 font-semibold mt-1">{role.desc}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <form 
+                    onSubmit={(e) => {
+                      e.preventDefault();
+                      setCareersSubmitted(true);
+                    }}
+                    className="border-t border-neutral-100 pt-6 space-y-4"
+                  >
+                    <h4 className="text-sm font-black text-[#0c3773] uppercase tracking-wide">Quick Application:</h4>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-[10px] font-mono tracking-wider font-bold text-neutral-500 uppercase mb-1">Full Name</label>
+                        <input 
+                          type="text" 
+                          required
+                          value={careersFormData.name}
+                          onChange={(e) => setCareersFormData({ ...careersFormData, name: e.target.value })}
+                          placeholder="Your full name"
+                          className="w-full h-11 px-4 border border-zinc-200 rounded-xl text-xs font-semibold focus:outline-none focus:ring-1 focus:ring-[#0c3773] focus:border-[#0c3773] transition-all bg-zinc-50/50"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-[10px] font-mono tracking-wider font-bold text-neutral-500 uppercase mb-1">Email Address</label>
+                        <input 
+                          type="email" 
+                          required
+                          value={careersFormData.email}
+                          onChange={(e) => setCareersFormData({ ...careersFormData, email: e.target.value })}
+                          placeholder="your.email@example.com"
+                          className="w-full h-11 px-4 border border-zinc-200 rounded-xl text-xs font-semibold focus:outline-none focus:ring-1 focus:ring-[#0c3773] focus:border-[#0c3773] transition-all bg-zinc-50/50"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-[10px] font-mono tracking-wider font-bold text-neutral-500 uppercase mb-1">Target Position</label>
+                        <select 
+                          value={careersFormData.position}
+                          onChange={(e) => setCareersFormData({ ...careersFormData, position: e.target.value })}
+                          className="w-full h-11 px-4 border border-zinc-200 rounded-xl text-xs font-semibold focus:outline-none focus:ring-1 focus:ring-[#0c3773] focus:border-[#0c3773] transition-all bg-zinc-50/50 cursor-pointer"
+                        >
+                          <option value="React Developer">Senior React / Fullstack Developer</option>
+                          <option value="SEO Specialist">SEO Specialist & Content Strategist</option>
+                          <option value="Performance Marketer">Performance Marketing Lead</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label className="block text-[10px] font-mono tracking-wider font-bold text-neutral-500 uppercase mb-1">Portfolio or Website Link</label>
+                        <input 
+                          type="url" 
+                          value={careersFormData.portfolio}
+                          onChange={(e) => setCareersFormData({ ...careersFormData, portfolio: e.target.value })}
+                          placeholder="https://yourportfolio.com"
+                          className="w-full h-11 px-4 border border-zinc-200 rounded-xl text-xs font-semibold focus:outline-none focus:ring-1 focus:ring-[#0c3773] focus:border-[#0c3773] transition-all bg-zinc-50/50"
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="block text-[10px] font-mono tracking-wider font-bold text-neutral-500 uppercase mb-1">Link to Resume (Drive / Dropbox)</label>
+                      <input 
+                        type="url" 
+                        required
+                        value={careersFormData.resume}
+                        onChange={(e) => setCareersFormData({ ...careersFormData, resume: e.target.value })}
+                        placeholder="https://drive.google.com/.../your-resume.pdf"
+                        className="w-full h-11 px-4 border border-zinc-200 rounded-xl text-xs font-semibold focus:outline-none focus:ring-1 focus:ring-[#0c3773] focus:border-[#0c3773] transition-all bg-zinc-50/50"
+                      />
+                    </div>
+
+                    <button 
+                      type="submit"
+                      className="w-full h-12 bg-[#0c3773] hover:bg-blue-900 text-white font-sans font-black text-xs tracking-widest uppercase rounded-xl transition-all shadow-md active:scale-98 mt-4 cursor-pointer"
+                    >
+                      SUBMIT APPLICATION
+                    </button>
+                  </form>
+                </div>
+              )}
+
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
+
+      {/* ABOUT US PORTAL */}
+      <AnimatePresence>
+        {false && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-0 md:p-6">
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => {}}
+              className="absolute inset-0 bg-neutral-950/80 backdrop-blur-md" 
+            />
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.98, y: 40 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.98, y: 40 }}
+              className="relative z-10 w-full h-full md:h-[90vh] md:max-w-5xl bg-white text-neutral-900 rounded-none md:rounded-[2.5rem] shadow-2xl overflow-y-auto font-sans text-left"
+            >
+              {/* Sticky Top Bar inside modal */}
+              <div className="sticky top-0 bg-white/95 backdrop-blur-md z-20 flex items-center justify-between px-6 py-4 md:px-10 border-b border-neutral-100">
+                <div>
+                  <span className="text-[10px] font-mono font-bold tracking-widest text-[#0c3773] uppercase">DIGIYOG PLATFORM</span>
+                  <h3 className="text-lg md:text-xl font-black text-neutral-950 uppercase tracking-tight">ABOUT US</h3>
+                </div>
+                <button 
+                  onClick={() => {}}
+                  className="w-10 h-10 rounded-full border border-neutral-200 flex items-center justify-center hover:bg-neutral-100 text-neutral-500 transition-all active:scale-95 cursor-pointer"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+
+              {/* Scrollable Content */}
+              <div className="p-6 md:p-12 space-y-16 md:space-y-24 pb-24">
+                {/* 1. HERO SECTION */}
+                <div className="space-y-6 max-w-3xl">
+                  <span className="inline-block px-3 py-1 text-[9px] font-mono font-bold uppercase tracking-wider bg-amber-500/10 text-amber-700 rounded-full">
+                    Hero Section
+                  </span>
+                  <h1 className="text-3xl md:text-5xl font-black text-neutral-950 uppercase tracking-tight leading-tight">
+                    We Believe Great Businesses Deserve <span className="text-[#0c3773] underline decoration-[#fcbf4a] decoration-4 underline-offset-4">Great Digital Partners.</span>
+                  </h1>
+                  <div className="space-y-4 text-neutral-600 font-semibold text-sm md:text-base leading-relaxed">
+                    <p>
+                      Digital growth isn’t about running more campaigns, building more websites, or chasing the latest trends. It’s about making the right decisions, at the right time, with the right strategy.
+                    </p>
+                    <p>
+                      At DigiYog, we bring together marketing, technology, design, and data to help businesses build stronger brands, better customer experiences, and sustainable growth.
+                    </p>
+                  </div>
+                  <div className="pt-2">
+                    <button
+                      onClick={() => {
+                        const el = document.getElementById("proposal-form");
+                        if (el) el.scrollIntoView({ behavior: "smooth", block: "center" });
+                      }}
+                      className="px-6 py-3 bg-[#0c3773] hover:bg-[#0c3773]/90 text-white font-sans font-black text-xs tracking-widest uppercase rounded-xl transition-all shadow-md active:scale-95 cursor-pointer"
+                    >
+                      Let's Build Together
+                    </button>
+                  </div>
+                </div>
+
+                {/* 2. WHY DIGIYOG EXISTS */}
+                <div className="border-t border-neutral-100 pt-16 grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+                  <div className="md:col-span-4 space-y-2">
+                    <span className="inline-block px-3 py-1 text-[9px] font-mono font-bold uppercase tracking-wider bg-zinc-100 text-zinc-600 rounded-full">
+                      Section 2 — Why DigiYog Exists
+                    </span>
+                    <h2 className="text-xl md:text-2xl font-black text-zinc-950 uppercase tracking-tight leading-none">
+                      The DigiYog Mission
+                    </h2>
+                  </div>
+                  <div className="md:col-span-8 space-y-6">
+                    <h3 className="text-xl md:text-2xl font-black text-[#0c3773] uppercase tracking-tight leading-tight">
+                      We Started DigiYog Because Too Many Businesses Were Buying Services Instead of Solutions.
+                    </h3>
+                    <div className="space-y-4 text-neutral-600 font-semibold text-xs md:text-sm leading-relaxed">
+                      <p>
+                        We’ve seen businesses invest in websites that never generated enquiries, campaigns that delivered clicks but not customers, and software that complicated work instead of simplifying it.
+                      </p>
+                      <div className="p-4 border-l-4 border-amber-500 bg-amber-50/50 rounded-r-xl">
+                        <p className="font-extrabold text-neutral-800">The problem wasn’t a lack of effort. It was a lack of strategy.</p>
+                      </div>
+                      <p>
+                        DigiYog was created to bridge that gap.
+                      </p>
+                      <p>
+                        Instead of offering isolated digital services, we build connected solutions that help businesses attract customers, improve experiences, streamline operations, and grow with confidence.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* 3. GROWTH ISN'T A SERVICE. OUR BELIEFS SHAPE EVERY DECISION WE MAKE */}
+                <div className="border-t border-neutral-100 pt-16 space-y-8">
+                  <div className="space-y-2 text-center max-w-2xl mx-auto">
+                    <span className="inline-block px-3 py-1 text-[9px] font-mono font-bold uppercase tracking-wider bg-amber-500/10 text-amber-700 rounded-full">
+                      Section 3 — Growth Isn’t a Service
+                    </span>
+                    <h2 className="text-2xl md:text-3xl font-black text-neutral-950 uppercase tracking-tight">
+                      Our Beliefs Shape Every Decision We Make.
+                    </h2>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {[
+                      {
+                        title: "Growth Before Vanity",
+                        desc: "We focus on business outcomes—not metrics that look impressive but create little real impact.",
+                        num: "01"
+                      },
+                      {
+                        title: "Strategy Before Execution",
+                        desc: "Every successful project begins with understanding your business, your customers, and your goals.",
+                        num: "02"
+                      },
+                      {
+                        title: "Partnerships Over Projects",
+                        desc: "We believe the best results come from long-term collaboration, not one-time deliveries.",
+                        num: "03"
+                      },
+                      {
+                        title: "Continuous Improvement",
+                        desc: "Markets evolve, technology changes, and customer expectations grow. So do our solutions.",
+                        num: "04"
+                      }
+                    ].map((card, idx) => (
+                      <div key={idx} className="p-6 rounded-2xl border border-zinc-200 bg-zinc-50/50 hover:bg-zinc-50 transition-colors flex flex-col justify-between space-y-4">
+                        <span className="text-2xl font-mono font-black text-[#0c3773]/20">{card.num}</span>
+                        <div className="space-y-2">
+                          <h4 className="font-black text-sm md:text-base text-neutral-950 uppercase tracking-wide">
+                            {card.title}
+                          </h4>
+                          <p className="text-xs md:text-sm text-neutral-600 font-semibold leading-relaxed">
+                            {card.desc}
+                          </p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* 4. WHAT IT'S LIKE TO WORK WITH DIGIYOG */}
+                <div className="border-t border-neutral-100 pt-16 space-y-8">
+                  <div className="space-y-2 text-center max-w-2xl mx-auto">
+                    <span className="inline-block px-3 py-1 text-[9px] font-mono font-bold uppercase tracking-wider bg-zinc-100 text-zinc-600 rounded-full">
+                      Section 4 — What It’s Like to Work With DigiYog
+                    </span>
+                    <h2 className="text-2xl md:text-3xl font-black text-neutral-950 uppercase tracking-tight">
+                      Every Business Grows Differently. Our Approach Evolves With It.
+                    </h2>
+                    <p className="text-xs md:text-sm text-neutral-500 font-semibold max-w-xl mx-auto leading-relaxed">
+                      Instead of offering disconnected services, we help businesses build a complete digital growth ecosystem.
+                    </p>
+                  </div>
+
+                  {/* Interconnected stepper */}
+                  <div className="relative max-w-3xl mx-auto">
+                    <div className="absolute left-[20px] top-4 bottom-4 w-1 bg-gradient-to-b from-[#0c3773] to-amber-500 rounded-full hidden sm:block" />
+                    <div className="space-y-8">
+                      {[
+                        {
+                          step: "Find",
+                          desc: "Improve visibility through SEO and search-driven strategies.",
+                          badge: "🔍 Discovery Phase"
+                        },
+                        {
+                          step: "Reach",
+                          desc: "Accelerate growth with performance marketing and paid campaigns.",
+                          badge: "🚀 Outreach Phase"
+                        },
+                        {
+                          step: "Build",
+                          desc: "Create websites, applications, and digital products that strengthen customer experiences.",
+                          badge: "🛠️ Development Phase"
+                        },
+                        {
+                          step: "Scale",
+                          desc: "Simplify operations with automation, analytics, and technology solutions.",
+                          badge: "📈 Operations Phase"
+                        }
+                      ].map((p, idx) => (
+                        <div key={idx} className="flex flex-col sm:flex-row items-start gap-4 sm:gap-6 relative pl-0 sm:pl-12">
+                          <div className="absolute left-0 top-1.5 w-11 h-11 rounded-full bg-white border-4 border-[#0c3773] flex items-center justify-center font-mono font-black text-[#0c3773] text-sm hidden sm:flex">
+                            {idx + 1}
+                          </div>
+                          <div className="p-5 border border-zinc-150 rounded-2xl bg-zinc-50 w-full hover:shadow-sm transition-shadow">
+                            <span className="text-[9px] font-mono font-bold tracking-widest text-amber-600 uppercase mb-1 block">
+                              {p.badge}
+                            </span>
+                            <h4 className="font-black text-base text-neutral-950 uppercase tracking-wide">
+                              {p.step}
+                            </h4>
+                            <p className="text-xs md:text-sm text-neutral-600 font-semibold leading-relaxed mt-1">
+                              {p.desc}
+                            </p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="bg-[#0c3773]/5 rounded-2xl p-5 border border-[#0c3773]/10 max-w-2xl mx-auto text-center">
+                    <p className="text-xs md:text-sm font-bold text-[#0c3773] uppercase tracking-wider font-satoshi">
+                      One partner. Multiple capabilities. One shared goal—helping your business grow.
+                    </p>
+                  </div>
+                </div>
+
+                {/* 6. WHY BUSINESSES CHOOSE DIGIYOG */}
+                <div className="border-t border-neutral-100 pt-16 space-y-8">
+                  <div className="space-y-2 text-center max-w-2xl mx-auto">
+                    <span className="inline-block px-3 py-1 text-[9px] font-mono font-bold uppercase tracking-wider bg-amber-500/10 text-amber-700 rounded-full">
+                      Section 6 — Why Businesses Choose DigiYog
+                    </span>
+                    <h2 className="text-2xl md:text-3xl font-black text-neutral-950 uppercase tracking-tight">
+                      Because Growth Needs More Than Great Ideas.
+                    </h2>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {[
+                      { title: "Business-First Thinking", desc: "Every recommendation starts with your business objectives—not our service list.", icon: Target },
+                      { title: "Transparent Communication", desc: "Clear timelines, honest advice, and regular updates at every stage.", icon: MessageCircle },
+                      { title: "Data-Driven Decisions", desc: "Every strategy is backed by insights, not assumptions.", icon: TrendingUp },
+                      { title: "Tailored Solutions", desc: "No templates. No one-size-fits-all approach.", icon: Settings },
+                      { title: "Long-Term Support", desc: "Our partnership continues long after launch.", icon: Users },
+                      { title: "Continuous Innovation", desc: "We refine, improve, and adapt as your business evolves.", icon: Sparkles }
+                    ].map((f, idx) => {
+                      const Icon = f.icon;
+                      return (
+                        <div key={idx} className="p-5 border border-zinc-150 rounded-2xl bg-zinc-50/50 hover:bg-zinc-50 transition-colors space-y-3">
+                          <div className="w-9 h-9 rounded-xl bg-[#0c3773]/10 flex items-center justify-center text-[#0c3773]">
+                            <Icon className="w-5 h-5" />
+                          </div>
+                          <h4 className="font-black text-xs md:text-sm text-neutral-950 uppercase tracking-wide">{f.title}</h4>
+                          <p className="text-[11px] md:text-xs text-neutral-500 font-semibold leading-relaxed">{f.desc}</p>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* 7. OUR IMPACT */}
+                <div className="border-t border-neutral-100 pt-16 space-y-8">
+                  <div className="space-y-2 text-center max-w-2xl mx-auto">
+                    <span className="inline-block px-3 py-1 text-[9px] font-mono font-bold uppercase tracking-wider bg-zinc-100 text-zinc-600 rounded-full">
+                      Section 7 — Our Impact
+                    </span>
+                    <h2 className="text-2xl md:text-3xl font-black text-neutral-950 uppercase tracking-tight">
+                      Growth Measured by the Success of Our Clients.
+                    </h2>
+                  </div>
+
+                  <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+                    {[
+                      { val: "45+", title: "Businesses Partnered With" },
+                      { val: "120+", title: "Projects Delivered" },
+                      { val: "15+", title: "Industries Served" },
+                      { val: "98%", title: "Client Retention" },
+                      { val: "250+", title: "Campaigns & Solutions" }
+                    ].map((stat, idx) => (
+                      <div key={idx} className="p-4 border border-zinc-150 rounded-2xl bg-zinc-50 text-center space-y-1">
+                        <p className="text-xl md:text-3xl font-black text-[#0c3773]">{stat.val}</p>
+                        <p className="text-[9px] font-mono font-bold text-neutral-500 uppercase tracking-wider leading-tight">{stat.title}</p>
+                      </div>
+                    ))}
+                  </div>
+
+                  <p className="text-[10px] md:text-xs text-neutral-500 font-bold text-center italic">
+                    Every number represents a business that trusted us to be part of its growth journey.
+                  </p>
+                </div>
+
+                {/* 8. OUR PROMISE: WHAT YOU'LL NEVER HEAR FROM US */}
+                <div className="border-t border-neutral-100 pt-16 space-y-8">
+                  <div className="space-y-2 text-center max-w-2xl mx-auto">
+                    <span className="inline-block px-3 py-1 text-[9px] font-mono font-bold uppercase tracking-wider bg-amber-500/10 text-amber-700 rounded-full">
+                      Section 8 — Our Promise
+                    </span>
+                    <h2 className="text-2xl md:text-3xl font-black text-neutral-950 uppercase tracking-tight">
+                      What You’ll Never Hear From Us.
+                    </h2>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-3xl mx-auto">
+                    {[
+                      "Guaranteed overnight success.",
+                      "One-size-fits-all marketing packages.",
+                      "Technology without purpose.",
+                      "Vanity metrics presented as growth."
+                    ].map((p, idx) => (
+                      <div key={idx} className="flex items-center gap-3 p-4 border border-rose-100 rounded-2xl bg-rose-50/50">
+                        <span className="text-rose-500 shrink-0 text-base">❌</span>
+                        <p className="text-xs md:text-sm font-bold text-neutral-800 uppercase tracking-wide leading-tight">{p}</p>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="max-w-xl mx-auto text-center">
+                    <p className="text-xs md:text-sm text-neutral-600 font-semibold leading-relaxed">
+                      Instead, you’ll receive honest advice, practical strategies, measurable progress, and a team that’s invested in your long-term success.
+                    </p>
+                  </div>
+                </div>
+
+                {/* 9. OUR MANIFESTO */}
+                <div className="border-t border-neutral-100 pt-16 space-y-8">
+                  <div className="space-y-2 text-center max-w-2xl mx-auto">
+                    <span className="inline-block px-3 py-1 text-[9px] font-mono font-bold uppercase tracking-wider bg-zinc-100 text-zinc-600 rounded-full">
+                      Section 9 — Our Manifesto
+                    </span>
+                    <h2 className="text-2xl md:text-3xl font-black text-neutral-950 uppercase tracking-tight">
+                      We Believe…
+                    </h2>
+                  </div>
+
+                  <div className="bg-[#0c3773] text-white rounded-3xl p-8 md:p-12 shadow-xl relative overflow-hidden">
+                    {/* Background glow effects */}
+                    <div className="absolute top-0 right-0 w-64 h-64 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
+                    <div className="absolute -bottom-10 -left-10 w-64 h-64 bg-blue-500/15 rounded-full blur-3xl pointer-events-none" />
+                    
+                    <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 font-sans">
+                      {[
+                        "Businesses deserve partners—not vendors.",
+                        "Marketing should create opportunities—not noise.",
+                        "Technology should simplify—not complicate.",
+                        "Growth should be measurable—not assumed.",
+                        "Trust is earned through consistency—not promises.",
+                        "The best digital solutions begin by understanding people—not platforms."
+                      ].map((item, idx) => (
+                        <div key={idx} className="flex items-start gap-3.5 border-b border-white/10 pb-4">
+                          <span className="text-[#fcbf4a] text-lg font-black font-mono">0{idx + 1}</span>
+                          <p className="text-sm md:text-base font-black tracking-wide uppercase leading-snug">
+                            {item}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* 10. FINAL CTA */}
+                <div className="border-t border-neutral-100 pt-16 text-center space-y-6 max-w-2xl mx-auto">
+                  <span className="inline-block px-3 py-1 text-[9px] font-mono font-bold uppercase tracking-wider bg-amber-500/10 text-amber-700 rounded-full">
+                    Section 10 — Final CTA
+                  </span>
+                  <h2 className="text-3xl md:text-4xl font-black text-neutral-950 uppercase tracking-tight leading-tight">
+                    Let’s Build Something That Moves Your Business Forward.
+                  </h2>
+                  <p className="text-xs md:text-sm text-neutral-600 font-semibold leading-relaxed">
+                    Whether you’re looking to grow your brand, launch a digital product, improve your marketing, or streamline your operations, we’d love to be part of your journey.
+                  </p>
+                  
+                  <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-4">
+                    <button
+                      onClick={() => {
+                        const el = document.getElementById("proposal-form");
+                        if (el) el.scrollIntoView({ behavior: "smooth", block: "center" });
+                      }}
+                      className="w-full sm:w-auto px-6 py-3.5 bg-[#0c3773] hover:bg-blue-900 text-white font-sans font-black text-xs tracking-widest uppercase rounded-xl transition-all shadow-md active:scale-95 cursor-pointer"
+                    >
+                      Start a Conversation
+                    </button>
+                    <button
+                      onClick={() => {
+                        const el = document.getElementById("services");
+                        if (el) el.scrollIntoView({ behavior: "smooth", block: "center" });
+                      }}
+                      className="w-full sm:w-auto px-6 py-3.5 bg-zinc-100 hover:bg-zinc-200 text-neutral-800 font-sans font-black text-xs tracking-widest uppercase rounded-xl transition-all shadow-sm active:scale-95 cursor-pointer"
+                    >
+                      Explore Our Services
+                    </button>
+                  </div>
+                </div>
+
               </div>
 
             </motion.div>
